@@ -1,39 +1,21 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
-
-const isEmailValid = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+import { Link } from "react-router-dom";
 
 const SignupPage = () => {
-  const { signup } = useContext(AuthContext);
+  // const { signup } = useContext(AuthContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const isEmailValid = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleSignup = async (e) => {
     e.preventDefault();
-
-    if (!isEmailValid(email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    const result = await signup(name, email, password);
-
-    if (result.success) {
-      navigate("/login");
-    } else {
-      setError(result.message || "Sign Up failed. Please try again.");
-    }
   };
 
   return (
