@@ -1,0 +1,87 @@
+.navbar {
+  background-color: #000000;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+  max-width: calc(100% - 20px);
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1295px;
+  height: 0.1px;
+  background-color: #ffffff;
+}
+
+.title {
+  font-family: "italiana", sans-serif;
+  font-weight: lighter;
+  font-size: 60px;
+  color: #fff;
+  margin: 0;
+}
+
+.left-section {
+  width: 200px;
+}
+
+.right-section {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.right-section button {
+  color: #fff;
+  background-color: #00000000;
+  border: none;
+  font-size: 17px;
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, border-bottom-color 0.3s;
+  cursor: pointer;
+}
+
+.right-section button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background-color: #fff;
+  transition: width 0.3s;
+}
+
+.right-section button::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0) scaleX(0.2);
+  width: 10px;
+  height: 10px;
+  border: 1px solid #fff;
+  border-left: none;
+  border-top: none;
+  transition: transform 0.3s;
+}
+
+.right-section button:hover::before {
+  width: 100%;
+}
+
+.right-section button:hover::after {
+  transform: translateX(-50%) rotate(45deg) scaleY(1) scaleX(1);
+}
