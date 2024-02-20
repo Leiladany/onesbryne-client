@@ -9,7 +9,7 @@ function Navbar() {
       </div>
       <div className="right-section">
         <button type="submit">Criar Conta</button>
-        <button>Log In</button>
+        <button>Entrar</button>
       </div>
     </div>
   );
