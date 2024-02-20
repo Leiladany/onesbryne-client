@@ -30,11 +30,10 @@ h3 {
 }
 
 .explain-container {
-  font-family: "Lucida Grande";
   margin-top: 20px;
-  flex-direction: row;
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns for step1 and step2 */
+  grid-gap: 30px; /* Gap between grid items */
 }
 
 .explain-container h2 {
@@ -65,7 +64,7 @@ h3 {
 }
 
 .icon-container img {
-  width: 100px; /* Adjust the size of the icon as needed */
+  width: 100%; /* Adjust the size of the icon as needed */
   height: auto;
 }
 
@@ -73,6 +72,24 @@ h3 {
   text-align: left; /* Align text to the left within the disc-container */
 }
 
-.step1, .step2, .step3, .step4{
-    display: flex;
+.disc-container h2,
+.disc-container h3 {
+  margin-top: 0;
+}
+
+.step2, .step4 {
+    justify-content: flex-end;
+}
+
+.step3,
+.step4 {
+  margin-top: 20px; /* Add margin between rows */
+}
+
+.step1,
+.step2,
+.step3,
+.step4 {
+  display: flex;
+  align-items: center;
 }
