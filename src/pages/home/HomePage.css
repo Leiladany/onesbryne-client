@@ -1,0 +1,78 @@
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about-container {
+  margin-top: 43px;
+}
+
+.about-container,
+h2,
+h3 {
+  font-family: "Lucida Grande";
+}
+
+.about-container h2 {
+  color: white;
+  margin-bottom: 31px;
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+.about-container h3 {
+  font-size: 20px;
+  font-weight: lighter;
+  color: #9d9d9d;
+  width: 330px;
+}
+
+.explain-container {
+  font-family: "Lucida Grande";
+  margin-top: 20px;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+}
+
+.explain-container h2 {
+  color: white;
+  font-size: 18px;
+  font-weight: lighter;
+  margin-top: 0;
+}
+
+.explain-container h3 {
+  color: #9d9d9d;
+  font-size: 15px;
+  font-weight: lighter;
+  width: 240px;
+  height: auto;
+}
+
+.row-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container {
+  width: 100px;
+  height: 100px;
+  margin-right: 15px;
+}
+
+.icon-container img {
+  width: 100px; /* Adjust the size of the icon as needed */
+  height: auto;
+}
+
+.disc-container {
+  text-align: left; /* Align text to the left within the disc-container */
+}
+
+.step1, .step2, .step3, .step4{
+    display: flex;
+}
