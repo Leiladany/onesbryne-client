@@ -6,7 +6,7 @@
 }
 
 .about-container {
-  margin-top: 43px;
+  margin-top: 5px;
 }
 
 .about-container,
@@ -17,7 +17,7 @@ h3 {
 
 .about-container h2 {
   color: white;
-  margin-bottom: 31px;
+  margin-bottom: 0;
   font-size: 30px;
   font-weight: lighter;
 }
@@ -93,3 +93,27 @@ h3 {
   display: flex;
   align-items: center;
 }
+
+.button-container {
+    margin-top: 40px; /* Adjust margin as needed */
+    text-align: center; /* Center the button horizontally */
+  }
+  
+  .button-container button {
+    font-family: "Lucida Grande";
+    font-weight: lighter;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff00; /* Transparent color */
+    color: white;
+    border: 1.5px solid transparent; /* No border by default */
+    cursor: pointer;
+    opacity: 0.7; /* Slightly transparent by default */
+    transition: opacity 0.3s ease, border-color 0.3s ease; /* Add transition effect */
+  }
+  
+  .button-container button:hover {
+    opacity: 1; /* Solid color on hover */
+    border-color: #ffffff; /* Add border on hover */
+  }
+  

@@ -31,8 +31,8 @@ function HomePage() {
             <div className="disc-container">
               <h2>Procura a roupa que queres</h2>
               <h3>
-                Explora nosso catálogo, caso não
-                queira comprometer-se já, guarde nos favoritos.
+                Explora nosso catálogo, caso não queira comprometer-se já,
+                guarde nos favoritos.
               </h3>
             </div>
           </div>
@@ -55,12 +55,15 @@ function HomePage() {
             <div className="disc-container">
               <h2>Mande email ao vendedor</h2>
               <h3>
-                Para finalizar clique em "Contactar Vendedor" e
-                escreva um email com o código da peça.
+                Para finalizar clique em "Contactar Vendedor" e escreva um email
+                com o código da peça.
               </h3>
             </div>
           </div>
         </div>
+      </div>
+      <div className="button-container">
+        <button>Texto do Botão</button>
       </div>
     </div>
   );
