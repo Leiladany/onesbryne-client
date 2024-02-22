@@ -68,7 +68,7 @@ function AllClothes() {
           <img src="/prev.png" alt="Previous" />
         </button>
         <button className="next" onClick={handleNext}>
-          <img src="/prev.png" alt="Next" />
+          <img src="/next.png" alt="Next" />
         </button>
       </div>
       <Footer />
