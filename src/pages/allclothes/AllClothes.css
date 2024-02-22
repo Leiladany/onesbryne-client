@@ -1,0 +1,54 @@
+.carousel-container {
+  max-width: 99.9%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.carousel-item {
+  width: 200px;
+  height: 400px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 40px;
+  border-radius: 5px;
+  left: 40px;
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50.2%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.prev {
+  left: 0px;
+  height: 401px;
+  width: 105px;
+}
+
+.prev img {
+  width: 20px;
+}
+
+.next {
+  right: 0px;
+  height: 401px;
+  width: 105px;
+  rotate: 90;
+}
+
+.next img {
+  width: 20px;
+}
+
+.alice-carousel__dots {
+  display: none;
+}

@@ -1,0 +1,99 @@
+.footer {
+  background-color: #000000;
+  padding: 5px;
+  height: 35px;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1295px;
+  height: 0.1px;
+  background-color: #ffffff;
+}
+
+.copyritgh {
+  font-family: "italiana", sans-serif;
+  font-weight: lighter;
+  font-size: 10px;
+  color: #fff;
+  margin: 0;
+}
+
+.copyritgh-container {
+  left: 105px;
+  position: relative;
+}
+
+.copyritghleft-section {
+  width: 200px;
+}
+
+.copyritghright-section {
+  width: 230px;
+  margin-right: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.copyritghright-section button {
+  color: #fff;
+  background-color: #00000000;
+  border: none;
+  font-size: 10px;
+  width: fit-content;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s, border-bottom-color 0.3s;
+  cursor: pointer;
+}
+
+.copyritghright-section button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 1px;
+  background-color: #fff;
+  transition: width 0.3s;
+}
+
+.copyritghright-section button::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(0) scaleX(0.2);
+  width: 10px;
+  height: 10px;
+  border: 1px solid #fff;
+  border-left: none;
+  border-top: none;
+  transition: transform 0.3s;
+}
+
+.copyritghright-section button:hover::before {
+  width: 100%;
+}
+
+.copyritghright-section button:hover::after {
+  transform: translateX(-50%) rotate(45deg) scaleY(1) scaleX(1);
+}
+
+span {
+  color: #fff;
+  font-family: "Lucida Grande";
+  font-weight: lighter;
+}
