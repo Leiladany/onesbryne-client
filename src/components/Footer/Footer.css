@@ -31,7 +31,7 @@
 }
 
 .copyritgh-container {
-  left: 105px;
+  left: 117px;
   position: relative;
 }
 
@@ -41,7 +41,7 @@
 
 .copyritghright-section {
   width: 230px;
-  margin-right: 5px;
+  margin-right: 7px;
   display: flex;
   justify-content: space-around;
 }
@@ -56,6 +56,7 @@
   overflow: hidden;
   transition: color 0.3s, border-bottom-color 0.3s;
   cursor: pointer;
+  margin-top: 0!important;
 }
 
 .copyritghright-section button::before {

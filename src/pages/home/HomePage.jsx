@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import "./HomePage.css";
 
@@ -65,6 +66,7 @@ function HomePage() {
       <div className="button-container">
         <button>Texto do Botão</button>
       </div>
+      <Footer />
     </div>
   );
 }
