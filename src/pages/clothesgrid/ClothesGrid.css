@@ -1,0 +1,38 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Use min-height instead of height to ensure the container expands if the content is larger */
+  position: relative; /* Make the container a positioning context for absolute positioning */
+}
+
+.navbar {
+  position: absolute; /* Position the navbar relative to the page container */
+  top: 0; /* Position the navbar at the top of the page container */
+  width: 100%; /* Make the navbar take up the full width */
+  z-index: 1; /* Ensure the navbar is above other content */
+}
+
+.clothes-grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1; /* This will make the container take up the remaining vertical space */
+  position: relative; /* Make the container a positioning context for absolute positioning */
+  z-index: 0; /* Ensure the clothes grid is behind the navbar */
+  margin-top: 150px;
+}
+
+.clothes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
+  gap: 40px; /* Adjust the gap between grid items */
+  background-color: aqua;
+  width: 800px;
+}
+
+.clothes-item {
+  border: 2px solid chocolate; 
+  height: 400px;
+}

@@ -1,27 +1,46 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Navbar";
 import Footer from "../../../components/Footer/Footer";
 import eyeIcon1 from "/eye1.png";
 import eyeIcon2 from "/eye2.png";
-import "./LoginPage.css";
+import "./SignupPage.css";
 
-const Login = () => {
+const SignupPage = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async (e) => {
+  const isEmailValid = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSignup = async (e) => {
     e.preventDefault();
   };
 
   return (
     <div>
       <Navbar />
-      <form className="login-form" onSubmit={handleLogin}>
+      <form className="signup-form" onSubmit={handleSignup}>
         <div className="auths-form-inputs">
+          <label>
+            Primeiro e Ultimo Nome
+            <input
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              placeholder="Full name"
+              required
+            />
+          </label>
+
           <label>
             Email
             <input
+              type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               placeholder="blabla@bla.bla"
@@ -45,13 +64,28 @@ const Login = () => {
               onClick={() => setShowPassword(!showPassword)}
             />
           </label>
+
+          <label>
+            Confirmar Password
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+              placeholder="Confirm Password"
+              required
+            />
+          </label>
         </div>
 
         <div className="button-container">
-          <button>Log In</button>
+          <button>Criar Conta</button>
         </div>
+
         <div>
-          <p>Not registered?</p>
+          <p>Already have an account?</p>
+          <Link to="/login">
+            <p>Log in</p>
+          </Link>
         </div>
       </form>
       <Footer />
@@ -59,4 +93,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignupPage;

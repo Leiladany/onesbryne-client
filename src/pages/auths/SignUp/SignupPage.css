@@ -1,9 +1,9 @@
-.login-form {
+.signup-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 40px;
   }
   
   .auths-form-inputs {
@@ -70,8 +70,4 @@
     position: relative;
     left: 300px;
     bottom: 60px;
-  }
-
-  .auths-form-inputs input:focus {
-    outline: none;
   }
