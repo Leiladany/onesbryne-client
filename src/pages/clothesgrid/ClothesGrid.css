@@ -35,4 +35,21 @@
 .clothes-item {
   border: 2px solid chocolate; 
   height: 400px;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Make .clothes-item a positioning context for absolute positioning */
+}
+
+.box {
+  background-color: pink;
+  margin-top: auto; /* Push the .box to the bottom of the .clothes-item */
+  width: 100%; /* Make the .box take up the full width of its parent (.clothes-item) */
+  height: 15%;
+}
+
+.fav {
+  width: 25px;
+  position: absolute;
+    left: 205px;
+    top: 5px;
 }
