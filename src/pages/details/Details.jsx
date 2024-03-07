@@ -19,7 +19,9 @@ const Details = () => {
             <div className="size">M</div>
             <div className="price">5€</div>
             <div className="desc">Bla blablabla</div>
-            <button>Contactar</button>
+            <div className="button-container">
+              <button>Contactar</button>
+            </div>
           </div>
         </div>
       </div>

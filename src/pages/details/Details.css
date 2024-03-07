@@ -4,7 +4,6 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding-top: 20px;
 }
 
 .img-detail {
@@ -24,7 +23,7 @@
     display: flex;
     justify-content: space-between;
     position: relative;
-    bottom: 100px;
+    bottom: 80px;
 }
 
 .bottom {

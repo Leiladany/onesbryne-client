@@ -6,7 +6,7 @@
 }
 
 .about-container {
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .about-container,
@@ -26,11 +26,11 @@ h3 {
   font-size: 20px;
   font-weight: lighter;
   color: #9d9d9d;
-  width: 330px;
+  width: 398px;
 }
 
 .explain-container {
-  margin-top: 20px;
+  margin-top: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 30px;
