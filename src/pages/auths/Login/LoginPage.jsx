@@ -47,7 +47,7 @@ const Login = () => {
           </label>
         </div>
 
-        <div className="button-container">
+        <div className="buttonLogin-container">
           <button>Log In</button>
         </div>
         <div>

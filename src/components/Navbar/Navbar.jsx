@@ -1,15 +1,22 @@
 import "./Navbar.css";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
     <div className="navbar">
       <div className="left-section" />
       <div className="title-container">
-        <h1 className="title">ONESBRYNE</h1>
+        <Link to="/home">
+          <h1 className="title">ONESBRYNE</h1>
+        </Link>
       </div>
       <div className="right-section">
-        <button type="submit">Criar Conta</button>
-        <button>Entrar</button>
+        <Link to="/signup">
+          <button type="submit">Criar Conta</button>
+        </Link>
+        <Link to="/login">
+          <button>Entrar</button>
+        </Link>
       </div>
     </div>
   );

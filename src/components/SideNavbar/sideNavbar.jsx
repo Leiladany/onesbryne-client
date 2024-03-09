@@ -1,5 +1,4 @@
-import React from 'react';
-import './sideNavbar.css'; // Import CSS for styling
+import './sideNavbar.css';
 
 const SideNavbar = () => {
   return (

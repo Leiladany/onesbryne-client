@@ -77,7 +77,7 @@ const SignupPage = () => {
           </label>
         </div>
 
-        <div className="button-container">
+        <div className="buttonSign-container">
           <button>Criar Conta</button>
         </div>
 

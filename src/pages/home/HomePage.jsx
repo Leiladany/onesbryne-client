@@ -2,6 +2,7 @@
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
 import "./HomePage.css";
+import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
@@ -63,8 +64,10 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <div className="button-container">
-        <button>Texto do Botão</button>
+      <div className="buttonHome-container">
+        <Link to="/allclothes">
+        <button>Explorar</button>
+        </Link>
       </div>
       <Footer />
     </div>

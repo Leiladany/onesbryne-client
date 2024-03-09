@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 100px;
+    margin-top: 200px;
   }
   
   .auths-form-inputs {
@@ -40,11 +40,11 @@
     text-align: center;
   }
 
-  .button-container {
+  .buttonLogin-container {
     margin-top: 10px !important;
   }
   
-  .button {
+  .buttonLogin-container button {
     font-family: "Lucida Grande";
     font-weight: lighter;
     padding: 10px 20px;
@@ -57,7 +57,7 @@
     transition: opacity 0.3s ease, border-color 0.3s ease;
   }
   
-  .button-container button:hover {
+  .buttonLogin-container button:hover {
     opacity: 1;
     border-color: #ffffff;
   }

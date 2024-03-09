@@ -2,7 +2,7 @@
   max-width: 99.9%;
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 130px;
 }
 
 .carousel-item {
@@ -15,6 +15,10 @@
   margin: 0px 40px;
   border-radius: 5px;
   left: 40px;
+}
+
+.carousel-item {
+  text-decoration: none;
 }
 
 .prev,
@@ -39,7 +43,7 @@
 }
 
 .next {
-  right: 0px;
+  right: 6px;
   height: 401px;
   width: 105px;
   rotate: 90;

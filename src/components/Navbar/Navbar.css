@@ -30,6 +30,10 @@
   margin: 0;
 }
 
+.title-container a {
+  text-decoration: none;
+}
+
 .left-section {
   width: 200px;
 }
