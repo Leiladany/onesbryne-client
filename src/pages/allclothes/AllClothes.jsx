@@ -15,31 +15,31 @@ function AllClothes() {
   };
 
   const items = [
-    <Link key={1} className="carousel-item">
+    <Link to="/clothes" key={1} className="carousel-item">
       <h3>Tops</h3>
     </Link>,
-    <Link key={2} className="carousel-item">
+    <Link to="/clothes" key={2} className="carousel-item">
       <h3>T-Shirts</h3>
     </Link>,
-    <Link key={3} className="carousel-item">
+    <Link to="/clothes" key={3} className="carousel-item">
       <h3>Vestidos</h3>
     </Link>,
-    <Link key={4} className="carousel-item">
+    <Link to="/clothes" key={4} className="carousel-item">
       <h3>Calças</h3>
     </Link>,
-    <Link key={5} className="carousel-item">
+    <Link to="/clothes" key={5} className="carousel-item">
       <h3>Casacos</h3>
     </Link>,
-    <Link key={6} className="carousel-item">
+    <Link to="/clothes" key={6} className="carousel-item">
       <h3>Pijamas</h3>
     </Link>,
-    <Link key={7} className="carousel-item">
+    <Link to="/clothes" key={7} className="carousel-item">
       <h3>Desporto</h3>
     </Link>,
-    <Link key={8} className="carousel-item">
+    <Link to="/clothes" key={8} className="carousel-item">
       <h3>Macacões</h3>
     </Link>,
-    <Link key={9} className="carousel-item">
+    <Link to="/clothes" key={9} className="carousel-item">
       <h3>Bikinis</h3>
     </Link>,
   ];

@@ -1,51 +1,69 @@
 .sidebar {
-    position: fixed;
-    left: -200px; /* Initially hide the sidebar off the screen */
-    top: 53.5%; /* Center the sidebar vertically */
-    transform: translateY(-50%);
-    width: 200px;
-    background-color: #000000;
-    padding-top: 10px;
-    height: 70%;
-    transition: left 0.3s; /* Add smooth transition effect */
-  }
-  
-  .sidebar:hover,
-  .arrow-container:hover .sidebar {
-    left: 0; /* Show the sidebar when hovered over */
-  }
-  
-  .arrow-container {
-    position: relative;
-    left: 120px;
-    top:200px;
-    cursor: pointer;
-  }
-  
-  .arrow-icon {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .sidebar::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: -5px;
-    width: 0.1px; /* Adjust the width of the white line */
-    height: 100%;
-    background-color: #ffffff;
-  }
-  
-  .nav-item {
-    padding: 10px;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .nav-item:hover {
-    background-color: #333333;
-  }
-  
+  position: fixed;
+  left: -200px; /* Initially hide the sidebar off the screen */
+  top: 53.5%; /* Center the sidebar vertically */
+  transform: translateY(-50%);
+  width: 200px;
+  background-color: #000000;
+  padding-top: 10px;
+  height: 70%;
+  transition: left 0.3s; /* Add smooth transition effect */
+}
+
+/* Apply styles on hover */
+.sidebar:hover,
+.arrow-container:hover .sidebar {
+  left: 0; /* Show the sidebar when hovered over */
+}
+
+/* Styles for the arrow container */
+.arrow-container {
+  position: relative;
+  left: 120px;
+  top: 150px;
+  cursor: pointer;
+}
+
+/* Styles for the arrow icon */
+.arrow-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Styles for the sidebar separator */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -5px;
+  width: 0.1px; /* Adjust the width of the white line */
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.nav-item {
+  padding: 10px;
+  color: #fff;
+  cursor: pointer;
+  position: relative; /* Ensure the pseudo-element is positioned relative to the nav-item */
+}
+
+/* White underline effect */
+.nav-item::before {
+  content: "";
+  position: absolute;
+  bottom: 0; /* Position the underline at the bottom of the nav-item */
+  left: 0; /* Start from the left */
+  width: 100%; /* Cover the entire width of the nav-item */
+  height: 2px; /* Set the height of the underline */
+  background-color: transparent; /* Initial color of the underline */
+  transition: background-color 0.3s; /* Add transition effect for color change */
+  transform: scaleX(0); /* Initially, hide the underline */
+}
+
+/* Show the underline on hover */
+.nav-item:hover::before {
+  background-color: #ffffff; /* Change the color to white on hover */
+  transform: scaleX(1); /* Show the underline */
+}
