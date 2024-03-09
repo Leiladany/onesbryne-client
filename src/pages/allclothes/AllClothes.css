@@ -17,7 +17,8 @@
   left: 40px;
 }
 
-.carousel-item {
+a {
+  color: black;
   text-decoration: none;
 }
 
