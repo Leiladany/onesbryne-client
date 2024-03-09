@@ -3,47 +3,48 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Use min-height instead of height to ensure the container expands if the content is larger */
-  position: relative; /* Make the container a positioning context for absolute positioning */
+  min-height: 100vh;
+  position: relative;
 }
 
 .clothes-grid-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 1; /* This will make the container take up the remaining vertical space */
-  position: relative; /* Make the container a positioning context for absolute positioning */
-  z-index: 0; /* Ensure the clothes grid is behind the navbar */
+  flex-grow: 1;
+  position: relative;
+  z-index: 0;
   margin-top: 150px;
-  margin-bottom: 105px
+  margin-bottom: 105px;
 }
 
 .clothes-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns with equal width */
-  gap: 40px; /* Adjust the gap between grid items */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
   background-color: aqua;
   width: 800px;
 }
 
 .clothes-item {
-  border: 2px solid chocolate; 
+  border: 2px solid chocolate;
   height: 400px;
   display: flex;
   flex-direction: column;
-  position: relative; /* Make .clothes-item a positioning context for absolute positioning */
+  position: relative;
 }
 
 .box {
   background-color: pink;
-  margin-top: auto; /* Push the .box to the bottom of the .clothes-item */
-  width: 100%; /* Make the .box take up the full width of its parent (.clothes-item) */
+  margin-top: auto;
+  width: 100%;
   height: 15%;
 }
 
 .fav {
   width: 25px;
   position: absolute;
-    left: 205px;
-    top: 5px;
+  left: 205px;
+  top: 5px;
+  cursor: pointer;
 }
