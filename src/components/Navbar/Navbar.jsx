@@ -6,7 +6,7 @@ function Navbar() {
     <div className="navbar">
       <div className="left-section" />
       <div className="title-container">
-        <Link to="/home">
+        <Link to="/">
           <h1 className="title">ONESBRYNE</h1>
         </Link>
       </div>

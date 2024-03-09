@@ -8,6 +8,10 @@
   padding-top: 10px;
   height: 70%;
   transition: left 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .sidebar:hover,
@@ -21,6 +25,7 @@
   top: 150px;
   cursor: pointer;
   text-decoration: none;
+  display: flexX;
 }
 
 .arrow-icon {

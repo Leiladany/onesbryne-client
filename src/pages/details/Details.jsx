@@ -19,7 +19,7 @@ const Details = () => {
             <div className="size">M</div>
             <div className="price">5€</div>
             <div className="desc">Bla blablabla</div>
-            <div className="button-container">
+            <div className="buttonDetails-container">
               <button>Contactar</button>
             </div>
           </div>
