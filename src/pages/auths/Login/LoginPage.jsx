@@ -4,20 +4,59 @@ import Footer from "../../../components/Footer/Footer";
 import eyeIcon1 from "/eye1.png";
 import eyeIcon2 from "/eye2.png";
 import "./LoginPage.css";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { useNavigate } from "react-router";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { handleLogin } = useContext(AuthContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const payload = { email, password };
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+      if (response.status === 400) {
+        const parsed = await response.json();
+
+        if (parsed.message === "User not found") {
+          setError("User not found. Please check your username.");
+        } else if (parsed.message === "Invalid password") {
+          setError("Invalid password. Please check your password.");
+        } else {
+          throw new Error(parsed.message);
+        }
+      }
+      if (response.status === 200) {
+        const parsed = await response.json();
+        handleLogin(parsed.token);
+        navigate(`/`);
+      }
+    } catch (error) {
+      console.log(error);
+      setError(error.message);
+    }
   };
 
   return (
     <div>
       <Navbar />
-      <form className="login-form" onSubmit={handleLogin}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <div className="auths-form-inputs">
           <label>
             Email
