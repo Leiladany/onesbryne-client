@@ -5,6 +5,7 @@
   position: fixed;
   width: 100%;
   bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -41,7 +42,7 @@
 
 .copyritghright-section {
   width: 230px;
-  margin-right: 7px;
+  margin-right: 11px;
   display: flex;
   justify-content: space-around;
 }
@@ -56,7 +57,7 @@
   overflow: hidden;
   transition: color 0.3s, border-bottom-color 0.3s;
   cursor: pointer;
-  margin-top: 0!important;
+  margin-top: 0 !important;
 }
 
 .copyritghright-section button::before {
