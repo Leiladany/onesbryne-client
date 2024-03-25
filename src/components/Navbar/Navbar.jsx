@@ -1,10 +1,16 @@
 import "./Navbar.css";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
 import { AuthContext } from "../../contexts/AuthContext";
 
 function Navbar() {
+  const [starClicked, setStarClicked] = useState(false);
   const { handleLogout, isAuthenticated } = useContext(AuthContext);
+  const location = useLocation(); // Use useLocation hook to get current pathname
+
+  const handleStarClick = () => {
+    setStarClicked((prevState) => !prevState);
+  };
 
   return (
     <div className="navbar">
@@ -29,6 +35,20 @@ function Navbar() {
 
       {isAuthenticated && (
         <div className="right-section">
+          <Link to="/favourites">
+            <img
+              className="star"
+              src={
+                location.pathname === "/favourites"
+                  ? "/star4.png" // If on /favourites, use star4.png
+                  : "/star3.png" // Otherwise, use star3.png
+              }
+              onClick={handleStarClick}
+              alt="Star"
+            />
+          </Link>
+
+          <img className="perfil" src="/perfil.png" alt="Perfil" />
           <Link to="/">
             <button type="submit" onClick={handleLogout}>
               Sair

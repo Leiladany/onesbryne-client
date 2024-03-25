@@ -89,3 +89,9 @@
 .right-section button:hover::after {
   transform: translateX(-50%) rotate(45deg) scaleY(1) scaleX(1);
 }
+
+.star,
+.perfil {
+  width: 20px;
+  height: 20px;
+}

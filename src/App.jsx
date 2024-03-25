@@ -5,6 +5,7 @@ import HomePage from "./pages/home/HomePage";
 import AllClothes from "./pages/allclothes/AllClothes";
 import ClothesGrid from "./pages/clothesgrid/ClothesGrid";
 import Details from "./pages/details/Details";
+import Favorites from "./pages/favorites/favorites";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/allclothes" element={<AllClothes />} />
         <Route path="/clothes" element={<ClothesGrid />} />
         <Route path="/details" element={<Details />} />
+        <Route path="/favourites" element={<Favorites />} />
       </Routes>
     </div>
   );
