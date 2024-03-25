@@ -1,13 +1,12 @@
 import "./Navbar.css";
 import { useState, useContext } from "react";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
 function Navbar() {
   const [starClicked, setStarClicked] = useState(false);
   const { handleLogout, isAuthenticated } = useContext(AuthContext);
-  const location = useLocation(); // Use useLocation hook to get current pathname
-
+  const location = useLocation();
   const handleStarClick = () => {
     setStarClicked((prevState) => !prevState);
   };
@@ -40,8 +39,8 @@ function Navbar() {
               className="star"
               src={
                 location.pathname === "/favourites"
-                  ? "/star4.png" // If on /favourites, use star4.png
-                  : "/star3.png" // Otherwise, use star3.png
+                  ? "/star4.png"
+                  : "/star3.png"
               }
               onClick={handleStarClick}
               alt="Star"

@@ -2,7 +2,7 @@
   max-width: 99.9%;
   display: flex;
   justify-content: center;
-  margin-top: 130px;
+  margin-top: 115px;
 }
 
 .carousel-item {
@@ -25,7 +25,7 @@ a {
 .prev,
 .next {
   position: absolute;
-  top: 50.2%;
+  top: 53.4%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
@@ -44,10 +44,9 @@ a {
 }
 
 .next {
-  right: 6px;
+  right: -23px;
   height: 401px;
   width: 105px;
-  rotate: 90;
 }
 
 .next img {

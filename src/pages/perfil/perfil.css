@@ -1,0 +1,62 @@
+.perfil-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 110px;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .perfil-form-inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .perfil-form-inputs label {
+    margin-bottom: 10px;
+    display: contents;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .perfil-form-inputs h2 {
+    color: white;
+  }
+  
+  .perfil-form-inputs input {
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    width: 550px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 15px;
+    color: white;
+  }
+  
+  .button {
+    margin-top: 40px;
+    text-align: center;
+  }
+  
+  .perfil-form-buttons button {
+    font-family: "Lucida Grande";
+    font-weight: lighter;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff00;
+    color: white;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .perfil-form-buttons button:hover {
+    opacity: 1;
+    border-color: #ffffff;
+  }
+  
