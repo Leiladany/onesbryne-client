@@ -47,7 +47,10 @@ function Navbar() {
             />
           </Link>
 
+          <Link to="/perfil">
           <img className="perfil" src="/perfil.png" alt="Perfil" />
+          </Link>
+
           <Link to="/">
             <button type="submit" onClick={handleLogout}>
               Sair

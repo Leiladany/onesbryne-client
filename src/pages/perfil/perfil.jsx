@@ -1,45 +1,91 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from '../../components/Navbar/Navbar';
+import { AuthContext } from "../../contexts/AuthContext";
+import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import "./perfil.css";
 
 const Perfil = () => {
   const navigate = useNavigate();
+  const { userId } = useContext(AuthContext);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
+  const [user, setUser] = useState({});
+  const [newName, setNewName] = useState("");
+  const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState(null);
 
+  const getUserById = async () => {
+    try {
+      if (userId) {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/users/${userId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
-    const payload = { name, email };
-
-    if (currentPassword && newPassword) {
-      payload.currentPassword = currentPassword;
-      payload.newPassword = newPassword;
-    }
 
     try {
-      navigate("/");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/users/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: newName || user.name,
+            email: newEmail || user.email,
+            password: newPassword || user.password,
+          }),
+        }
+      );
+      if (response.ok) {
+        navigate("/");
+      } else {
+        setError("Failed to update profile. Please try again.");
+      }
     } catch (error) {
+      console.log(error);
       setError("Failed to update profile. Please try again.");
     }
   };
 
+  useEffect(() => {
+    getUserById();
+  }, [userId]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   return (
     <div>
       <Navbar />
+
       <form className="perfil-form" onSubmit={handleUpdateProfile}>
         <div className="perfil-form-inputs">
           <label>
             Name:
             <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
             />
           </label>
 
@@ -47,17 +93,8 @@ const Perfil = () => {
             Email:
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-
-          <label>
-            Current Password:
-            <input
-              type="password"
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
             />
           </label>
 

@@ -7,17 +7,16 @@ import "./LoginPage.css";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { useNavigate } from "react-router";
 
-const Login = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const { handleLogin } = useContext(AuthContext);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const payload = { email, password };
 
     try {
@@ -31,6 +30,7 @@ const Login = () => {
           body: JSON.stringify(payload),
         }
       );
+
       if (response.status === 400) {
         const parsed = await response.json();
 
@@ -42,14 +42,16 @@ const Login = () => {
           throw new Error(parsed.message);
         }
       }
+
       if (response.status === 200) {
         const parsed = await response.json();
-        handleLogin(parsed.token);
+        const { token, userId } = parsed;
+        handleLogin(token, userId);
         navigate(`/`);
       }
     } catch (error) {
       console.log(error);
-      setError(error.message);
+      setError("Failed to login. Please try again.");
     }
   };
 
@@ -89,13 +91,11 @@ const Login = () => {
         <div className="buttonLogin-container">
           <button>Log In</button>
         </div>
-        <div>
-          <p>Not registered?</p>
-        </div>
+        {error && <p>{error}</p>}
       </form>
       <Footer />
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;
