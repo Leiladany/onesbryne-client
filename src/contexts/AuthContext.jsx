@@ -1,27 +1,28 @@
 import { createContext, useState, useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
+  const navigate = useNavigate();
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
 
-  const handleLogin = async (currentToken, currentUserId) => {
-    if (!currentToken || !currentUserId) {
-      console.error("Token or User ID is missing");
-      return;
-    }
-
+  const handleLogin = (token) => {
     try {
-      window.localStorage.setItem("authToken", currentToken);
-      setUserId(currentUserId);
+      window.localStorage.setItem("authToken", token);
+      const decoded = jwtDecode(token);
+      setUserId(decoded.userId);
       setIsAuthenticated(true);
+      navigate("/clothes");
     } catch (error) {
       console.error("Error during login:", error.message);
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () =>  {
     window.localStorage.removeItem("authToken");
     setUserId(null);
     setIsAuthenticated(false);
@@ -29,9 +30,15 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const tokenFromStorage = window.localStorage.getItem("authToken");
-
     if (tokenFromStorage) {
-      setIsAuthenticated(true);
+      try {
+        const decoded = jwtDecode(tokenFromStorage);
+        setUserId(decoded.userId);
+        console.log("Logged in User ID:", decoded);
+        setIsAuthenticated(true);
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
     }
   }, []);
 

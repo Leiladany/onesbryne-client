@@ -1,13 +1,8 @@
-import Footer from "../../components/Footer/Footer";
-import Navbar from "../../components/Navbar/Navbar";
-import SideNavbar from "../../components/SideNavbar/sideNavbar";
 import "./Details.css";
 
 const Details = () => {
   return (
     <div>
-      <Navbar />
-      <SideNavbar />
       <div className="details-container">
         <img className="img-detail" src="./test.png" />
         <div className="details-info">
@@ -25,7 +20,6 @@ const Details = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import "./sideNavbar.css";
+import "./Sidebar.css";
 import { Link } from "react-router-dom";
 
-const SideNavbar = () => {
+const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="arrow-container">
@@ -38,4 +38,4 @@ const SideNavbar = () => {
   );
 };
 
-export default SideNavbar;
+export default Sidebar;

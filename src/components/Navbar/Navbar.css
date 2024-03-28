@@ -1,62 +1,47 @@
-.navbar {
-  background-color: #000000;
-  padding: 10px;
-  position: fixed;
-  width: 100%;
-  max-width: calc(100% - 20px);
-  top: 0;
+/* NAVBAR CONTAINER */
+.navbar-container {
+  padding: 0.5rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 1000
+  z-index: 1000;
 }
 
-.navbar::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1295px;
-  height: 0.1px;
-  background-color: #ffffff;
+/* center the mid screen */
+.navbar-left-section,
+.navbar-right-section {
+  width: 15rem;
 }
 
-.title {
+/* NAVBAR MID SECTION */
+.navbar-title {
+  color: white;
   font-family: "italiana", sans-serif;
   font-weight: lighter;
   font-size: 60px;
-  color: #fff;
   margin: 0;
 }
-
-.title-container a {
-  text-decoration: none;
-}
-
-.left-section {
-  width: 200px;
-}
-
-.right-section {
-  width: 200px;
+/* NAVBAR RIGHT SECTION */
+.navbar-right-section {
   display: flex;
-  justify-content: space-around;
+  justify-content: end;
+  gap: 1rem;
 }
 
-.right-section button {
-  color: #fff;
-  background-color: #00000000;
+.navbar-link {
+  color: white;
   border: none;
-  font-size: 17px;
+  font-size: 1rem;
   width: fit-content;
   position: relative;
   overflow: hidden;
   transition: color 0.3s, border-bottom-color 0.3s;
-  cursor: pointer;
 }
 
-.right-section button::before {
+.navbar-link::before {
+  background-color: white;
   content: "";
   position: absolute;
   bottom: 0;
@@ -64,11 +49,10 @@
   transform: translateX(-50%);
   width: 0;
   height: 1px;
-  background-color: #fff;
   transition: width 0.3s;
 }
 
-.right-section button::after {
+.navbar-link::after {
   content: "";
   position: absolute;
   bottom: -5px;
@@ -76,22 +60,29 @@
   transform: translateX(-50%) scaleY(0) scaleX(0.2);
   width: 10px;
   height: 10px;
-  border: 1px solid #fff;
+  border: 1px solid white;
   border-left: none;
   border-top: none;
   transition: transform 0.3s;
 }
 
-.right-section button:hover::before {
+.navbar-link:hover::before {
   width: 100%;
 }
 
-.right-section button:hover::after {
+.navbar-link:hover::after {
   transform: translateX(-50%) rotate(45deg) scaleY(1) scaleX(1);
 }
 
-.star,
-.perfil {
+.navbar-icons {
   width: 20px;
   height: 20px;
+}
+
+/* NAVBAR LINE */
+.navbar-line {
+  background-color: white;
+  margin-right: 4.5rem;
+  margin-left: 4.5rem;
+  height: 1px;
 }

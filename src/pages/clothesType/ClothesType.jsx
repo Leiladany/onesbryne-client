@@ -1,8 +1,5 @@
+import "./ClothesType.css";
 import { useState } from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import SideNavbar from "../../components/SideNavbar/sideNavbar";
-import Footer from "../../components/Footer/Footer";
-import "./ClothesGrid.css";
 
 const ClothesGrid = () => {
   const [starClicked, setStarClicked] = useState({});
@@ -16,8 +13,6 @@ const ClothesGrid = () => {
 
   return (
     <div className="page-container">
-      <Navbar />
-      <SideNavbar/>
       <div className="clothes-grid-container">
         <div className="clothes-grid">
           {[1, 2, 3, 4, 5, 6].map(index => (
@@ -33,7 +28,6 @@ const ClothesGrid = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

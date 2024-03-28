@@ -1,14 +1,10 @@
+import "./LoginPage.css";
 import { useContext, useState } from "react";
-import Navbar from "../../../components/Navbar/Navbar";
-import Footer from "../../../components/Footer/Footer";
+import { AuthContext } from "../../../contexts/AuthContext";
 import eyeIcon1 from "/eye1.png";
 import eyeIcon2 from "/eye2.png";
-import "./LoginPage.css";
-import { AuthContext } from "../../../contexts/AuthContext";
-import { useNavigate } from "react-router";
 
 const LoginPage = () => {
-  const navigate = useNavigate();
   const { handleLogin } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,9 +41,8 @@ const LoginPage = () => {
 
       if (response.status === 200) {
         const parsed = await response.json();
-        const { token, userId } = parsed;
-        handleLogin(token, userId);
-        navigate(`/`);
+        const { token } = parsed;
+        handleLogin(token);
       }
     } catch (error) {
       console.log(error);
@@ -57,7 +52,6 @@ const LoginPage = () => {
 
   return (
     <div>
-      <Navbar />
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="auths-form-inputs">
           <label>
@@ -93,7 +87,6 @@ const LoginPage = () => {
         </div>
         {error && <p>{error}</p>}
       </form>
-      <Footer />
     </div>
   );
 };

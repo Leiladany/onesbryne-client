@@ -1,0 +1,23 @@
+.notFound-container {
+  color: white;
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.notFound-container * {
+  margin: 0;
+}
+
+.notFound-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notFound-link {
+  color: white;
+}

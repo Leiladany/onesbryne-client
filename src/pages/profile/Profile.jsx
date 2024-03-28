@@ -1,9 +1,7 @@
+import "./Profile.css";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
-import "./perfil.css";
 
 const Perfil = () => {
   const navigate = useNavigate();
@@ -76,19 +74,20 @@ const Perfil = () => {
 
   return (
     <div>
-      <Navbar />
-
       <form className="perfil-form" onSubmit={handleUpdateProfile}>
         <div className="perfil-form-inputs">
+          {/* NAME INPUT */}
           <label>
             Name:
             <input
               type="text"
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
+              placeholder={user.name}
             />
           </label>
 
+          {/* EMAIL INPUT */}
           <label>
             Email:
             <input
@@ -98,6 +97,7 @@ const Perfil = () => {
             />
           </label>
 
+          {/* PASSWORD INPUT */}
           <label>
             New Password:
             <input
@@ -108,12 +108,12 @@ const Perfil = () => {
           </label>
         </div>
 
+        {/* BUTTON */}
         <div className="perfil-form-buttons">
           <button type="submit">Update Profile</button>
         </div>
       </form>
       {error && <p>{error}</p>}
-      <Footer />
     </div>
   );
 };

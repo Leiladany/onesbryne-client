@@ -1,10 +1,8 @@
+import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../../../components/Navbar/Navbar";
-import Footer from "../../../components/Footer/Footer";
 import eyeIcon1 from "/eye1.png";
 import eyeIcon2 from "/eye2.png";
-import "./SignupPage.css";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -51,7 +49,6 @@ const SignupPage = () => {
 
   return (
     <div>
-      <Navbar />
       <form className="signup-form" onSubmit={handleSignup}>
         <div className="auths-form-inputs">
           <label>
@@ -115,7 +112,6 @@ const SignupPage = () => {
           </Link>
         </div>
       </form>
-      <Footer />
     </div>
   );
 };

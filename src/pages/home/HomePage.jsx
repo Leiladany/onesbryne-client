@@ -1,13 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
-import Footer from "../../components/Footer/Footer";
-import Navbar from "../../components/Navbar/Navbar";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
 
 function HomePage() {
   return (
     <div className="homepage-container">
-      <Navbar />
       <div className="about-container">
         <h2>O que é ?</h2>
         <h3>Uma loja de venda de roupa em 2º mão !</h3>
@@ -69,7 +66,6 @@ function HomePage() {
         <button>Explorar</button>
         </Link>
       </div>
-      <Footer />
     </div>
   );
 }

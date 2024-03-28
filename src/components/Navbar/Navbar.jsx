@@ -12,52 +12,61 @@ function Navbar() {
   };
 
   return (
-    <div className="navbar">
-      <div className="left-section" />
-      <div className="title-container">
-        <Link to="/">
-          <h1 className="title">ONESBRYNE</h1>
-        </Link>
+    <div>
+      <div className="navbar-container">
+        <section className="navbar-left-section" />
+
+        <section className="navbar-mid-section">
+          <Link to="/">
+            <h1 className="navbar-title">ONESBRYNE</h1>
+          </Link>
+        </section>
+
+        <section className="navbar-right-section">
+          {!isAuthenticated ? (
+            /* IS NOT AUTHENTICATED */
+            <>
+              <Link to="/signup" className="navbar-link">
+                Criar Conta
+              </Link>
+
+              <Link to="/login" className="navbar-link">
+                Entrar
+              </Link>
+            </>
+          ) : (
+            /* IS AUTHENTICATED */
+            <>
+              <Link to="/favourites">
+                <img
+                  className="navbar-icons"
+                  src={
+                    location.pathname === "/favourites"
+                      ? "/star4.png"
+                      : "/star3.png"
+                  }
+                  onClick={handleStarClick}
+                  alt="Star"
+                />
+              </Link>
+
+              <Link to="/profile">
+                <img
+                  className="navbar-icons"
+                  src="/profile.png"
+                  alt="Profile"
+                />
+              </Link>
+
+              <Link to="/" onClick={handleLogout} className="navbar-link">
+                Sair
+              </Link>
+            </>
+          )}
+        </section>
       </div>
 
-      {!isAuthenticated && (
-        <div className="right-section">
-          <Link to="/signup">
-            <button type="submit">Criar Conta</button>
-          </Link>
-
-          <Link to="/login">
-            <button>Entrar</button>
-          </Link>
-        </div>
-      )}
-
-      {isAuthenticated && (
-        <div className="right-section">
-          <Link to="/favourites">
-            <img
-              className="star"
-              src={
-                location.pathname === "/favourites"
-                  ? "/star4.png"
-                  : "/star3.png"
-              }
-              onClick={handleStarClick}
-              alt="Star"
-            />
-          </Link>
-
-          <Link to="/perfil">
-          <img className="perfil" src="/perfil.png" alt="Perfil" />
-          </Link>
-
-          <Link to="/">
-            <button type="submit" onClick={handleLogout}>
-              Sair
-            </button>
-          </Link>
-        </div>
-      )}
+      <div className="navbar-line" />
     </div>
   );
 }
