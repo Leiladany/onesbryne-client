@@ -1,8 +1,8 @@
-import "./SignupPage.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import eyeIcon1 from "/eye1.png";
 import eyeIcon2 from "/eye2.png";
+import FormComponent from "../../../components/form/FormComponent";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -12,12 +12,8 @@ const SignupPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState(null);
-
-  const isEmailValid = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -47,71 +43,57 @@ const SignupPage = () => {
     }
   };
 
+  // Form inputs
+  const signupInputs = [
+    {
+      label: "Primeiro e último nome",
+      type: "text",
+      value: name,
+      onChange: (event) => setName(event.target.value),
+      placeholder: "Tiago Gil",
+      required: true,
+    },
+    {
+      label: "Email",
+      type: "email",
+      value: email,
+      onChange: (event) => setEmail(event.target.value),
+      placeholder: "tiagogil@gmail.com",
+      required: true,
+    },
+    {
+      label: "Password",
+      type: showPassword ? "text" : "password",
+      value: password,
+      onChange: (event) => setPassword(event.target.value),
+      placeholder: "******************",
+      required: true,
+      icon: true,
+      iconSrc: showPassword ? eyeIcon1 : eyeIcon2,
+      onIconClick: () => setShowPassword(!showPassword)
+    },
+    {
+      label: "Confirmar password",
+      type: showConfirmPassword ? "text" : "password",
+      value: confirmPassword,
+      onChange: (event) => setConfirmPassword(event.target.value),
+      placeholder: "******************",
+      required: true,
+      icon: true,
+      iconSrc: showConfirmPassword ? eyeIcon1 : eyeIcon2,
+      onIconClick: () => setShowConfirmPassword(!showConfirmPassword)
+    },
+  ];
+
   return (
     <div>
-      <form className="signup-form" onSubmit={handleSignup}>
-        <div className="auths-form-inputs">
-          <label>
-            Primeiro e Ultimo Nome
-            <input
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              placeholder="Full name"
-              required
-            />
-          </label>
-
-          <label>
-            Email
-            <input
-              type="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="blabla@bla.bla"
-              required
-            />
-          </label>
-
-          <label>
-            Password
-            <input
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="1234567"
-              required
-            />
-            <img
-              src={showPassword ? eyeIcon1 : eyeIcon2}
-              alt="Toggle Password Visibility"
-              className="toggle-password-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            />
-          </label>
-
-          <label>
-            Confirmar Password
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(event) => setConfirmPassword(event.target.value)}
-              placeholder="Confirm Password"
-              required
-            />
-          </label>
-        </div>
-
-        <div className="buttonSign-container">
-          <button>Criar Conta</button>
-        </div>
-
-        <div>
-          <p>Already have an account?</p>
-          <Link to="/login">
-            <p>Log in</p>
-          </Link>
-        </div>
-      </form>
+      <FormComponent
+        type="signup"
+        inputs={signupInputs}
+        handleSubmit={handleSignup}
+        buttonText="Criar Conta"
+      />
+      {error && <p>{error}</p>}
     </div>
   );
 };

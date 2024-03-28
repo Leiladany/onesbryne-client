@@ -42,8 +42,8 @@ function Navbar() {
                   className="navbar-icons"
                   src={
                     location.pathname === "/favourites"
-                      ? "/star4.png"
-                      : "/star3.png"
+                      ? "/public/star4.png"
+                      : "/public/star3.png"
                   }
                   onClick={handleStarClick}
                   alt="Star"
@@ -53,7 +53,7 @@ function Navbar() {
               <Link to="/profile">
                 <img
                   className="navbar-icons"
-                  src="/profile.png"
+                  src="/public/profile.png"
                   alt="Profile"
                 />
               </Link>

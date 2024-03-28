@@ -1,16 +1,15 @@
-import "./Profile.css";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import FormComponent from "../../components/form/FormComponent";
 
 const Perfil = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
 
-  const [user, setUser] = useState({});
+  const [data, setData] = useState({});
   const [newName, setNewName] = useState("");
   const [newEmail, setNewEmail] = useState("");
-  const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState(null);
 
   const getUserById = async () => {
@@ -27,7 +26,7 @@ const Perfil = () => {
         );
         if (response.ok) {
           const data = await response.json();
-          setUser(data);
+          setData(data);
         }
       }
     } catch (error) {
@@ -39,24 +38,27 @@ const Perfil = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/users/${userId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: newName || user.name,
-            email: newEmail || user.email,
-            password: newPassword || user.password,
-          }),
+      if (data) {
+        const updateData = {
+          name: newName || data.user.name,
+          email: newEmail || data.user.email,
+        };
+
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/users/${userId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updateData),
+          }
+        );
+        if (response.ok) {
+          navigate("/clothes");
+        } else {
+          setError("Failed to update profile. Please try again.");
         }
-      );
-      if (response.ok) {
-        navigate("/");
-      } else {
-        setError("Failed to update profile. Please try again.");
       }
     } catch (error) {
       console.log(error);
@@ -69,50 +71,36 @@ const Perfil = () => {
   }, [userId]);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    console.log(data);
+  }, [data]);
+
+  // Form inputs
+  const inputs = [
+    {
+      label: "Name",
+      type: "text",
+      value: newName,
+      onChange: (e) => setNewName(e.target.value),
+      placeholder: data.user?.name,
+      required: "false"
+    },
+    {
+      label: "Email",
+      type: "email",
+      value: newEmail,
+      onChange: (e) => setNewEmail(e.target.value),
+      placeholder: data.user?.email,
+      required: "false"
+    },
+  ];
 
   return (
     <div>
-      <form className="perfil-form" onSubmit={handleUpdateProfile}>
-        <div className="perfil-form-inputs">
-          {/* NAME INPUT */}
-          <label>
-            Name:
-            <input
-              type="text"
-              value={newName}
-              onChange={(e) => setNewName(e.target.value)}
-              placeholder={user.name}
-            />
-          </label>
-
-          {/* EMAIL INPUT */}
-          <label>
-            Email:
-            <input
-              type="email"
-              value={newEmail}
-              onChange={(e) => setNewEmail(e.target.value)}
-            />
-          </label>
-
-          {/* PASSWORD INPUT */}
-          <label>
-            New Password:
-            <input
-              type="password"
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
-          </label>
-        </div>
-
-        {/* BUTTON */}
-        <div className="perfil-form-buttons">
-          <button type="submit">Update Profile</button>
-        </div>
-      </form>
+      <FormComponent
+        inputs={inputs}
+        handleSubmit={handleUpdateProfile}
+        buttonText="Criar Conta"
+      />
       {error && <p>{error}</p>}
     </div>
   );

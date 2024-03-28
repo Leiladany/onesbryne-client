@@ -1,8 +1,8 @@
-import "./LoginPage.css";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import eyeIcon1 from "/eye1.png";
 import eyeIcon2 from "/eye2.png";
+import FormComponent from "../../../components/form/FormComponent";
 
 const LoginPage = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -50,43 +50,38 @@ const LoginPage = () => {
     }
   };
 
+  // Form inputs
+  const loginInputs = [
+    {
+      label: "Email",
+      type: "email",
+      value: email,
+      onChange: (event) => setEmail(event.target.value),
+      placeholder: "blabla@bla.bla",
+      required: true,
+    },
+    {
+      label: "Password",
+      type: showPassword ? "text" : "password",
+      value: password,
+      onChange: (event) => setPassword(event.target.value),
+      placeholder: "1234567",
+      required: true,
+      icon: true,
+      iconSrc: showPassword ? eyeIcon1 : eyeIcon2,
+      onIconClick: () => setShowPassword(!showPassword)
+    },
+  ];
+
   return (
     <div>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <div className="auths-form-inputs">
-          <label>
-            Email
-            <input
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              placeholder="blabla@bla.bla"
-              required
-            />
-          </label>
-
-          <label>
-            Password
-            <input
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              placeholder="1234567"
-              required
-            />
-            <img
-              src={showPassword ? eyeIcon1 : eyeIcon2}
-              alt="Toggle Password Visibility"
-              className="toggle-password-icon"
-              onClick={() => setShowPassword(!showPassword)}
-            />
-          </label>
-        </div>
-
-        <div className="buttonLogin-container">
-          <button>Log In</button>
-        </div>
-        {error && <p>{error}</p>}
-      </form>
+      <FormComponent
+      type="login"
+        inputs={loginInputs}
+        handleSubmit={handleSubmit}
+        buttonText="Entrar"
+      />
+      {error && <p>{error}</p>}
     </div>
   );
 };
