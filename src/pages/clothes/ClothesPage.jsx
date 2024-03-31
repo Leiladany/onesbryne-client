@@ -1,10 +1,13 @@
-import "./Clothes.css";
+import "./ClothesPage.css";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import AliceCarousel from "react-alice-carousel";
 
-function AllClothes() {
+import iconArrowRight from "../../assets/arrow-right.png";
+import iconArrowLeft from "../../assets/arrow-left.png";
+
+function ClothesPage() {
   const carouselRef = useRef(null);
 
   const responsive = {
@@ -59,15 +62,15 @@ function AllClothes() {
         />
 
         <button className="prev" onClick={handlePrev}>
-          <img src="/prev.png" alt="Previous" />
+          <img src={iconArrowLeft} alt="Arrow Left" />
         </button>
 
         <button className="next" onClick={handleNext}>
-          <img src="/next.png" alt="Next" />
+          <img src={iconArrowRight} alt="Arrow Right" />
         </button>
       </div>
     </div>
   );
 }
 
-export default AllClothes;
+export default ClothesPage;

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import eyeIcon1 from "/eye1.png";
-import eyeIcon2 from "/eye2.png";
+import { useNavigate } from "react-router-dom";
 import FormComponent from "../../../components/form/FormComponent";
+
+import iconEyeOpen from "../../../assets/form-eye-open.png";
+import iconEyeClosed from "../../../assets/form-eye-closed.png";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ const SignupPage = () => {
       type: "email",
       value: email,
       onChange: (event) => setEmail(event.target.value),
-      placeholder: "tiagogil@gmail.com",
+      placeholder: "exemplo@gmail.com",
       required: true,
     },
     {
@@ -69,8 +70,8 @@ const SignupPage = () => {
       placeholder: "******************",
       required: true,
       icon: true,
-      iconSrc: showPassword ? eyeIcon1 : eyeIcon2,
-      onIconClick: () => setShowPassword(!showPassword)
+      iconSrc: showPassword ? iconEyeOpen : iconEyeClosed,
+      onIconClick: () => setShowPassword(!showPassword),
     },
     {
       label: "Confirmar password",
@@ -80,8 +81,8 @@ const SignupPage = () => {
       placeholder: "******************",
       required: true,
       icon: true,
-      iconSrc: showConfirmPassword ? eyeIcon1 : eyeIcon2,
-      onIconClick: () => setShowConfirmPassword(!showConfirmPassword)
+      iconSrc: showConfirmPassword ? iconEyeOpen : iconEyeClosed,
+      onIconClick: () => setShowConfirmPassword(!showConfirmPassword),
     },
   ];
 

@@ -91,25 +91,23 @@ h3 {
   align-items: center;
 }
 
-.buttonHome-container {
-  margin-top: 40px;
-  text-align: center;
+.home-link-container {
+  margin-top: 2rem;
 }
 
-.buttonHome-container button {
+.home-link {
+  color: white;
   font-family: "Lucida Grande";
   font-weight: lighter;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #007bff00;
-  color: white;
   border: 1.5px solid transparent;
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.3s ease, border-color 0.3s ease;
 }
 
-.buttonHome-container button:hover {
+.home-link:hover {
   opacity: 1;
   border-color: #ffffff;
 }

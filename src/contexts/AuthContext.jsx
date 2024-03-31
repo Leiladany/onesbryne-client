@@ -9,12 +9,14 @@ const AuthContextProvider = ({ children }) => {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userId, setUserId] = useState(null);
+  const [userRole, setUserRole] = useState("");
 
   const handleLogin = (token) => {
     try {
       window.localStorage.setItem("authToken", token);
       const decoded = jwtDecode(token);
       setUserId(decoded.userId);
+      setUserRole(decoded.userRole);
       setIsAuthenticated(true);
       navigate("/clothes");
     } catch (error) {
@@ -22,7 +24,7 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const handleLogout = async () =>  {
+  const handleLogout = async () => {
     window.localStorage.removeItem("authToken");
     setUserId(null);
     setIsAuthenticated(false);
@@ -34,6 +36,7 @@ const AuthContextProvider = ({ children }) => {
       try {
         const decoded = jwtDecode(tokenFromStorage);
         setUserId(decoded.userId);
+        setUserRole(decoded.userRole);
         console.log("Logged in User ID:", decoded);
         setIsAuthenticated(true);
       } catch (error) {
@@ -47,6 +50,7 @@ const AuthContextProvider = ({ children }) => {
       value={{
         isAuthenticated,
         userId,
+        userRole,
         handleLogin,
         handleLogout,
       }}

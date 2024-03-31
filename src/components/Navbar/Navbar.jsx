@@ -3,6 +3,10 @@ import { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
+import iconStarOn from "../../assets/nav-star-on.png";
+import iconStarOff from "../../assets/nav-star-off.png";
+import iconProfile from "../../assets/nav-profile.png";
+
 function Navbar() {
   const [starClicked, setStarClicked] = useState(false);
   const { handleLogout, isAuthenticated } = useContext(AuthContext);
@@ -42,8 +46,8 @@ function Navbar() {
                   className="navbar-icons"
                   src={
                     location.pathname === "/favourites"
-                      ? "/public/star4.png"
-                      : "/public/star3.png"
+                      ? iconStarOn
+                      : iconStarOff
                   }
                   onClick={handleStarClick}
                   alt="Star"
@@ -51,11 +55,7 @@ function Navbar() {
               </Link>
 
               <Link to="/profile">
-                <img
-                  className="navbar-icons"
-                  src="/public/profile.png"
-                  alt="Profile"
-                />
+                <img className="navbar-icons" src={iconProfile} alt="Profile" />
               </Link>
 
               <Link to="/" onClick={handleLogout} className="navbar-link">

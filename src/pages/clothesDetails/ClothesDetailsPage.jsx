@@ -1,6 +1,6 @@
-import "./Details.css";
+import "./ClothesDetailsPage.css";
 
-const Details = () => {
+const ClothesDetailsPage = () => {
   return (
     <div>
       <div className="details-container">
@@ -24,4 +24,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default ClothesDetailsPage;

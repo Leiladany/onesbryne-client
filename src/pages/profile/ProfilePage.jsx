@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import FormComponent from "../../components/form/FormComponent";
 
-const Perfil = () => {
+const ProfilePage = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
 
@@ -27,6 +27,8 @@ const Perfil = () => {
         if (response.ok) {
           const data = await response.json();
           setData(data);
+          setNewName(data.user.name);
+          setNewEmail(data.user.email);
         }
       }
     } catch (error) {
@@ -81,16 +83,16 @@ const Perfil = () => {
       type: "text",
       value: newName,
       onChange: (e) => setNewName(e.target.value),
-      placeholder: data.user?.name,
-      required: "false"
+      placeholder: "Tiago Gil",
+      required: "false",
     },
     {
       label: "Email",
       type: "email",
       value: newEmail,
       onChange: (e) => setNewEmail(e.target.value),
-      placeholder: data.user?.email,
-      required: "false"
+      placeholder: "exemplo@gmail.com",
+      required: "false",
     },
   ];
 
@@ -99,11 +101,11 @@ const Perfil = () => {
       <FormComponent
         inputs={inputs}
         handleSubmit={handleUpdateProfile}
-        buttonText="Criar Conta"
+        buttonText="Actualizar Conta"
       />
       {error && <p>{error}</p>}
     </div>
   );
 };
 
-export default Perfil;
+export default ProfilePage;

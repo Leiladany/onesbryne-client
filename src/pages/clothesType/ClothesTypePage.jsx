@@ -1,7 +1,10 @@
-import "./ClothesType.css";
+import "./ClothesTypePage.css";
 import { useState } from "react";
 
-const ClothesGrid = () => {
+import iconStarOn from "../../assets/clothes-star-on.png"
+import iconStarOff from "../../assets/clothes-star-off.png"
+
+const ClothesTypePage = () => {
   const [starClicked, setStarClicked] = useState({});
 
   const handleStarClick = (index) => {
@@ -19,7 +22,7 @@ const ClothesGrid = () => {
             <div className="clothes-item" key={index}>
               <img
                 className="fav"
-                src={starClicked[index] ? "/star2.png" : "/star1.png"}
+                src={starClicked[index] ? iconStarOn : iconStarOff}
                 onClick={() => handleStarClick(index)}
                 alt="Star"
               />
@@ -32,4 +35,4 @@ const ClothesGrid = () => {
   );
 };
 
-export default ClothesGrid;
+export default ClothesTypePage;

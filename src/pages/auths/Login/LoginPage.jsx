@@ -1,8 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import eyeIcon1 from "/eye1.png";
-import eyeIcon2 from "/eye2.png";
 import FormComponent from "../../../components/form/FormComponent";
+
+import iconEyeOpen from "../../../assets/form-eye-open.png";
+import iconEyeClosed from "../../../assets/form-eye-closed.png";
 
 const LoginPage = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -57,7 +58,7 @@ const LoginPage = () => {
       type: "email",
       value: email,
       onChange: (event) => setEmail(event.target.value),
-      placeholder: "blabla@bla.bla",
+      placeholder: "exemplo@gmail.com",
       required: true,
     },
     {
@@ -65,10 +66,10 @@ const LoginPage = () => {
       type: showPassword ? "text" : "password",
       value: password,
       onChange: (event) => setPassword(event.target.value),
-      placeholder: "1234567",
+      placeholder: "******************",
       required: true,
       icon: true,
-      iconSrc: showPassword ? eyeIcon1 : eyeIcon2,
+      iconSrc: showPassword ? iconEyeOpen : iconEyeClosed,
       onIconClick: () => setShowPassword(!showPassword)
     },
   ];

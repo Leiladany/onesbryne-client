@@ -1,6 +1,6 @@
-import './Favourites.css';
+import './FavouritesPage.css';
 
-const Favourites = () => {
+const FavouritesPage = () => {
   return (
     <div>
       <div className="container">
@@ -10,4 +10,4 @@ const Favourites = () => {
   );
 };
 
-export default Favourites;
+export default FavouritesPage;

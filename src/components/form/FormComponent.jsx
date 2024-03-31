@@ -1,12 +1,7 @@
-import { Link } from "react-router-dom";
 import "./FormComponent.css";
-import React, { useState } from "react";
-import eyeIcon1 from "/eye1.png";
-import eyeIcon2 from "/eye2.png";
+import { Link } from "react-router-dom";
 
 const FormComponent = ({ type, inputs, handleSubmit, buttonText }) => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
     <form className="form-container" onSubmit={handleSubmit}>

@@ -13,7 +13,11 @@ const NotFoundPage = () => {
 
       <p>Não conseguimos encontrar a página que tentou aceder.</p>
 
-      <Link to="/" className="notFound-link">Aceder à página principal</Link>
+      <div className="notFound-link-container">
+        <Link to="/" className="notFound-link">
+          Aceder à página principal
+        </Link>
+      </div>
     </div>
   );
 };
