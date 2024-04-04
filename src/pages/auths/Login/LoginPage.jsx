@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import FormComponent from "../../../components/form/FormComponent";
+import DataService from "../../../components/DataService";
 
-import iconEyeOpen from "../../../assets/form-eye-open.png";
-import iconEyeClosed from "../../../assets/form-eye-closed.png";
+import { IoEyeOutline, IoEyeOffOutline  } from "react-icons/io5";
 
 const LoginPage = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -17,37 +17,26 @@ const LoginPage = () => {
     const payload = { email, password };
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/auth/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
+      const response = await DataService.createData("/auth/login", payload);
+
+      if (response) {
+        if (response.token) {
+          handleLogin(response.token);
+        } else if (response.message) {
+          if (response.message === "User not found") {
+            setError("User not found. Please check your username.");
+          } else if (response.message === "Invalid password") {
+            setError("Invalid password. Please check your password.");
+          } else {
+            setError(response.message);
+          }
         }
-      );
-
-      if (response.status === 400) {
-        const parsed = await response.json();
-
-        if (parsed.message === "User not found") {
-          setError("User not found. Please check your username.");
-        } else if (parsed.message === "Invalid password") {
-          setError("Invalid password. Please check your password.");
-        } else {
-          throw new Error(parsed.message);
-        }
-      }
-
-      if (response.status === 200) {
-        const parsed = await response.json();
-        const { token } = parsed;
-        handleLogin(token);
+      } else {
+        setError("Login failed. Please try again.");
       }
     } catch (error) {
-      console.log(error);
-      setError("Failed to login. Please try again.");
+      console.error("Login error:", error);
+      setError("Login failed. Please try again.");
     }
   };
 
@@ -69,20 +58,20 @@ const LoginPage = () => {
       placeholder: "******************",
       required: true,
       icon: true,
-      iconSrc: showPassword ? iconEyeOpen : iconEyeClosed,
-      onIconClick: () => setShowPassword(!showPassword)
+      iconSrc: showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />,
+      onIconClick: () => setShowPassword(!showPassword),
     },
   ];
 
   return (
-    <div>
+    <div id="page-container">
       <FormComponent
-      type="login"
+        type="login"
         inputs={loginInputs}
         handleSubmit={handleSubmit}
         buttonText="Entrar"
+        error={error}
       />
-      {error && <p>{error}</p>}
     </div>
   );
 };

@@ -1,19 +1,11 @@
-.homepage-container {
+.about-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.about-container,
-h2,
-h3 {
-  font-family: "Lucida Grande";
+  gap: 1rem;
 }
 
 .about-container h2 {
   color: white;
-  margin-bottom: 0;
   font-size: 20px;
   font-weight: lighter;
 }
@@ -97,7 +89,6 @@ h3 {
 
 .home-link {
   color: white;
-  font-family: "Lucida Grande";
   font-weight: lighter;
   padding: 10px 20px;
   font-size: 16px;

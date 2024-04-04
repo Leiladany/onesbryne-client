@@ -11,6 +11,8 @@ const AuthContextProvider = ({ children }) => {
   const [userId, setUserId] = useState(null);
   const [userRole, setUserRole] = useState("");
 
+  const isAdmin = userRole === "admin";
+
   const handleLogin = (token) => {
     try {
       window.localStorage.setItem("authToken", token);
@@ -37,7 +39,6 @@ const AuthContextProvider = ({ children }) => {
         const decoded = jwtDecode(tokenFromStorage);
         setUserId(decoded.userId);
         setUserRole(decoded.userRole);
-        console.log("Logged in User ID:", decoded);
         setIsAuthenticated(true);
       } catch (error) {
         console.error("Error decoding token:", error);
@@ -49,8 +50,8 @@ const AuthContextProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         isAuthenticated,
+        isAdmin,
         userId,
-        userRole,
         handleLogin,
         handleLogout,
       }}

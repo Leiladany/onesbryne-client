@@ -1,35 +1,51 @@
 import "./ClothesTypePage.css";
 import { useState } from "react";
 
-import iconStarOn from "../../assets/clothes-star-on.png"
-import iconStarOff from "../../assets/clothes-star-off.png"
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 
 const ClothesTypePage = () => {
+  // States
+  const [products, setProducts] = useState([]);
   const [starClicked, setStarClicked] = useState({});
 
-  const handleStarClick = (index) => {
-    setStarClicked(prevState => ({
+  // Function to fetch all the products
+  const fetchAllProducts = async () => {
+    try {
+      const response = await DataService.fetchData("/api/products");
+      if (response) {
+        setProducts(response);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  // Function to handle if item is favourite
+  const handleIfFavourite = (index) => {
+    setStarClicked((prevState) => ({
       ...prevState,
-      [index]: !prevState[index]
+      [index]: !prevState[index],
     }));
   };
 
   return (
-    <div className="page-container">
-      <div className="clothes-grid-container">
-        <div className="clothes-grid">
-          {[1, 2, 3, 4, 5, 6].map(index => (
-            <div className="clothes-item" key={index}>
-              <img
-                className="fav"
-                src={starClicked[index] ? iconStarOn : iconStarOff}
-                onClick={() => handleStarClick(index)}
-                alt="Star"
-              />
-              <div className="box">Item {index}</div>
+    <div id="page-container">
+      <div className="clothesType-grid">
+        {[1, 2, 3, 4, 5, 6].map((index) => (
+          <div className="clothesType-item" key={index}>
+            <div
+              className="clothesType-star"
+              onClick={() => handleIfFavourite(index)}
+            >
+              {starClicked[index] ? (
+                <IoIosStar size={25} color="black" />
+              ) : (
+                <IoIosStarOutline size={25} color="black" />
+              )}
             </div>
-          ))}
-        </div>
+            <div className="clothesType-box">Item {index}</div>
+          </div>
+        ))}
       </div>
     </div>
   );

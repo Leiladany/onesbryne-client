@@ -1,24 +1,6 @@
-.page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  position: relative;
-}
 
-.clothes-grid-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  position: relative;
-  z-index: 0;
-  margin-top: 150px;
-  margin-bottom: 105px;
-}
 
-.clothes-grid {
+.clothesType-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
@@ -26,7 +8,7 @@
   width: 800px;
 }
 
-.clothes-item {
+.clothesType-item {
   border: 2px solid chocolate;
   height: 400px;
   display: flex;
@@ -34,14 +16,14 @@
   position: relative;
 }
 
-.box {
+.clothesType-box {
   background-color: pink;
   margin-top: auto;
   width: 100%;
   height: 15%;
 }
 
-.fav {
+.clothesType-star {
   width: 25px;
   position: absolute;
   left: 205px;

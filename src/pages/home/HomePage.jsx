@@ -8,7 +8,7 @@ import homeIcon4 from "../../assets/home-icon-4.png"
 
 function HomePage() {
   return (
-    <div className="homepage-container">
+    <div id="page-container">
       <div className="about-container">
         <h2>O que é ?</h2>
         <h3>Uma loja de venda de roupa em 2º mão !</h3>

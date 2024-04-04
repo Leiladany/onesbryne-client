@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import FormComponent from "../../components/form/FormComponent";
+import DataService from "../../components/DataService";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -14,57 +15,42 @@ const ProfilePage = () => {
 
   const getUserById = async () => {
     try {
-      if (userId) {
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/users/${userId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setData(data);
-          setNewName(data.user.name);
-          setNewEmail(data.user.email);
-        }
+      const userData = await DataService.fetchData(`/api/users/${userId}`);
+      if (userData) {
+        setData(userData);
+        setNewName(userData.user.name);
+        setNewEmail(userData.user.email);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching user:", error);
+      setError("Failed to fetch user data.");
     }
   };
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
 
-    try {
-      if (data) {
-        const updateData = {
-          name: newName || data.user.name,
-          email: newEmail || data.user.email,
-        };
+    if (data) {
+      const newData = {
+        name: newName || data.user.name,
+        email: newEmail || data.user.email,
+      };
 
-        const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/users/${userId}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updateData),
-          }
+      try {
+        const updatedUser = await DataService.updateData(
+          `/api/users/${userId}`,
+          newData
         );
-        if (response.ok) {
+        if (updatedUser) {
+          setData(updatedUser);
           navigate("/clothes");
         } else {
           setError("Failed to update profile. Please try again.");
         }
+      } catch (error) {
+        console.error("Error updating user:", error);
+        setError("Failed to update profile. Please try again.");
       }
-    } catch (error) {
-      console.log(error);
-      setError("Failed to update profile. Please try again.");
     }
   };
 
@@ -84,7 +70,7 @@ const ProfilePage = () => {
       value: newName,
       onChange: (e) => setNewName(e.target.value),
       placeholder: "Tiago Gil",
-      required: "false",
+      required: false,
     },
     {
       label: "Email",
@@ -92,12 +78,12 @@ const ProfilePage = () => {
       value: newEmail,
       onChange: (e) => setNewEmail(e.target.value),
       placeholder: "exemplo@gmail.com",
-      required: "false",
+      required: false,
     },
   ];
 
   return (
-    <div>
+    <div id="page-container">
       <FormComponent
         inputs={inputs}
         handleSubmit={handleUpdateProfile}

@@ -1,11 +1,9 @@
-import './FavouritesPage.css';
+import "./FavouritesPage.css";
 
 const FavouritesPage = () => {
   return (
-    <div>
-      <div className="container">
-        <p>It looks like you don't have anything here yet.</p>
-      </div>
+    <div id="page-container">
+      <p>It looks like you don't have anything here yet.</p>
     </div>
   );
 };

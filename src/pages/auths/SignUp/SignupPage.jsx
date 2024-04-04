@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormComponent from "../../../components/form/FormComponent";
 
-import iconEyeOpen from "../../../assets/form-eye-open.png";
-import iconEyeClosed from "../../../assets/form-eye-closed.png";
+import { IoEyeOutline, IoEyeOffOutline  } from "react-icons/io5";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -19,23 +18,20 @@ const SignupPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     const payload = { name, email, password };
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/auth/signup`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
+      const response = await DataService.createData("/auth/signup", payload);
 
-      if (response.status === 201) {
-        await response.json();
+      if (response && response.status === 201) {
         navigate("/login");
+      } else if (response) {
+        setError(response.message || "Sign Up failed. Please try again.");
       } else {
         setError("Sign Up failed. Please try again.");
       }
@@ -70,7 +66,7 @@ const SignupPage = () => {
       placeholder: "******************",
       required: true,
       icon: true,
-      iconSrc: showPassword ? iconEyeOpen : iconEyeClosed,
+      iconSrc: showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />,
       onIconClick: () => setShowPassword(!showPassword),
     },
     {
@@ -81,18 +77,19 @@ const SignupPage = () => {
       placeholder: "******************",
       required: true,
       icon: true,
-      iconSrc: showConfirmPassword ? iconEyeOpen : iconEyeClosed,
+      iconSrc: showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />,
       onIconClick: () => setShowConfirmPassword(!showConfirmPassword),
     },
   ];
 
   return (
-    <div>
+    <div id="page-container">
       <FormComponent
         type="signup"
         inputs={signupInputs}
         handleSubmit={handleSignup}
         buttonText="Criar Conta"
+        error={error}
       />
       {error && <p>{error}</p>}
     </div>

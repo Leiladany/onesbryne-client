@@ -2,12 +2,12 @@ import "./ClothesPage.css";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import { types } from "../../components/ClothesInfoArrays";
 import AliceCarousel from "react-alice-carousel";
-
-import iconArrowRight from "../../assets/arrow-right.png";
-import iconArrowLeft from "../../assets/arrow-left.png";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 
 function ClothesPage() {
+  // Carousel handlers
   const carouselRef = useRef(null);
 
   const responsive = {
@@ -15,7 +15,6 @@ function ClothesPage() {
     1024: { items: 5 },
   };
 
-  // Carousel handlers
   const handlePrev = () => {
     carouselRef.current.slidePrev();
   };
@@ -24,51 +23,42 @@ function ClothesPage() {
     carouselRef.current.slideNext();
   };
 
-  // Categories to map trough
-  const categories = [
-    "Tops",
-    "T-Shirts",
-    "Vestidos",
-    "Calças",
-    "Casacos",
-    "Pijamas",
-    "Desporto",
-    "Macacões",
-    "Bikinis",
-  ];
-
-  // Categories map
-  const items = categories.map((category, index) => (
+  // Types map
+  const items = types.map((type, index) => (
     <Link
-      to={`/clothes/${category.toLowerCase()}`}
+      to={`/clothes/${type.toLowerCase()}`}
       key={index}
-      className="carousel-item"
+      className="clothes-carousel-item"
     >
-      <h3>{category}</h3>
+      <h3>{type}</h3>
     </Link>
   ));
 
   return (
-    <div>
-      <div className="carousel-container">
-        <AliceCarousel
-          ref={carouselRef}
-          mouseTracking
-          infinite
-          disableButtonsControls
-          disableDotsControls
-          responsive={responsive}
-          items={items}
-        />
+    <div id="page-container" className="clothes-carousel-container">
+      <AliceCarousel
+        ref={carouselRef}
+        items={items}
+        responsive={responsive}
+        mouseTracking
+        infinite
+        disableButtonsControls
+        disableDotsControls
+      />
 
-        <button className="prev" onClick={handlePrev}>
-          <img src={iconArrowLeft} alt="Arrow Left" />
-        </button>
+      <button
+        className="clothes-carousel-arrow clothes-carousel-arrow-prev"
+        onClick={handlePrev}
+      >
+        <IoIosArrowDropleft size={30} />
+      </button>
 
-        <button className="next" onClick={handleNext}>
-          <img src={iconArrowRight} alt="Arrow Right" />
-        </button>
-      </div>
+      <button
+        className="clothes-carousel-arrow clothes-carousel-arrow-next"
+        onClick={handleNext}
+      >
+        <IoIosArrowDropright size={30} />
+      </button>
     </div>
   );
 }

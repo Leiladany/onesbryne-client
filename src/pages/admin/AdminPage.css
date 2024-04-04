@@ -1,0 +1,35 @@
+.admin-link {
+  color: white;
+  text-decoration: none;
+}
+
+.admin-products-table {
+  width: 90%;
+  border-collapse: collapse;
+}
+
+.admin-products-table th,
+.admin-products-table td {
+  border: 1px solid grey;
+  padding: 8px;
+}
+
+.admin-product-description {
+  text-align: left;
+}
+
+.admin-product-image {
+  width: 7rem;
+  height: 7rem;
+}
+
+.admin-delete-button {
+  background-color: #813b36;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+}
+
+.admin-delete-button:hover {
+  background-color: #d32f2f;
+}

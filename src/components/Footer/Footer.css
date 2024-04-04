@@ -4,6 +4,7 @@
   margin-right: 4.5rem;
   margin-left: 4.5rem;
   height: 1px;
+  margin-top: 2rem;
 }
 
 /* FOOTER CONTAINER */
@@ -34,7 +35,6 @@
 }
 
 .footer-copyright-span {
-  font-family: "Lucida Grande";
   font-weight: lighter;
 }
 

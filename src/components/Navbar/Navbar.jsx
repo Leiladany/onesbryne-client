@@ -1,18 +1,21 @@
 import "./Navbar.css";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 
-import iconStarOn from "../../assets/nav-star-on.png";
-import iconStarOff from "../../assets/nav-star-off.png";
-import iconProfile from "../../assets/nav-profile.png";
+import { IoIosStar, IoIosStarOutline } from "react-icons/io";
+import { GoPerson, GoPersonFill } from "react-icons/go";
+import { PiDress, PiDressFill } from "react-icons/pi";
+import {
+  MdAdminPanelSettings,
+  MdOutlineAdminPanelSettings,
+} from "react-icons/md";
 
 function Navbar() {
-  const [starClicked, setStarClicked] = useState(false);
-  const { handleLogout, isAuthenticated } = useContext(AuthContext);
+  const { handleLogout, isAuthenticated, isAdmin } = useContext(AuthContext);
   const location = useLocation();
   const handleStarClick = () => {
-    setStarClicked((prevState) => !prevState);
+    (prevState) => !prevState;
   };
 
   return (
@@ -41,21 +44,46 @@ function Navbar() {
           ) : (
             /* IS AUTHENTICATED */
             <>
+              {isAdmin && (
+                <Link to="/admin">
+                  <div className="navbar-icons">
+                    {location.pathname === "/admin" ? (
+                      <MdAdminPanelSettings color="white" size={20} />
+                    ) : (
+                      <MdOutlineAdminPanelSettings color="white" size={20} />
+                    )}
+                  </div>
+                </Link>
+              )}
+
+              <Link to="/clothes">
+                <div className="navbar-icons">
+                  {location.pathname === "/clothes" ? (
+                    <PiDressFill color="white" size={20} />
+                  ) : (
+                    <PiDress color="white" size={20} />
+                  )}
+                </div>
+              </Link>
+
               <Link to="/favourites">
-                <img
-                  className="navbar-icons"
-                  src={
-                    location.pathname === "/favourites"
-                      ? iconStarOn
-                      : iconStarOff
-                  }
-                  onClick={handleStarClick}
-                  alt="Star"
-                />
+                <div className="navbar-icons" onClick={handleStarClick}>
+                  {location.pathname === "/favourites" ? (
+                    <IoIosStar color="white" size={20} />
+                  ) : (
+                    <IoIosStarOutline color="white" size={20} />
+                  )}
+                </div>
               </Link>
 
               <Link to="/profile">
-                <img className="navbar-icons" src={iconProfile} alt="Profile" />
+                <div className="navbar-icons">
+                  {location.pathname === "/profile" ? (
+                    <GoPersonFill color="white" size={20} />
+                  ) : (
+                    <GoPerson color="white" size={20} />
+                  )}
+                </div>
               </Link>
 
               <Link to="/" onClick={handleLogout} className="navbar-link">
