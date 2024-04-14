@@ -91,7 +91,6 @@ const SignupPage = () => {
         buttonText="Criar Conta"
         error={error}
       />
-      {error && <p>{error}</p>}
     </div>
   );
 };
