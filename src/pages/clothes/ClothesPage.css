@@ -15,12 +15,25 @@
   align-items: center;
   border-radius: 5px;
   text-decoration: none;
+  background-size: cover;
+  background-position: center;
   transition: background-color 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .clothes-carousel-item:hover {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
   transform: scale(1.03);
+}
+
+.clothes-carousel-item-content {
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
 }
 
 /* ARROW BUTTONS */

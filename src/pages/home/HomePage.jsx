@@ -40,8 +40,8 @@ function HomePage() {
               <h2>Procura a roupa que queres</h2>
 
               <h3>
-                Explora nosso catálogo, caso não queira comprometer-se já,
-                guarde nos favoritos.
+                Explora o nosso catálogo, caso não queiras comprometer-te já,
+                guarda nos favoritos.
               </h3>
             </div>
           </div>

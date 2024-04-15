@@ -23,11 +23,25 @@
   height: 7rem;
 }
 
+.admin-edit-button {
+  background-color: #0f3866;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.admin-edit-button:hover {
+  background-color: #1070dd;
+}
+
+
 .admin-delete-button {
   background-color: #813b36;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .admin-delete-button:hover {

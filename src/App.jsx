@@ -62,6 +62,7 @@ function App() {
                 <>
                   <Route path="/admin" element={<AdminPage />} />
                   <Route path="/admin/add" element={<AddNewPiecePage />} />
+                  <Route path="/admin/edit/:productId" element={<AddNewPiecePage />} />
                 </>
               )}
 

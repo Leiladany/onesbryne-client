@@ -29,7 +29,7 @@ const FormComponent = ({ type, inputs, handleSubmit, buttonText, error }) => {
                   <option value="">Select...</option>
                   {input.options.map((option, idx) => (
                     <option key={idx} value={option}>
-                      {option}
+                      {option.label}
                     </option>
                   ))}
                 </select>
@@ -46,14 +46,17 @@ const FormComponent = ({ type, inputs, handleSubmit, buttonText, error }) => {
         ))}
       </div>
 
+      {/* Submit button */}
       <div>
         <button type="submit" className="form-button">
           {buttonText}
         </button>
       </div>
 
+      {/* Handler for error */}
       <div>{error && <p>{error}</p>}</div>
 
+      {/* Handler if you have an account */}
       {type === "signup" && (
         <div className="form-question-container">
           <p>Já tem uma conta?</p>
@@ -63,6 +66,7 @@ const FormComponent = ({ type, inputs, handleSubmit, buttonText, error }) => {
         </div>
       )}
 
+      {/* Handler if you don't have an account */}
       {type === "login" && (
         <div className="form-question-container">
           <p>Ainda não tem conta?</p>

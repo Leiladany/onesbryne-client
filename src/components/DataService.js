@@ -5,11 +5,13 @@ const DataService = {
     try {
       const response = await fetch(`${API_URL}${endpoint}`);
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        const errData = await response.json();
+        throw new Error(errData.message || "Network response was not ok");
       }
       return await response.json();
     } catch (error) {
       console.error("Error fetching data:", error);
+      throw error;
     }
   },
 
@@ -21,11 +23,13 @@ const DataService = {
         body: JSON.stringify(data),
       });
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        const errData = await response.json();
+        throw new Error(errData.message || "Network response was not ok");
       }
       return await response.json();
     } catch (error) {
       console.error("Error creating data:", error);
+      throw error;
     }
   },
 
@@ -36,13 +40,14 @@ const DataService = {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        const errData = await response.json();
+        throw new Error(errData.message || "Network response was not ok");
       }
       return await response.json();
     } catch (error) {
       console.error("Error updating data:", error);
+      throw error;
     }
   },
 
@@ -51,16 +56,11 @@ const DataService = {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "DELETE",
       });
-
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        const errData = await response.json();
+        throw new Error(errData.message || "Network response was not ok");
       }
-
-      if (!response.ok) {
-        return await response.json();
-      } else {
-        return { status: response.status, message: "Delete successful" };
-      }
+      return { status: response.status, message: "Delete successful" };
     } catch (error) {
       console.error("Error deleting data:", error);
       throw error;

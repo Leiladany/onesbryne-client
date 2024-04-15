@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormComponent from "../../../components/form/FormComponent";
+import DataService from "../../../components/DataService";
 
-import { IoEyeOutline, IoEyeOffOutline  } from "react-icons/io5";
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -27,18 +28,19 @@ const SignupPage = () => {
 
     try {
       const response = await DataService.createData("/auth/signup", payload);
+      console.log('response :>> ', response);
 
-      if (response && response.status === 201) {
+      if (response) {
         navigate("/login");
-      } else if (response) {
-        setError(response.message || "Sign Up failed. Please try again.");
       } else {
-        setError("Sign Up failed. Please try again.");
+        setError(response.message || "Sign Up failed. Please try again.");
       }
     } catch (error) {
-      setError("An error occurred. Please try again later.");
+      setError(error.message || "An error occurred. Please try again later.");
     }
   };
+
+
 
   // Form inputs
   const signupInputs = [

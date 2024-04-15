@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import DataService from "../../components/DataService";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./AdminPage.css";
 
 const AdminPage = () => {
+  const navigate = useNavigate();
+
+  // States
   const [products, setProducts] = useState([]);
 
   // Function to fetch all the products
@@ -17,6 +20,11 @@ const AdminPage = () => {
       console.error("Error fetching products:", error);
     }
   };
+
+  // Function to navigate to edit a product
+  const handleEdit = (productId) => {
+    navigate(`/admin/edit/${productId}`)
+  }
 
   // Function to delete a product
   const handleDelete = async (productId) => {
@@ -36,7 +44,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     fetchAllProducts();
-  }, []);
+  }, [products]);
 
   return (
     <div id="page-container">
@@ -44,49 +52,59 @@ const AdminPage = () => {
         Add New Piece
       </Link>
 
-      <table className="admin-products-table">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Imagem</th>
-            <th>Tamanho</th>
-            <th>Preço</th>
-            <th>Descrição</th>
-            <th>Tipo</th>
-            <th>Status</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product._id}>
-              <td>{product.name}</td>
-              <td>
-                <img
-                  src={product.img}
-                  alt={product.name}
-                  className="admin-product-image"
-                />
-              </td>
-              <td>{product.size}</td>
-              <td>{product.price} €</td>
-              <td className="admin-product-description">
-                {product.description}
-              </td>
-              <td>{product.type}</td>
-              <td>{product.status}</td>
-              <td>
-                <button
-                  onClick={() => handleDelete(product._id)}
-                  className="admin-delete-button"
-                >
-                  Apagar
-                </button>
-              </td>
+      {products.length > 0 && (
+
+        <table className="admin-products-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Imagem</th>
+              <th>Tamanho</th>
+              <th>Preço</th>
+              <th>Descrição</th>
+              <th>Tipo</th>
+              <th>Status</th>
+              <th>Ações</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {products.map((product) => (
+              <tr key={product._id}>
+                <td>{product.name}</td>
+                <td>
+                  <img
+                    src={product.img}
+                    alt={product.name}
+                    className="admin-product-image"
+                  />
+                </td>
+                <td>{product.size}</td>
+                <td>{product.price} €</td>
+                <td className="admin-product-description">
+                  {product.description}
+                </td>
+                <td>{product.type}</td>
+                <td>{product.status}</td>
+                <td>
+                  <button onClick={() => handleEdit(product._id)}
+                    className="admin-edit-button">
+                    Editar
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(product._id)}
+                    className="admin-delete-button"
+                  >
+                    Apagar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )
+      }
     </div>
   );
 };

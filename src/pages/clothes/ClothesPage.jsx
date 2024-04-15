@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { types } from "../../components/ClothesInfoArrays";
 import AliceCarousel from "react-alice-carousel";
+
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 
 function ClothesPage() {
@@ -26,13 +27,17 @@ function ClothesPage() {
   // Types map
   const items = types.map((type, index) => (
     <Link
-      to={`/clothes/${type.toLowerCase()}`}
+      to={`/clothes/${type.type.toLowerCase()}`}
       key={index}
       className="clothes-carousel-item"
+      style={{ backgroundImage: `url(${type.img})` }}
     >
-      <h3>{type}</h3>
+      <div className="clothes-carousel-item-content">
+        <h3>{type.type}</h3>
+      </div>
     </Link>
   ));
+  
 
   return (
     <div id="page-container" className="clothes-carousel-container">

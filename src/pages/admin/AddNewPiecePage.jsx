@@ -1,100 +1,133 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import FormComponent from "../../components/form/FormComponent";
 import DataService from "../../components/DataService";
 import { types, sizes } from "../../components/ClothesInfoArrays";
 
-const AddNewPiecePage = () => {
+const AddOrEditProductPage = () => {
   const navigate = useNavigate();
+  const { productId } = useParams();
 
-  const [name, setName] = useState("");
-  const [img, setImg] = useState("");
-  const [size, setSize] = useState("");
-  const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState("");
-  const [type, setType] = useState("");
+  // States
+  const [product, setProduct] = useState({
+    name: "",
+    img: "",
+    size: "",
+    price: "",
+    description: "",
+    type: ""
+  });
   const [error, setError] = useState("");
 
-  const handleCreateCloth = async (e) => {
-    e.preventDefault();
-    const payload = { name, img, size, price, description, type };
 
+  // Function to fetch a product
+  const fetchProduct = async () => {
     try {
-      const response = await DataService.createData("/api/products", payload);
+      const response = await DataService.fetchData(`/api/products/${productId}`);
+      setProduct(response);
+    } catch (error) {
+      console.error("Failed to fetch product details.", error);
+      setError("Failed to load the product data.");
+    }
+  };
+
+  // Function to handle the submit form
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const apiPath = productId ? `/api/products/${productId}` : "/api/products";
+    const method = productId ? "updateData" : "createData";
+    try {
+      const response = await DataService[method](apiPath, product);
       if (response) {
         navigate("/admin");
       } else {
-        setError(
-          response.message || "Failed to add new product. Please try again."
-        );
+        setError("Failed to save the product. Please try again.");
       }
     } catch (error) {
       setError("An error occurred. Please try again later.");
     }
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProduct(prev => ({ ...prev, [name]: value }));
+  };
+
+  useEffect(() => {
+    if (productId) {
+      fetchProduct();
+    }
+  }, [productId]);
+
   const formInputs = [
     {
       label: "Name",
       type: "text",
-      value: name,
-      onChange: (e) => setName(e.target.value),
+      value: product.name,
+      onChange: handleChange,
+      name: "name",
       placeholder: "Product Name",
       required: true,
     },
     {
       label: "Image URL",
       type: "text",
-      value: img,
-      onChange: (e) => setImg(e.target.value),
+      value: product.img,
+      onChange: handleChange,
+      name: "img",
       placeholder: "http://example.com/image.jpg",
       required: true,
     },
     {
       label: "Size",
       type: "dropdown",
-      value: size,
-      onChange: (e) => setSize(e.target.value),
-      options: sizes,
+      value: product.size,
+      onChange: handleChange,
+      name: "size",
+      options: sizes.map(size => ({ value: size, label: size })),
       required: true,
     },
     {
       label: "Price",
       type: "number",
-      value: price,
-      onChange: (e) => setPrice(e.target.value),
+      value: product.price,
+      onChange: handleChange,
+      name: "price",
       placeholder: "100",
       required: true,
     },
     {
       label: "Description",
       type: "text",
-      value: description,
-      onChange: (e) => setDescription(e.target.value),
+      value: product.description,
+      onChange: handleChange,
+      name: "description",
       placeholder: "Description",
       required: true,
     },
     {
       label: "Type",
       type: "dropdown",
-      value: type,
-      onChange: (e) => setType(e.target.value),
-      options: types,
+      value: product.type,
+      onChange: handleChange,
+      name: "type",
+      options: types.map(type => ({ value: type.type, label: type.type })),
       required: true,
-    },
+    }
   ];
+
 
   return (
     <div id="page-container">
       <FormComponent
-        type="addNewPiece"
+        type={productId ? "editPiece" : "addNewPiece"}
         inputs={formInputs}
-        handleSubmit={handleCreateCloth}
-        buttonText="Add Product"
+        handleSubmit={handleSubmit}
+        buttonText={productId ? "Update Product" : "Add Product"}
         error={error}
       />
     </div>
   );
 };
 
-export default AddNewPiecePage;
+export default AddOrEditProductPage;

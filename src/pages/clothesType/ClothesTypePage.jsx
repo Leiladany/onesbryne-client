@@ -1,9 +1,13 @@
 import "./ClothesTypePage.css";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
+import DataService from "../../components/DataService";
 
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 
 const ClothesTypePage = () => {
+  const { type } = useParams();
+
   // States
   const [products, setProducts] = useState([]);
   const [starClicked, setStarClicked] = useState({});
@@ -28,22 +32,42 @@ const ClothesTypePage = () => {
     }));
   };
 
+  // Function to filter products
+  const filteredProducts = useMemo(() => {
+    return products.filter(product => product.type.toLowerCase() === type.toLowerCase());
+  }, [products, type]);
+
+  useEffect(() => {
+    fetchAllProducts();
+  }, []);
+
   return (
     <div id="page-container">
+      <h3>{type.toUpperCase()}</h3>
+
       <div className="clothesType-grid">
-        {[1, 2, 3, 4, 5, 6].map((index) => (
+        {filteredProducts.map((product, index) => (
           <div className="clothesType-item" key={index}>
-            <div
-              className="clothesType-star"
-              onClick={() => handleIfFavourite(index)}
-            >
-              {starClicked[index] ? (
-                <IoIosStar size={25} color="black" />
-              ) : (
-                <IoIosStarOutline size={25} color="black" />
-              )}
+            <div>
+              <div
+                className="clothesType-star"
+                onClick={() => handleIfFavourite(index)}
+              >
+                {starClicked[index] ? (
+                  <IoIosStar size={25} color="black" />
+                ) : (
+                  <IoIosStarOutline size={25} color="black" />
+                )}
+              </div>
+
+              <img
+                src={product.img}
+                alt={product.name}
+                className="admin-product-image"
+              />
             </div>
-            <div className="clothesType-box">Item {index}</div>
+
+            <p className="clothesType-box">{product.name}</p>
           </div>
         ))}
       </div>
