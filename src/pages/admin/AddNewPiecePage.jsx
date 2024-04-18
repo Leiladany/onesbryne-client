@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FormComponent from "../../components/form/FormComponent";
@@ -9,22 +10,24 @@ const AddOrEditProductPage = () => {
   const { productId } = useParams();
 
   // States
-  const [product, setProduct] = useState({
-    name: "",
-    img: "",
-    size: "",
-    price: "",
-    description: "",
-    type: ""
-  });
+  const [name, setName] = useState("");
+  const [img, setImg] = useState("");
+  const [size, setSize] = useState("");
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
+  const [type, setType] = useState("");
   const [error, setError] = useState("");
-
 
   // Function to fetch a product
   const fetchProduct = async () => {
     try {
       const response = await DataService.fetchData(`/api/products/${productId}`);
-      setProduct(response);
+      setName(response.name);
+      setImg(response.img);
+      setSize(response.size);
+      setPrice(response.price);
+      setDescription(response.description);
+      setType(response.type);
     } catch (error) {
       console.error("Failed to fetch product details.", error);
       setError("Failed to load the product data.");
@@ -34,10 +37,11 @@ const AddOrEditProductPage = () => {
   // Function to handle the submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const productData = { name, img, size, price, description, type };
     const apiPath = productId ? `/api/products/${productId}` : "/api/products";
     const method = productId ? "updateData" : "createData";
     try {
-      const response = await DataService[method](apiPath, product);
+      const response = await DataService[method](apiPath, productData);
       if (response) {
         navigate("/admin");
       } else {
@@ -46,11 +50,6 @@ const AddOrEditProductPage = () => {
     } catch (error) {
       setError("An error occurred. Please try again later.");
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProduct(prev => ({ ...prev, [name]: value }));
   };
 
   useEffect(() => {
@@ -63,59 +62,52 @@ const AddOrEditProductPage = () => {
     {
       label: "Name",
       type: "text",
-      value: product.name,
-      onChange: handleChange,
-      name: "name",
+      value: name,
+      onChange: (e) => setName(e.target.value),
       placeholder: "Product Name",
       required: true,
     },
     {
       label: "Image URL",
       type: "text",
-      value: product.img,
-      onChange: handleChange,
-      name: "img",
+      value: img,
+      onChange: (e) => setImg(e.target.value),
       placeholder: "http://example.com/image.jpg",
       required: true,
     },
     {
       label: "Size",
       type: "dropdown",
-      value: product.size,
-      onChange: handleChange,
-      name: "size",
+      value: size,
+      onChange: (e) => setSize(e.target.value),
       options: sizes.map(size => ({ value: size, label: size })),
       required: true,
     },
     {
       label: "Price",
       type: "number",
-      value: product.price,
-      onChange: handleChange,
-      name: "price",
+      value: price,
+      onChange: (e) => setPrice(e.target.value),
       placeholder: "100",
       required: true,
     },
     {
       label: "Description",
       type: "text",
-      value: product.description,
-      onChange: handleChange,
-      name: "description",
+      value: description,
+      onChange: (e) => setDescription(e.target.value),
       placeholder: "Description",
       required: true,
     },
     {
       label: "Type",
       type: "dropdown",
-      value: product.type,
-      onChange: handleChange,
-      name: "type",
+      value: type,
+      onChange: (e) => setType(e.target.value),
       options: types.map(type => ({ value: type.type, label: type.type })),
       required: true,
     }
   ];
-
 
   return (
     <div id="page-container">

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./FormComponent.css";
 import { Link } from "react-router-dom";
 
@@ -28,7 +29,7 @@ const FormComponent = ({ type, inputs, handleSubmit, buttonText, error }) => {
                 >
                   <option value="">Select...</option>
                   {input.options.map((option, idx) => (
-                    <option key={idx} value={option}>
+                    <option key={idx} value={option.value}>
                       {option.label}
                     </option>
                   ))}
