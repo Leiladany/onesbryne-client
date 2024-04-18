@@ -34,6 +34,12 @@ const AddOrEditProductPage = () => {
     }
   };
 
+// Function to handle file input change
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImg(file);
+  };
+
   // Function to handle the submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,11 +74,9 @@ const AddOrEditProductPage = () => {
       required: true,
     },
     {
-      label: "Image URL",
-      type: "text",
-      value: img,
-      onChange: (e) => setImg(e.target.value),
-      placeholder: "http://example.com/image.jpg",
+      label: "Image",
+      type: "file",
+      onChange: handleImageChange,
       required: true,
     },
     {
