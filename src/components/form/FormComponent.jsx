@@ -11,7 +11,7 @@ const FormComponent = ({ type, inputs, handleSubmit, buttonText, error }) => {
             {input.label}
 
             <div className="form-input-container">
-              {input.type !== "dropdown" ? (
+              {input.type !== "dropdown" && input.type !== "file" && (
                 <input
                   type={input.type}
                   value={input.value}
@@ -20,8 +20,20 @@ const FormComponent = ({ type, inputs, handleSubmit, buttonText, error }) => {
                   required={input.required}
                   className="form-input"
                 />
-              ) : (
+              )}
+
+              {input.type === "file" && (
+                <input
+                  type="file"
+                  onChange={input.onChange}
+                  required={input.required}
+                  className="form-input"
+                />
+              )}
+
+              {input.type === "dropdown" && (
                 <select
+                  type="dropdown"
                   value={input.value}
                   onChange={input.onChange}
                   required={input.required}

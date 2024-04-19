@@ -18,7 +18,7 @@ import FavouritesPage from "./pages/favourites/FavouritesPage";
 import ProfilePage from "./pages/profile/ProfilePage";
 
 import AdminPage from "./pages/admin/AdminPage";
-import AddNewPiecePage from "./pages/admin/AddNewPiecePage";
+import AddOrEditProductPage from "./pages/admin/AddOrEditProductPage";
 
 import NotFoundPage from "./pages/404/NotFoundPage";
 
@@ -61,8 +61,8 @@ function App() {
               {isAdmin && (
                 <>
                   <Route path="/admin" element={<AdminPage />} />
-                  <Route path="/admin/add" element={<AddNewPiecePage />} />
-                  <Route path="/admin/edit/:productId" element={<AddNewPiecePage />} />
+                  <Route path="/admin/add" element={<AddOrEditProductPage />} />
+                  <Route path="/admin/edit/:productId" element={<AddOrEditProductPage />} />
                 </>
               )}
 

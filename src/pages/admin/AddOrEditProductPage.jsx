@@ -5,11 +5,14 @@ import FormComponent from "../../components/form/FormComponent";
 import DataService from "../../components/DataService";
 import { types, sizes } from "../../components/ClothesInfoArrays";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AddOrEditProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
 
   // States
+  const [productData, setProductData] = useState({});
   const [name, setName] = useState("");
   const [img, setImg] = useState("");
   const [size, setSize] = useState("");
@@ -22,6 +25,7 @@ const AddOrEditProductPage = () => {
   const fetchProduct = async () => {
     try {
       const response = await DataService.fetchData(`/api/products/${productId}`);
+      setProductData(response)
       setName(response.name);
       setImg(response.img);
       setSize(response.size);
@@ -34,27 +38,52 @@ const AddOrEditProductPage = () => {
     }
   };
 
-// Function to handle file input change
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImg(file);
+
+  // Function to create a product
+  const handleSubmitCreate = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("img", img);
+    formData.append("size", size);
+    formData.append("price", price);
+    formData.append("description", description);
+    formData.append("type", type);
+
+    try {
+      const response = await fetch(`${API_URL}/api/products`, {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) throw new Error('Failed to create product.');
+      navigate("/admin");
+    } catch (error) {
+      setError("Failed to save the product. Please try again.");
+      console.error("Creation error:", error);
+    }
   };
 
-  // Function to handle the submit form
-  const handleSubmit = async (e) => {
+  // Function to update a product
+  const handleSubmitUpdate = async (e) => {
     e.preventDefault();
-    const productData = { name, img, size, price, description, type };
-    const apiPath = productId ? `/api/products/${productId}` : "/api/products";
-    const method = productId ? "updateData" : "createData";
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("img", img);
+    formData.append("size", size);
+    formData.append("price", price);
+    formData.append("description", description);
+    formData.append("type", type);
+
     try {
-      const response = await DataService[method](apiPath, productData);
-      if (response) {
-        navigate("/admin");
-      } else {
-        setError("Failed to save the product. Please try again.");
-      }
+      const response = await fetch(`${API_URL}/api/products/${productId}`, {
+        method: "PUT",
+        body: formData,
+      });
+      if (!response.ok) throw new Error('Failed to update product.');
+      navigate("/admin");
     } catch (error) {
-      setError("An error occurred. Please try again later.");
+      setError("Failed to update the product. Please try again.");
+      console.error("Update error:", error);
     }
   };
 
@@ -76,7 +105,7 @@ const AddOrEditProductPage = () => {
     {
       label: "Image",
       type: "file",
-      onChange: handleImageChange,
+      onChange: (e) => setImg(e.target.files[0]),
       required: true,
     },
     {
@@ -115,10 +144,11 @@ const AddOrEditProductPage = () => {
 
   return (
     <div id="page-container">
+      {console.log('productData :>> ', productData)}
       <FormComponent
         type={productId ? "editPiece" : "addNewPiece"}
         inputs={formInputs}
-        handleSubmit={handleSubmit}
+        handleSubmit={productId ? handleSubmitUpdate : handleSubmitCreate}
         buttonText={productId ? "Update Product" : "Add Product"}
         error={error}
       />

@@ -3,6 +3,8 @@ import DataService from "../../components/DataService";
 import { Link, useNavigate } from "react-router-dom";
 import "./AdminPage.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AdminPage = () => {
   const navigate = useNavigate();
 
@@ -44,7 +46,7 @@ const AdminPage = () => {
 
   useEffect(() => {
     fetchAllProducts();
-  }, [products]);
+  }, []);
 
   return (
     <div id="page-container">
@@ -53,7 +55,6 @@ const AdminPage = () => {
       </Link>
 
       {products.length > 0 && (
-
         <table className="admin-products-table">
           <thead>
             <tr>
@@ -73,11 +74,13 @@ const AdminPage = () => {
               <tr key={product._id}>
                 <td>{product.name}</td>
                 <td>
-                  <img
-                    src={product.img}
-                    alt={product.name}
-                    className="admin-product-image"
-                  />
+                  {product.img ?
+                    <img
+                      src={product.img.startsWith('http') ? product.img : `${API_URL}/${product.img}`}
+                      alt={product.name}
+                      className="admin-product-image"
+                    /> : null
+                  }
                 </td>
                 <td>{product.size}</td>
                 <td>{product.price} €</td>
@@ -105,7 +108,7 @@ const AdminPage = () => {
         </table>
       )
       }
-    </div>
+    </div >
   );
 };
 
