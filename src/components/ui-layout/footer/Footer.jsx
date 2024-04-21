@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import "./Footer.css";
+import LinkControl from "../../ui-controls/link/Link";
 
 function Footer() {
   return (
@@ -17,15 +17,15 @@ function Footer() {
         </div>
 
         <div className="footer-right-section">
-          <Link className="footer-link">Contacto</Link>
+          <LinkControl children="Contacto" className="line" size="sm"/>
 
           <span>|</span>
 
-          <Link className="footer-link">Entregas</Link>
+          <LinkControl children="Entregas" className="line" size="sm"/>
 
           <span>|</span>
 
-          <Link className="footer-link">Política de Privacidade</Link>
+          <LinkControl children="Política de Privacidade" className="line" size="sm" />
         </div>
       </div>
     </footer>

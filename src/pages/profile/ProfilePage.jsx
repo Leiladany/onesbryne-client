@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import FormComponent from "../../components/form/FormComponent";
-import DataService from "../../components/DataService";
+import FormComponent from "../../components/forms/FormComponent";
+import DataService from "../../components/services/DataService";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ const ProfilePage = () => {
   }, [data]);
 
   // Form inputs
-  const inputs = [
+  const profileControls = [
     {
       label: "Name",
       type: "text",
@@ -85,7 +85,7 @@ const ProfilePage = () => {
   return (
     <div id="page-container">
       <FormComponent
-        inputs={inputs}
+        controls={profileControls}
         handleSubmit={handleUpdateProfile}
         buttonText="Actualizar Conta"
       />

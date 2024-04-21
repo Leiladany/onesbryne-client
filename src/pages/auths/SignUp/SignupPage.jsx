@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FormComponent from "../../../components/form/FormComponent";
-import DataService from "../../../components/DataService";
+import FormComponent from "../../../components/forms/FormComponent";
+import DataService from "../../../components/services/DataService";
 
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
@@ -43,7 +43,7 @@ const SignupPage = () => {
 
 
   // Form inputs
-  const signupInputs = [
+  const signupControls = [
     {
       label: "Primeiro e último nome",
       type: "text",
@@ -88,7 +88,7 @@ const SignupPage = () => {
     <div id="page-container">
       <FormComponent
         type="signup"
-        inputs={signupInputs}
+        controls={signupControls}
         handleSubmit={handleSignup}
         buttonText="Criar Conta"
         error={error}

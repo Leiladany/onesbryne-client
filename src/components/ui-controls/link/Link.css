@@ -1,0 +1,64 @@
+.ui-control-link-base {
+  color: white;
+  text-decoration: none;
+}
+
+.ui-control-link-line {
+    color: white;
+    border: none;
+    width: fit-content;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s, border-bottom-color 0.3s;
+  }
+  
+  .ui-control-link-line::before {
+    background-color: white;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 1px;
+    transition: width 0.3s;
+  }
+  
+  .ui-control-link-line::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0) scaleX(0.2);
+    width: 10px;
+    height: 10px;
+    border: 1px solid white;
+    border-left: none;
+    border-top: none;
+    transition: transform 0.3s;
+  }
+  
+  .ui-control-link-line:hover::before {
+    width: 100%;
+  }
+  
+  .ui-control-link-line:hover::after {
+    transform: translateX(-50%) rotate(45deg) scaleY(1) scaleX(1);
+  }
+
+  .ui-control-link-square {
+    color: white;
+    font-weight: lighter;
+    padding: 10px 20px;
+    border: 1.5px solid transparent;
+    transition: opacity 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .ui-control-link-square:hover {
+    opacity: 1;
+    border-color: #ffffff;
+  }
+
+  .ui-control-link-size-sm {
+    font-size: 0.7rem;
+  }

@@ -1,7 +1,7 @@
 import "./ClothesTypePage.css";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import DataService from "../../components/DataService";
+import DataService from "../../components/services/DataService";
 
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 

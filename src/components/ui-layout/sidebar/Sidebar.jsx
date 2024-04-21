@@ -1,7 +1,7 @@
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 
-import iconArrow from "../../assets/nav-arrow.png";
+import iconArrow from "../../../assets/nav-arrow.png";
 
 const Sidebar = () => {
   return (

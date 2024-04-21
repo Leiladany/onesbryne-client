@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import FormComponent from "../../components/form/FormComponent";
-import DataService from "../../components/DataService";
-import { types, sizes } from "../../components/ClothesInfoArrays";
+import FormComponent from "../../components/forms/FormComponent";
+import DataService from "../../components/services/DataService";
+import { types, sizes } from "../../components/utils/Arrays";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -93,7 +93,7 @@ const AddOrEditProductPage = () => {
     }
   }, [productId]);
 
-  const formInputs = [
+  const formElements = [
     {
       label: "Name",
       type: "text",
@@ -147,7 +147,7 @@ const AddOrEditProductPage = () => {
       {console.log('productData :>> ', productData)}
       <FormComponent
         type={productId ? "editPiece" : "addNewPiece"}
-        inputs={formInputs}
+        controls={formElements}
         handleSubmit={productId ? handleSubmitUpdate : handleSubmitCreate}
         buttonText={productId ? "Update Product" : "Add Product"}
         error={error}

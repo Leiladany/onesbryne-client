@@ -2,7 +2,7 @@ import "./ClothesPage.css";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { types } from "../../components/ClothesInfoArrays";
+import { types } from "../../components/utils/Arrays";
 import AliceCarousel from "react-alice-carousel";
 
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";

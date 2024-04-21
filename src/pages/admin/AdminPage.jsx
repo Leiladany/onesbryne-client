@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import DataService from "../../components/DataService";
+import DataService from "../../components/services/DataService";
 import { Link, useNavigate } from "react-router-dom";
 import "./AdminPage.css";
+import { Button } from "bootstrap";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -90,17 +91,9 @@ const AdminPage = () => {
                 <td>{product.type}</td>
                 <td>{product.status}</td>
                 <td>
-                  <button onClick={() => handleEdit(product._id)}
-                    className="admin-edit-button">
-                    Editar
-                  </button>
+                  <Button onClick={() => handleEdit(product._id)} children={Editar} />
 
-                  <button
-                    onClick={() => handleDelete(product._id)}
-                    className="admin-delete-button"
-                  >
-                    Apagar
-                  </button>
+                  <Button onClick={() => handleDelete(product._id)} children={Apagar} />
                 </td>
               </tr>
             ))}

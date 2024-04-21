@@ -1,6 +1,6 @@
 import "./NotFoundPage.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import LinkControl from "../../components/ui-controls/link/Link";
 
 const NotFoundPage = () => {
   return (
@@ -14,9 +14,7 @@ const NotFoundPage = () => {
       <p>Não conseguimos encontrar a página que tentou aceder.</p>
 
       <div className="notFound-link-container">
-        <Link to="/" className="notFound-link">
-          Aceder à página principal
-        </Link>
+        <LinkControl to="/" children="Aceder à página principal" className="line"/>
       </div>
     </div>
   );

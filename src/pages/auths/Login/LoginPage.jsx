@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import FormComponent from "../../../components/form/FormComponent";
-import DataService from "../../../components/DataService";
+import FormComponent from "../../../components/forms/FormComponent";
+import DataService from "../../../components/services/DataService";
 
 import { IoEyeOutline, IoEyeOffOutline  } from "react-icons/io5";
 
@@ -41,7 +41,7 @@ const LoginPage = () => {
   };
 
   // Form inputs
-  const loginInputs = [
+  const loginControls = [
     {
       label: "Email",
       type: "email",
@@ -67,7 +67,7 @@ const LoginPage = () => {
     <div id="page-container">
       <FormComponent
         type="login"
-        inputs={loginInputs}
+        controls={loginControls}
         handleSubmit={handleSubmit}
         buttonText="Entrar"
         error={error}

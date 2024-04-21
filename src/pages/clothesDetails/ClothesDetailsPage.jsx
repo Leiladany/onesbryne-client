@@ -1,3 +1,4 @@
+import { Button } from "bootstrap";
 import "./ClothesDetailsPage.css";
 
 const ClothesDetailsPage = () => {
@@ -15,7 +16,7 @@ const ClothesDetailsPage = () => {
             <div className="price">5€</div>
             <div className="desc">Bla blablabla</div>
             <div className="buttonDetails-container">
-              <button>Contactar</button>
+              <Button children={Contactar} />
             </div>
           </div>
         </div>

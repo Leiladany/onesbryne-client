@@ -1,0 +1,22 @@
+/* FORM INPUTS */
+.form-inputs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toggle-password-icon {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  position: absolute;
+  right: -2rem;
+}
+
+/* FORM QUESTION */
+.form-question-container {
+  margin-top: 4rem;
+  display: flex;
+  gap: 0.5rem;
+}
