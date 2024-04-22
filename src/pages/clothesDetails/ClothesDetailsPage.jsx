@@ -1,27 +1,53 @@
-import Button from "../../components/layout/button/Button";
 import "./ClothesDetailsPage.css";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Button from "../../components/layout/button/Button";
+import DataService from "../../components/services/DataService";
 
 const ClothesDetailsPage = () => {
-  return (
-    <div>
-      <div className="details-container">
-        <img className="img-detail" src="./test.png" />
-        <div className="details-info">
-          <div className="top">
-            <div className="code">#00</div>
-            <div className="title-detail">Roupa</div>
-          </div>
-          <div className="bottom">
-            <div className="size">M</div>
-            <div className="price">5€</div>
-            <div className="desc">Bla blablabla</div>
-            <div className="buttonDetails-container">
-              <Button children={Contactar} />
-            </div>
+  const { productId } = useParams();
+
+  // State
+  const [product, setProduct] = useState();
+
+  // Function to fetch the product
+  const fetchProduct = async () => {
+    try {
+      const response = await DataService.fetchData(`/api/products/${productId}`);
+      if (response) {
+        setProduct(response);
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, [productId]);
+
+  return (<>
+    {!product ? (<p>Loading...</p>) : (
+
+      <div className="clothsDetails-container">
+        <div>
+          <img className="clothsDetails-img" src={product.img} />
+        </div>
+
+        <div className="clothsDetails-info">
+          <div>{product.code}</div>
+          <div>{product.name}</div>
+          <div>{product.size}</div>
+          <div>{product.price}€</div>
+          <div>{product.description}</div>
+          <div>
+            <Button children="Contactar" />
           </div>
         </div>
       </div>
-    </div>
+    )
+    }
+  </>
   );
 };
 
