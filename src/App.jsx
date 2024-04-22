@@ -32,8 +32,6 @@ function App() {
     <div className="app-container">
       <Navbar />
 
-      {showSidebar && <Sidebar />}
-
       <div className="app-content-container">
         <Routes>
           {!isAuthenticated ? (
@@ -51,7 +49,7 @@ function App() {
               <Route path="/clothes" element={<ClothesPage />} />
               <Route path="/clothes/:type" element={<ClothesTypePage />} />
               <Route
-                path="/clothes/:type/:details"
+                path="/clothes/:type/:productId"
                 element={<ClothesDetailsPage />}
               />
               <Route path="/favourites" element={<FavouritesPage />} />
