@@ -1,6 +1,6 @@
 import "./ClothesTypePage.css";
 import { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DataService from "../../components/services/DataService";
 
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
@@ -44,30 +44,33 @@ const ClothesTypePage = () => {
   return (
     <div id="page-container">
       <h3>{type.toUpperCase()}</h3>
-
       <div className="clothesType-grid">
         {filteredProducts.map((product, index) => (
-          <div className="clothesType-item" key={index}>
-            <div>
-              <div
-                className="clothesType-star"
-                onClick={() => handleIfFavourite(index)}
-              >
-                {starClicked[index] ? (
-                  <IoIosStar size={25} color="black" />
-                ) : (
-                  <IoIosStarOutline size={25} color="black" />
-                )}
-              </div>
-
-              <img
-                src={product.img}
-                alt={product.name}
-                className="admin-product-image"
-              />
+          <div className="clothesType-product" key={index}>
+            <div
+              className="clothesType-star"
+              onClick={() => handleIfFavourite(index)}
+            >
+              {starClicked[index] ? (
+                <IoIosStar size={25} color="white" />
+              ) : (
+                <IoIosStarOutline size={25} color="white" />
+              )}
             </div>
 
-            <p className="clothesType-box">{product.name}</p>
+            <img
+              src={product.img}
+              alt={product.name}
+              className="clothesType-img"
+            />
+
+
+            <Link to={`/clothes/${type}/${product._id}`}>
+              <div className="clothesType-text">
+                <p>{product.name}</p>
+                <p>{product.price}€ | {product.size}</p>
+              </div>
+            </Link>
           </div>
         ))}
       </div>
