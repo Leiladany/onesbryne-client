@@ -1,8 +1,9 @@
+import "./AdminPage.css";
 import { useState, useEffect } from "react";
 import DataService from "../../components/services/DataService";
-import { Link, useNavigate } from "react-router-dom";
-import "./AdminPage.css";
-import { Button } from "bootstrap";
+import { useNavigate } from "react-router-dom";
+import ButtonComponent from "../../components/layout/button/Button";
+import LinkComponent from "../../components/layout/link/Link";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -51,9 +52,7 @@ const AdminPage = () => {
 
   return (
     <div id="page-container">
-      <Link to="/admin/add" className="admin-link">
-        Add New Piece
-      </Link>
+      <LinkComponent to="/admin/add" className="box" children="Add New Piece" />
 
       {products.length > 0 && (
         <table className="admin-products-table">
@@ -91,9 +90,9 @@ const AdminPage = () => {
                 <td>{product.type}</td>
                 <td>{product.status}</td>
                 <td>
-                  <Button onClick={() => handleEdit(product._id)} children={Editar} />
+                  <ButtonComponent onClick={() => handleEdit(product._id)} children="Editar" />
 
-                  <Button onClick={() => handleDelete(product._id)} children={Apagar} />
+                  <ButtonComponent onClick={() => handleDelete(product._id)} children="Apagar" />
                 </td>
               </tr>
             ))}

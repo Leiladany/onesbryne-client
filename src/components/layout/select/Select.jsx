@@ -1,6 +1,6 @@
 import "./Select.css"
 
-const SelectControl = ({ type, value, onChange, required, options }) => {
+const SelectComponent = ({ type, value, onChange, required, options }) => {
     return (
         <select
         className="controls-select"
@@ -19,4 +19,4 @@ const SelectControl = ({ type, value, onChange, required, options }) => {
     );
 }
 
-export default SelectControl;
+export default SelectComponent;

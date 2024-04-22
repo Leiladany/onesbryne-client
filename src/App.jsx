@@ -3,9 +3,9 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./contexts/AuthContext";
 
-import Navbar from "./components/ui-layout/navbar/Navbar";
-import Footer from "./components/ui-layout/footer/Footer";
-import Sidebar from "./components/ui-layout/sidebar/Sidebar";
+import Navbar from "./components/navigation/navbar/Navbar";
+import Footer from "./components/navigation/footer/Footer";
+import Sidebar from "./components/navigation/sidebar/Sidebar";
 
 import LoginPage from "./pages/auths/login/LoginPage";
 import SignupPage from "./pages/auths/signup/SignupPage";

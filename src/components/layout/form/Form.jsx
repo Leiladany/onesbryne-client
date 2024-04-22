@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import "./FormComponent.css";
-import InputControl from "../ui-controls/input/Input";
-import SelectControl from "../ui-controls/select/Select";
-import ButtonForm from "../ui-controls/button/ButtonForm";
-import LinkControl from "../ui-controls/link/Link"
+import "./Form.css";
+import InputComponent from "../input/Input";
+import SelectComponent from "../select/Select";
+import ButtonComponent from "../button/Button";
+import LinkComponent from "../link/Link"
 
 const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
   return (
@@ -15,7 +15,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
 
             <div className="form-input-container">
               {control.type === "dropdown" ? (
-                <SelectControl
+                <SelectComponent
                   type={control.type}
                   value={control.value}
                   onChange={control.onChange}
@@ -24,7 +24,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
                 />
 
               ) : (
-                <InputControl
+                <InputComponent
                   type={control.type}
                   value={control.value}
                   onChange={control.onChange}
@@ -45,7 +45,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
 
       {/* Submit button */}
       <div>
-        <ButtonForm
+        <ButtonComponent
           type="submit"
           onCLick={handleSubmit}
           disabled={false}
@@ -60,7 +60,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
       {type === "signup" && (
         <div className="form-question-container">
           <p>Já tem uma conta?</p>
-          <LinkControl to="/login" children="Clique Aqui" className="line" />
+          <LinkComponent to="/login" children="Clique Aqui" className="line" />
         </div>
       )}
 
@@ -68,7 +68,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
       {type === "login" && (
         <div className="form-question-container">
           <p>Ainda não tem conta?</p>
-          <LinkControl to="/signup" children="Clique Aqui" className="line" />
+          <LinkComponent to="/signup" children="Clique Aqui" className="line" />
         </div>
       )}
     </form>

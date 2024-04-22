@@ -1,6 +1,6 @@
 import "./Input.css"
 
-const InputControl = ({ label, type, value, onChange, placeholder, required }) => {
+const InputComponent = ({ label, type, value, onChange, placeholder, required }) => {
     return (
         <label className="ui-control-input-label">
             {label}
@@ -18,4 +18,4 @@ const InputControl = ({ label, type, value, onChange, placeholder, required }) =
     );
 }
 
-export default InputControl;
+export default InputComponent;

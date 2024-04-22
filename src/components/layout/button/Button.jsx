@@ -1,6 +1,6 @@
-import "./ButtonForm.css"
+import "./Button.css"
 
-const ButtonForm = ({ type, onCLick, disabled, children }) => {
+const ButtonComponent = ({ type, onCLick, disabled, children }) => {
     return (
         <button type={type} onClick={onCLick} className={`ui-control-button-form`} disabled={disabled}>
             {children}
@@ -8,4 +8,4 @@ const ButtonForm = ({ type, onCLick, disabled, children }) => {
     );
 }
 
-export default ButtonForm;
+export default ButtonComponent;

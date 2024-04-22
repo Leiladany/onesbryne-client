@@ -1,7 +1,7 @@
 import "./Link.css";
 import { Link } from "react-router-dom";
 
-const LinkControl = ({ to, children, className, size }) => {
+const LinkComponent = ({ to, children, className, size }) => {
 
     const handleLinkClass = () => {
         let classes = [className ? `ui-control-link-${className}` : "", size ? `ui-control-link-size-${size}` : ""].filter(Boolean).join(" ");
@@ -15,4 +15,4 @@ const LinkControl = ({ to, children, className, size }) => {
     );
 }
 
-export default LinkControl;
+export default LinkComponent;

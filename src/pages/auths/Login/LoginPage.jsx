@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import FormComponent from "../../../components/forms/FormComponent";
+import FormComponent from "../../../components/layout/form/Form";
 import DataService from "../../../components/services/DataService";
 
 import { IoEyeOutline, IoEyeOffOutline  } from "react-icons/io5";

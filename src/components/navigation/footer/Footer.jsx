@@ -1,5 +1,5 @@
 import "./Footer.css";
-import LinkControl from "../../ui-controls/link/Link";
+import LinkControl from "../../layout/link/Link";
 
 function Footer() {
   return (

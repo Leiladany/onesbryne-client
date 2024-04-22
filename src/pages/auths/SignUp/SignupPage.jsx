@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FormComponent from "../../../components/forms/FormComponent";
+import FormComponent from "../../../components/layout/form/Form";
 import DataService from "../../../components/services/DataService";
 
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";

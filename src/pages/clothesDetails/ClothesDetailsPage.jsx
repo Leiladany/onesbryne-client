@@ -1,4 +1,4 @@
-import { Button } from "bootstrap";
+import Button from "../../components/layout/button/Button";
 import "./ClothesDetailsPage.css";
 
 const ClothesDetailsPage = () => {

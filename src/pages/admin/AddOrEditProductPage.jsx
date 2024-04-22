@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import FormComponent from "../../components/forms/FormComponent";
+import FormComponent from "../../components/layout/form/Form";
 import DataService from "../../components/services/DataService";
 import { types, sizes } from "../../components/utils/Arrays";
 

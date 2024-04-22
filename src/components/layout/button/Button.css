@@ -6,11 +6,9 @@
     color: white;
     border: 1.5px solid transparent;
     cursor: pointer;
-    opacity: 0.7;
     transition: opacity 0.3s ease, border-color 0.3s ease;
   }
   
   .ui-control-button-form:hover {
     border-color: white;
-    opacity: 1;
   }

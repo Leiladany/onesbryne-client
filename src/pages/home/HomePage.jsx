@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import "./HomePage.css";
-import LinkControl from "../../components/ui-controls/link/Link";
+import LinkComponent from "../../components/layout/link/Link";
 import homeIcon1 from "../../assets/home-icon-1.png"
 import homeIcon2 from "../../assets/home-icon-2.png"
 import homeIcon3 from "../../assets/home-icon-3.png"
@@ -79,7 +79,7 @@ function HomePage() {
       </div>
 
       <div className="home-link-container">
-        <LinkControl to="/clothes" children="Explorar" />
+        <LinkComponent to="/clothes" children="Explorar" className="box" />
       </div>
     </div>
   );

@@ -1,8 +1,10 @@
+/* Base Link */
 .ui-control-link-base {
   color: white;
   text-decoration: none;
 }
 
+/* Line Link */
 .ui-control-link-line {
     color: white;
     border: none;
@@ -46,7 +48,8 @@
     transform: translateX(-50%) rotate(45deg) scaleY(1) scaleX(1);
   }
 
-  .ui-control-link-square {
+  /* box Link */
+  .ui-control-link-box {
     color: white;
     font-weight: lighter;
     padding: 10px 20px;
@@ -54,7 +57,7 @@
     transition: opacity 0.3s ease, border-color 0.3s ease;
   }
   
-  .ui-control-link-square:hover {
+  .ui-control-link-box:hover {
     opacity: 1;
     border-color: #ffffff;
   }

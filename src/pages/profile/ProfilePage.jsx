@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import FormComponent from "../../components/forms/FormComponent";
+import FormComponent from "../../components/layout/form/Form";
 import DataService from "../../components/services/DataService";
 
 const ProfilePage = () => {

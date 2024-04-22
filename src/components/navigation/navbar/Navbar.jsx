@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import LinkControl from "../../ui-controls/link/Link"
+import LinkControl from "../../layout/link/Link"
 
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 import { GoPerson, GoPersonFill } from "react-icons/go";
