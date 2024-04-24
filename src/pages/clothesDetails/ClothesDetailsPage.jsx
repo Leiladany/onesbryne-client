@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../../components/layout/button/Button";
 import DataService from "../../components/services/DataService";
+import ImgComponent from "../../components/layout/img/Img";
 
 const ClothesDetailsPage = () => {
   const { productId } = useParams();
@@ -31,7 +32,7 @@ const ClothesDetailsPage = () => {
 
       <div className="clothsDetails-container">
         <div>
-          <img className="clothsDetails-img" src={product.img} />
+          <ImgComponent src={product.img} alt={product.name} className="admin-product-image" />
         </div>
 
         <div className="clothsDetails-info">

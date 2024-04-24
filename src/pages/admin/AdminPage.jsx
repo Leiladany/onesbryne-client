@@ -4,8 +4,7 @@ import DataService from "../../components/services/DataService";
 import { useNavigate } from "react-router-dom";
 import ButtonComponent from "../../components/layout/button/Button";
 import LinkComponent from "../../components/layout/link/Link";
-
-const API_URL = import.meta.env.VITE_API_URL;
+import ImgComponent from "../../components/layout/img/Img";
 
 const AdminPage = () => {
   const navigate = useNavigate();
@@ -75,11 +74,7 @@ const AdminPage = () => {
                 <td>{product.name}</td>
                 <td>
                   {product.img ?
-                    <img
-                      src={product.img.startsWith('http') ? product.img : `${API_URL}/${product.img}`}
-                      alt={product.name}
-                      className="admin-product-image"
-                    /> : null
+                    <ImgComponent src={product.img} alt={product.name} className="admin-product-image" /> : null
                   }
                 </td>
                 <td>{product.size}</td>

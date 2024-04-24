@@ -2,6 +2,7 @@ import "./ClothesTypePage.css";
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DataService from "../../components/services/DataService";
+import ImgComponent from "../../components/layout/img/Img";
 
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 
@@ -58,12 +59,7 @@ const ClothesTypePage = () => {
               )}
             </div>
 
-            <img
-              src={product.img}
-              alt={product.name}
-              className="clothesType-img"
-            />
-
+            <ImgComponent src={product.img} alt={product.name} className="admin-product-image" />
 
             <Link to={`/clothes/${type}/${product._id}`}>
               <div className="clothesType-text">
