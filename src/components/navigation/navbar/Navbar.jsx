@@ -2,7 +2,7 @@ import "./Navbar.css";
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import LinkControl from "../../layout/link/Link"
+import LinkComponent from "../../layout/link/Link"
 
 import { IoIosStar, IoIosStarOutline } from "react-icons/io";
 import { GoPerson, GoPersonFill } from "react-icons/go";
@@ -25,24 +25,24 @@ function Navbar() {
         <section className="navbar-left-section" />
 
         <section className="navbar-mid-section">
-          <LinkControl to="/">
+          <LinkComponent to="/">
             <h1 className="navbar-title">ONESBRYNE</h1>
-          </LinkControl>
+          </LinkComponent>
         </section>
 
         <section className="navbar-right-section">
           {!isAuthenticated ? (
             /* IS NOT AUTHENTICATED */
             <>
-              <LinkControl to="/signup" children="Criar Conta" className="line" />
+              <LinkComponent to="/signup" children="Criar Conta" className="line" />
 
-              <LinkControl to="/login" children="Entrar" className="line" />
+              <LinkComponent to="/login" children="Entrar" className="line" />
             </>
           ) : (
             /* IS AUTHENTICATED */
             <>
               {isAdmin && (
-                <LinkControl to="/admin">
+                <LinkComponent to="/admin">
                   <div className="navbar-icons">
                     {location.pathname === "/admin" ? (
                       <MdAdminPanelSettings color="white" size={20} />
@@ -50,10 +50,10 @@ function Navbar() {
                       <MdOutlineAdminPanelSettings color="white" size={20} />
                     )}
                   </div>
-                </LinkControl>
+                </LinkComponent>
               )}
 
-              <LinkControl to="/clothes">
+              <LinkComponent to="/clothes">
                 <div className="navbar-icons">
                   {location.pathname === "/clothes" ? (
                     <PiDressFill color="white" size={20} />
@@ -61,9 +61,9 @@ function Navbar() {
                     <PiDress color="white" size={20} />
                   )}
                 </div>
-              </LinkControl>
+              </LinkComponent>
 
-              <LinkControl to="/favourites">
+              <LinkComponent to="/favourites">
                 <div className="navbar-icons" onClick={handleStarClick}>
                   {location.pathname === "/favourites" ? (
                     <IoIosStar color="white" size={20} />
@@ -71,9 +71,9 @@ function Navbar() {
                     <IoIosStarOutline color="white" size={20} />
                   )}
                 </div>
-              </LinkControl>
+              </LinkComponent>
 
-              <LinkControl to="/profile">
+              <LinkComponent to="/profile">
                 <div className="navbar-icons">
                   {location.pathname === "/profile" ? (
                     <GoPersonFill color="white" size={20} />
@@ -81,9 +81,9 @@ function Navbar() {
                     <GoPerson color="white" size={20} />
                   )}
                 </div>
-              </LinkControl>
+              </LinkComponent>
 
-              <LinkControl to="/" onClick={handleLogout} children="Sair" />
+              <LinkComponent to="/" onClick={handleLogout} children="Sair" className="line" />
             </>
           )}
         </section>

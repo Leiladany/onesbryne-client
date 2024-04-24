@@ -1,5 +1,5 @@
 import "./Footer.css";
-import LinkControl from "../../layout/link/Link";
+import LinkComponent from "../../layout/link/Link";
 
 function Footer() {
   return (
@@ -17,15 +17,15 @@ function Footer() {
         </div>
 
         <div className="footer-right-section">
-          <LinkControl children="Contacto" className="line" size="sm"/>
+          <LinkComponent children="Contacto" className="line" size="sm"/>
 
           <span>|</span>
 
-          <LinkControl children="Entregas" className="line" size="sm"/>
+          <LinkComponent children="Entregas" className="line" size="sm"/>
 
           <span>|</span>
 
-          <LinkControl children="Política de Privacidade" className="line" size="sm" />
+          <LinkComponent children="Política de Privacidade" className="line" size="sm" />
         </div>
       </div>
     </footer>

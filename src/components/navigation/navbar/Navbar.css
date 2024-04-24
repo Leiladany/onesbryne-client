@@ -27,6 +27,7 @@
 .navbar-right-section {
   display: flex;
   justify-content: end;
+  align-items: center;
   gap: 1rem;
 }
 
