@@ -144,7 +144,6 @@ const AddOrEditProductPage = () => {
 
   return (
     <div id="page-container">
-      {console.log('productData :>> ', productData)}
       <FormComponent
         type={productId ? "editPiece" : "addNewPiece"}
         controls={formElements}
