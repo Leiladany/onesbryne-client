@@ -1,8 +1,8 @@
 import "./Button.css"
 
-const ButtonComponent = ({ type, onCLick, disabled, children }) => {
+const ButtonComponent = ({ type, onClick, disabled, children }) => {
     return (
-        <button type={type} onClick={onCLick} className={`ui-control-button-form`} disabled={disabled}>
+        <button type={type} onClick={onClick} className={`ui-control-button-form`} disabled={disabled}>
             {children}
         </button>
     );
