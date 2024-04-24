@@ -7,7 +7,7 @@ import LinkComponent from "../link/Link"
 
 const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="form-inputs-container">
         {controls.map((control, index) => (
           <label key={index} className="form-label">
@@ -47,7 +47,6 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
       <div>
         <ButtonComponent
           type="submit"
-          onCLick={handleSubmit}
           disabled={false}
           children={buttonText}
         />
