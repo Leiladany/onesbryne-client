@@ -1,9 +1,16 @@
 const API_URL = import.meta.env.VITE_API_URL;
+const token = window.localStorage.getItem("authToken");
 
 const DataService = {
   async fetchData(endpoint) {
     try {
-      const response = await fetch(`${API_URL}${endpoint}`);
+      const response = await fetch(`${API_URL}${endpoint}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         const errData = await response.json();
         throw new Error(errData.message || "Network response was not ok");
@@ -19,7 +26,10 @@ const DataService = {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(data),
       });
       if (!response.ok) {
@@ -37,7 +47,10 @@ const DataService = {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(data),
       });
       if (!response.ok) {
@@ -55,6 +68,10 @@ const DataService = {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
       });
       if (!response.ok) {
         const errData = await response.json();

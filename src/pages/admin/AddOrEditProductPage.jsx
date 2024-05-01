@@ -6,6 +6,7 @@ import DataService from "../../components/services/DataService";
 import { types, sizes } from "../../components/utils/Arrays";
 
 const API_URL = import.meta.env.VITE_API_URL;
+const token = window.localStorage.getItem("authToken");
 
 const AddOrEditProductPage = () => {
   const navigate = useNavigate();
@@ -53,6 +54,9 @@ const AddOrEditProductPage = () => {
     try {
       const response = await fetch(`${API_URL}/api/products`, {
         method: "POST",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         body: formData,
       });
       if (!response.ok) throw new Error('Failed to create product.');
@@ -77,6 +81,9 @@ const AddOrEditProductPage = () => {
     try {
       const response = await fetch(`${API_URL}/api/products/${productId}`, {
         method: "PUT",
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
         body: formData,
       });
       if (!response.ok) throw new Error('Failed to update product.');
