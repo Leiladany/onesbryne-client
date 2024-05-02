@@ -4,7 +4,7 @@ import LinkComponent from "../../components/layout/link/Link";
 
 const NotFoundPage = () => {
   return (
-    <div id="page-container">
+    <div id="container">
       <div className="notFound-title">
         <h1>404</h1>
 

@@ -2,8 +2,9 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import FormComponent from "../../../components/layout/form/Form";
 import DataService from "../../../components/services/DataService";
+import { Stack } from '@mui/joy';
 
-import { IoEyeOutline, IoEyeOffOutline  } from "react-icons/io5";
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
 const LoginPage = () => {
   const { handleLogin } = useContext(AuthContext);
@@ -64,7 +65,7 @@ const LoginPage = () => {
   ];
 
   return (
-    <div id="page-container">
+    <Stack id="container">
       <FormComponent
         type="login"
         controls={loginControls}
@@ -72,7 +73,7 @@ const LoginPage = () => {
         buttonText="Entrar"
         error={error}
       />
-    </div>
+    </Stack>
   );
 };
 

@@ -50,7 +50,7 @@ const AdminPage = () => {
   }, []);
 
   return (
-    <div id="page-container">
+    <div id="container">
       <LinkComponent to="/admin/add" className="box" children="Add New Piece" />
 
       {products.length > 0 && (

@@ -83,7 +83,7 @@ const ProfilePage = () => {
   ];
 
   return (
-    <div id="page-container">
+    <div id="container">
       <FormComponent
         controls={profileControls}
         handleSubmit={handleUpdateProfile}

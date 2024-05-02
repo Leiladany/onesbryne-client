@@ -40,7 +40,7 @@ function ClothesPage() {
   
 
   return (
-    <div id="page-container" className="clothes-carousel-container">
+    <div id="container" className="clothes-carousel-container">
       <AliceCarousel
         ref={carouselRef}
         items={items}

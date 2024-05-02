@@ -150,7 +150,7 @@ const AddOrEditProductPage = () => {
   ];
 
   return (
-    <div id="page-container">
+    <div id="container">
       <FormComponent
         type={productId ? "editPiece" : "addNewPiece"}
         controls={formElements}

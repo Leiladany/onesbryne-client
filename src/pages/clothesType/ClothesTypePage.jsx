@@ -43,7 +43,7 @@ const ClothesTypePage = () => {
   }, []);
 
   return (
-    <div id="page-container">
+    <div id="container">
       <h3>{type.toUpperCase()}</h3>
       <div className="clothesType-grid">
         {filteredProducts.map((product, index) => (
