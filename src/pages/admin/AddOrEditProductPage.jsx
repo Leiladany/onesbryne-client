@@ -113,7 +113,7 @@ const AddOrEditProductPage = () => {
       label: "Image",
       type: "file",
       onChange: (e) => setImg(e.target.files[0]),
-      required: true,
+      required: productId ? false : true,
     },
     {
       label: "Size",
