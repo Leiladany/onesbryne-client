@@ -52,6 +52,7 @@ const AdminPage = () => {
   return (
     <div id="container">
       <LinkComponent to="/admin/add" className="box" children="Add New Piece" />
+      {console.log(products)}
 
       {products.length > 0 && (
         <table className="admin-products-table">
