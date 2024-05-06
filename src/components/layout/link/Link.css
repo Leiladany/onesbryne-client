@@ -7,6 +7,7 @@
 /* Line Link */
 .ui-control-link-line {
     color: white;
+    display: flex;
     border: none;
     width: fit-content;
     position: relative;

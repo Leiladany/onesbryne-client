@@ -1,49 +1,52 @@
-.admin-link {
-  color: white;
-  text-decoration: none;
+.admin-table tr th {
+  text-align: center;
+  background-color: gray;
 }
 
-.admin-products-table {
-  width: 90%;
-  border-collapse: collapse;
+.admin-table tr th:nth-child(1) {
+  width: 80px;
 }
 
-.admin-products-table th,
-.admin-products-table td {
-  border: 1px solid grey;
-  padding: 8px;
+.admin-table tr th:nth-child(2) {
+  width: 64px;
 }
 
-.admin-product-description {
-  text-align: left;
+.admin-table tr th:nth-child(3) {
+  width: 64px;
 }
 
-.admin-product-image {
-  width: 7rem;
-  height: 7rem;
+.admin-table tr th:nth-child(4) {
+  width: 64px;
 }
 
-.admin-edit-button {
-  background-color: #0f3866;
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  font-size: 1rem;
+.admin-table tr th:nth-child(5) {
+  width: 50%;
 }
 
-.admin-edit-button:hover {
-  background-color: #1070dd;
+.admin-table tr th:nth-child(6) {
+  width: 64px;
 }
 
-
-.admin-delete-button {
-  background-color: #813b36;
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  font-size: 1rem;
+.admin-table tr th:nth-child(7) {
+  width: 88px;
 }
 
-.admin-delete-button:hover {
-  background-color: #d32f2f;
+.admin-table tr th:nth-child(8) {
+  width: 32px;
+}
+
+.admin-table tr td {
+  color: gray;
+}
+
+.admin-table tr td:nth-child(4) {
+  text-align: right;
+}
+
+.admin-table tr td:nth-child(2),
+.admin-table tr td:nth-child(3),
+.admin-table tr td:nth-child(6),
+.admin-table tr td:nth-child(7),
+.admin-table tr td:nth-child(8) {
+  text-align: center;
 }

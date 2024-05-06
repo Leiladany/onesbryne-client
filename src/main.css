@@ -1,29 +1,37 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Arial";
+  font-family: 'Arial';
 }
 
 body {
-  background-color: black;
+  background-color: #0d0d0d;
 }
 
 a {
-  color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
-#page-container {
+#container {
   color: white;
   margin-top: 2rem;
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 2rem;
   align-items: center;
-  text-align: center;
-  gap: 2rem;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: lightgray;
 }

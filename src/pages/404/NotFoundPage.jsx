@@ -1,10 +1,11 @@
 import "./NotFoundPage.css";
 import React from "react";
 import LinkComponent from "../../components/layout/link/Link";
+import { Stack } from "@mui/joy";
 
 const NotFoundPage = () => {
   return (
-    <div id="page-container">
+    <Stack id="container">
       <div className="notFound-title">
         <h1>404</h1>
 
@@ -16,7 +17,7 @@ const NotFoundPage = () => {
       <div className="notFound-link-container">
         <LinkComponent to="/" children="Aceder à página principal" className="line"/>
       </div>
-    </div>
+    </Stack>
   );
 };
 

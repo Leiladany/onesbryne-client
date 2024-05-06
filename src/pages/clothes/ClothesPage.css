@@ -39,6 +39,7 @@
 /* ARROW BUTTONS */
 .clothes-carousel-arrow {
   background-color: gray;
+  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;

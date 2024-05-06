@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FormComponent from "../../../components/layout/form/Form";
 import DataService from "../../../components/services/DataService";
+import { Stack } from '@mui/joy';
 
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 
@@ -85,7 +86,7 @@ const SignupPage = () => {
   ];
 
   return (
-    <div id="page-container">
+    <Stack id="container">
       <FormComponent
         type="signup"
         controls={signupControls}
@@ -93,7 +94,7 @@ const SignupPage = () => {
         buttonText="Criar Conta"
         error={error}
       />
-    </div>
+    </Stack>
   );
 };
 

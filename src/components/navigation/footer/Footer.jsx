@@ -1,34 +1,34 @@
-import "./Footer.css";
-import LinkComponent from "../../layout/link/Link";
+import { Section1, Section2, Section3 } from './components';
+import { Stack } from '@mui/joy';
 
 function Footer() {
   return (
-    <footer>
-      <div className="footer-line" />
+    <Stack component="footer">
+      <Stack
+        sx={{
+          backgroundColor: 'common.white',
+          mx: { xs: 2, md: 10 },
+          height: '1px',
+        }}
+      />
 
-      <div className="footer-container">
-        <div className="footer-left-section" />
+      <Stack
+        sx={{
+          py: 2,
+          flexDirection: { sx: 'column', md: 'row' },
+          display: 'grid',
+          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' },
+          zIndex: '1000',
+          gap: { xs: 2, md: 0 },
+        }}
+      >
+        <Section1 />
 
-        <div className="footer-mid-section">
-          <h1 className="footer-copyright">
-            <span className="footer-copyright-span">Copyright© 2024</span>
-            ONESBRYNE
-          </h1>
-        </div>
+        <Section2 />
 
-        <div className="footer-right-section">
-          <LinkComponent children="Contacto" className="line" size="sm"/>
-
-          <span>|</span>
-
-          <LinkComponent children="Entregas" className="line" size="sm"/>
-
-          <span>|</span>
-
-          <LinkComponent children="Política de Privacidade" className="line" size="sm" />
-        </div>
-      </div>
-    </footer>
+        <Section3 />
+      </Stack>
+    </Stack>
   );
 }
 
