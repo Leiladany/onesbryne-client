@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
-import InputComponent from '../input/Input';
-import SelectComponent from '../select/Select';
-import ButtonComponent from '../button/Button';
-import LinkComponent from '../link/Link';
+import InputComponent from './input/Input';
+import SelectComponent from './select/Select';
+import Button from './ButtonComponent';
+import Link from './LinkComponentWithLine';
 import { Stack, Typography } from '@mui/joy';
 
 const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
@@ -55,7 +55,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
 
       {/* Submit button */}
       <Stack component="section" sx={{ alignItems: 'center', gap: 2 }}>
-        <ButtonComponent
+        <Button
           type="submit"
           disabled={false}
           onClick={handleSubmit}
@@ -85,7 +85,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
             <Typography sx={{ color: 'common.white' }}>
               Já tem uma conta?
             </Typography>
-            <LinkComponent
+            <Link
               to="/login"
               children="Clique Aqui"
               className="line"
@@ -99,7 +99,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
             <Typography sx={{ color: 'common.white' }}>
               Ainda não tem conta?
             </Typography>
-            <LinkComponent
+            <Link
               to="/signup"
               children="Clique Aqui"
               className="line"

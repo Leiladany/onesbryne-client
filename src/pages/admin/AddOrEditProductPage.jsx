@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import FormComponent from '../../components/layout/form/Form';
+import FormComponent from '../../components/layout/FormComponent';
 import DataService from '../../components/services/DataService';
 import { types, sizes, statuses } from '../../components/utils/Arrays';
 import { Stack } from '@mui/joy';

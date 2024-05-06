@@ -1,6 +1,6 @@
 import "./NotFoundPage.css";
 import React from "react";
-import LinkComponent from "../../components/layout/link/Link";
+import Link from "../../components/layout/LinkComponentWithLine";
 import { Stack } from "@mui/joy";
 
 const NotFoundPage = () => {
@@ -15,7 +15,7 @@ const NotFoundPage = () => {
       <p>Não conseguimos encontrar a página que tentou aceder.</p>
 
       <div className="notFound-link-container">
-        <LinkComponent to="/" children="Aceder à página principal" className="line"/>
+        <Link to="/" children="Aceder à página principal" className="line"/>
       </div>
     </Stack>
   );

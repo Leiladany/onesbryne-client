@@ -2,7 +2,8 @@
 import { extendTheme } from '@mui/joy/styles';
 
 const colors = {
-  black: '#0d0d0d',
+  black: '#060B10',
+  darkBlue: '#12181F'
 };
 
 const headingStyles = [
@@ -25,6 +26,7 @@ export const theme = extendTheme({
       palette: {
         primary: {
           main: colors.black,
+          darkBlue: colors.darkBlue
         },
       },
     },

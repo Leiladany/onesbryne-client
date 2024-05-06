@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import FormComponent from "../../../components/layout/form/Form";
+import Form from "../../../components/layout/FormComponent";
 import DataService from "../../../components/services/DataService";
 import { Stack } from '@mui/joy';
 
@@ -87,7 +87,7 @@ const SignupPage = () => {
 
   return (
     <Stack id="container">
-      <FormComponent
+      <Form
         type="signup"
         controls={signupControls}
         handleSubmit={handleSignup}

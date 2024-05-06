@@ -1,10 +1,9 @@
-import { Stack, Typography } from '@mui/joy';
-import LinkComponent from '../../../layout/link/Link';
+import { Link, Stack, Typography } from '@mui/joy';
 
 const Section2 = () => {
   return (
-    <Stack component="section">
-      <LinkComponent to="/">
+    <Stack component="section" sx={{ alignItems: 'center' }}>
+      <Link href="/" underline='none'>
         <Typography
           level="h1"
           sx={{
@@ -16,7 +15,7 @@ const Section2 = () => {
         >
           ONESBRYNE
         </Typography>
-      </LinkComponent>
+      </Link>
     </Stack>
   );
 };

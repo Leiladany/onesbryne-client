@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import FormComponent from "../../../components/layout/form/Form";
+import Form from "../../../components/layout/FormComponent";
 import DataService from "../../../components/services/DataService";
 import { Stack } from '@mui/joy';
 
@@ -66,7 +66,7 @@ const LoginPage = () => {
 
   return (
     <Stack id="container">
-      <FormComponent
+      <Form
         type="login"
         controls={loginControls}
         handleSubmit={handleSubmit}
