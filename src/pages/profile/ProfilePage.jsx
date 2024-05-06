@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import FormComponent from "../../components/layout/form/Form";
 import DataService from "../../components/services/DataService";
+import { Stack } from "@mui/joy";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -83,14 +84,14 @@ const ProfilePage = () => {
   ];
 
   return (
-    <div id="container">
+    <Stack id="container">
       <FormComponent
         controls={profileControls}
         handleSubmit={handleUpdateProfile}
         buttonText="Actualizar Conta"
       />
       {error && <p>{error}</p>}
-    </div>
+    </Stack>
   );
 };
 

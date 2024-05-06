@@ -1,13 +1,12 @@
-.controls-select {
+.ui-control-select {
     color: white;
     text-align: center;
     border: none;
     border-bottom: 1px solid white;
     background-color: transparent;
-    width: 35rem;
     font-size: 1rem;
   }
   
-  .controls-select:focus {
+  .ui-control-select:focus {
     outline: none;
   }

@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Arial";
+  font-family: 'Arial';
 }
 
 body {
@@ -13,12 +13,25 @@ a {
   cursor: pointer;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
 #container {
   color: white;
-  margin: 2rem 0 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   align-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: gray;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: lightgray;
 }

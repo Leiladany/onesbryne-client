@@ -3,7 +3,7 @@ import "./Select.css"
 const SelectComponent = ({ type, value, onChange, required, options }) => {
     return (
         <select
-        className="controls-select"
+        className="ui-control-select"
             type={type}
             value={value}
             onChange={onChange}

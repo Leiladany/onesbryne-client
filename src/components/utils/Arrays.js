@@ -34,3 +34,5 @@ export const types = [
 ];
 
 export const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL"];
+
+export const statuses = ["Disponível", "Arquivado", "Vendido"]

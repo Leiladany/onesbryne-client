@@ -1,11 +1,12 @@
-import "./ClothesPage.css";
-import "react-alice-carousel/lib/alice-carousel.css";
-import { useRef } from "react";
-import { Link } from "react-router-dom";
-import { types } from "../../components/utils/Arrays";
-import AliceCarousel from "react-alice-carousel";
+import './ClothesPage.css';
+import 'react-alice-carousel/lib/alice-carousel.css';
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { types } from '../../components/utils/Arrays';
+import AliceCarousel from 'react-alice-carousel';
 
-import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import { Stack } from '@mui/joy';
 
 function ClothesPage() {
   // Carousel handlers
@@ -37,10 +38,13 @@ function ClothesPage() {
       </div>
     </Link>
   ));
-  
 
   return (
-    <div id="container" className="clothes-carousel-container">
+    <Stack
+      id="container"
+      className="clothes-carousel-container"
+      sx={{ mx: { xs: 2, md: 10 } }}
+    >
       <AliceCarousel
         ref={carouselRef}
         items={items}
@@ -55,16 +59,16 @@ function ClothesPage() {
         className="clothes-carousel-arrow clothes-carousel-arrow-prev"
         onClick={handlePrev}
       >
-        <IoIosArrowDropleft size={30} />
+        <FaArrowLeft size={20} />
       </button>
 
       <button
         className="clothes-carousel-arrow clothes-carousel-arrow-next"
         onClick={handleNext}
       >
-        <IoIosArrowDropright size={30} />
+        <FaArrowRight size={20} />
       </button>
-    </div>
+    </Stack>
   );
 }
 

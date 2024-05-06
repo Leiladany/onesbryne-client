@@ -1,10 +1,10 @@
-import "./FavouritesPage.css";
+import { Stack, Typography } from "@mui/joy";
 
 const FavouritesPage = () => {
   return (
-    <div id="container">
-      <p>It looks like you don't have anything here yet.</p>
-    </div>
+    <Stack id="container">
+      <Typography>It looks like you don't have anything here yet.</Typography>
+    </Stack>
   );
 };
 
