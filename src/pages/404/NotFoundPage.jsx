@@ -15,7 +15,7 @@ const NotFoundPage = () => {
       <p>Não conseguimos encontrar a página que tentou aceder.</p>
 
       <div className="notFound-link-container">
-        <Link to="/" children="Aceder à página principal" className="line"/>
+        <Link href="/" children="Aceder à página principal" className="line"/>
       </div>
     </Stack>
   );

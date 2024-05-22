@@ -55,7 +55,7 @@ const AdminPage = () => {
   return (
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Stack component="section" sx={{ alignItems: 'center' }}>
-        <Link to="/admin/add" className="box">
+        <Link href="/admin/add" className="box">
           + Adicionar nova peça
         </Link>
       </Stack>

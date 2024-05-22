@@ -85,11 +85,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
             <Typography sx={{ color: 'common.white' }}>
               Já tem uma conta?
             </Typography>
-            <Link
-              to="/login"
-              children="Clique Aqui"
-              className="line"
-            />
+            <Link href="/login" children="Clique Aqui" className="line" />
           </>
         )}
 
@@ -99,11 +95,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
             <Typography sx={{ color: 'common.white' }}>
               Ainda não tem conta?
             </Typography>
-            <Link
-              to="/signup"
-              children="Clique Aqui"
-              className="line"
-            />
+            <Link href="/signup" children="Clique Aqui" className="line" />
           </>
         )}
       </Stack>

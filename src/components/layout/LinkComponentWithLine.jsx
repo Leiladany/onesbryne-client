@@ -40,7 +40,7 @@ const style = {
   },
 };
 
-const LinkWithLine = ({
+const LinkComponentWithLine = ({
   href,
   children,
   className,
@@ -63,4 +63,4 @@ const LinkWithLine = ({
   );
 };
 
-export default LinkWithLine;
+export default LinkComponentWithLine;
