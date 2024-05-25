@@ -1,7 +1,8 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
-const getAuthHeaders = () => ({
+const getAuthHeaders = (token) => ({
   'Content-Type': 'application/json',
+  Authorization: `Bearer ${token}`,
 });
 
 const handleResponse = async (response) => {
@@ -18,10 +19,11 @@ const handleResponse = async (response) => {
 };
 
 const DataService = {
-  async fetchData(endpoint) {
+  async fetchData(endpoint, token) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'GET',
+        headers: getAuthHeaders(token),
       });
       return await handleResponse(response);
     } catch (error) {
@@ -34,7 +36,7 @@ const DataService = {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
-        headers: getAuthHeaders(),
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
       return await handleResponse(response);
@@ -44,11 +46,11 @@ const DataService = {
     }
   },
 
-  async updateData(endpoint, data) {
+  async updateData(endpoint, data, token) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'PUT',
-        headers: getAuthHeaders(),
+        headers: getAuthHeaders(token),
         body: JSON.stringify(data),
       });
       return await handleResponse(response);
@@ -58,11 +60,11 @@ const DataService = {
     }
   },
 
-  async deleteData(endpoint) {
+  async deleteData(endpoint, token) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'DELETE',
-        headers: getAuthHeaders(),
+        headers: getAuthHeaders(token),
       });
       if (!response.ok) {
         let errData;

@@ -24,7 +24,7 @@ import NotFoundPage from './pages/404/NotFoundPage';
 
 function App() {
   const location = useLocation();
-  const { isAuthenticated, isAdmin } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
   const showSidebar = location.pathname.startsWith('/clothes/');
 

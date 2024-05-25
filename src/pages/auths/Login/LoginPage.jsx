@@ -3,11 +3,14 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import Form from "../../../components/layout/FormComponent";
 import DataService from "../../../components/services/DataService";
 import { Stack } from '@mui/joy';
+import { useNavigate } from 'react-router-dom';
 
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const { handleLogin } = useContext(AuthContext);
+
   const [email, setEmail] = useState('talmeidagil@hotmail.com');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +21,8 @@ const LoginPage = () => {
     const payload = { email, password };
 
     try {
-      handleLogin(payload);
+      await handleLogin(payload);
+      navigate('/clothes');
     } catch (error) {
       console.error('Login error:', error);
       setError('Login failed. Please try again.');

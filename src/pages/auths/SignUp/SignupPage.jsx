@@ -4,84 +4,68 @@ import Form from "../../../components/layout/FormComponent";
 import DataService from "../../../components/services/DataService";
 import { Stack } from '@mui/joy';
 
-import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const SignupPage = () => {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState(null);
-
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
-    }
-
-    const payload = { name, email, password };
+    const payload = { email, password };
 
     try {
-      const response = await DataService.createData("/auth/signup", payload);
-      console.log('response :>> ', response);
+      const response = await fetch(`${API_URL}/auth/signup`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.message);
+      }
+      const data = await response.json();
+      console.log('response :>> ', data);
 
-      if (response) {
-        navigate("/login");
+      if (data) {
+        navigate('/login');
       } else {
-        setError(response.message || "Sign Up failed. Please try again.");
+        setError(data.message || 'Sign Up failed. Please try again.');
       }
     } catch (error) {
-      setError(error.message || "An error occurred. Please try again later.");
+      setError(error.message || 'An error occurred. Please try again later.');
     }
   };
-
-
 
   // Form inputs
   const signupControls = [
     {
-      label: "Primeiro e último nome",
-      type: "text",
-      value: name,
-      onChange: (event) => setName(event.target.value),
-      placeholder: "Tiago Gil",
-      required: true,
-    },
-    {
-      label: "Email",
-      type: "email",
+      label: 'Email',
+      type: 'email',
       value: email,
       onChange: (event) => setEmail(event.target.value),
-      placeholder: "exemplo@gmail.com",
+      placeholder: 'exemplo@gmail.com',
       required: true,
     },
     {
-      label: "Password",
-      type: showPassword ? "text" : "password",
+      label: 'Password',
+      type: showPassword ? 'text' : 'password',
       value: password,
       onChange: (event) => setPassword(event.target.value),
-      placeholder: "******************",
+      placeholder: '******************',
       required: true,
       icon: true,
       iconSrc: showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />,
       onIconClick: () => setShowPassword(!showPassword),
-    },
-    {
-      label: "Confirmar password",
-      type: showConfirmPassword ? "text" : "password",
-      value: confirmPassword,
-      onChange: (event) => setConfirmPassword(event.target.value),
-      placeholder: "******************",
-      required: true,
-      icon: true,
-      iconSrc: showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />,
-      onIconClick: () => setShowConfirmPassword(!showConfirmPassword),
     },
   ];
 
