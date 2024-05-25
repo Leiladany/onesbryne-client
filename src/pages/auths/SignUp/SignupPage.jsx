@@ -21,7 +21,7 @@ const SignupPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const payload = { email, password };
+    const payload = { name, email, password };
 
     try {
       const response = await fetch(`${API_URL}/auth/signup`, {
@@ -34,7 +34,6 @@ const SignupPage = () => {
         throw new Error(errData.message);
       }
       const data = await response.json();
-      console.log('response :>> ', data);
 
       if (data) {
         navigate('/login');
@@ -48,6 +47,14 @@ const SignupPage = () => {
 
   // Form inputs
   const signupControls = [
+    {
+      label: 'Primeiro e Último Nome',
+      type: 'name',
+      value: name,
+      onChange: (event) => setName(event.target.value),
+      placeholder: 'Tiago Gil',
+      required: true,
+    },
     {
       label: 'Email',
       type: 'email',
@@ -66,6 +73,17 @@ const SignupPage = () => {
       icon: true,
       iconSrc: showPassword ? <IoEyeOutline /> : <IoEyeOffOutline />,
       onIconClick: () => setShowPassword(!showPassword),
+    },
+    {
+      label: 'Confirmar Password',
+      type: showConfirmPassword ? 'text' : 'password',
+      value: confirmPassword,
+      onChange: (event) => setConfirmPassword(event.target.value),
+      placeholder: '******************',
+      required: true,
+      icon: true,
+      iconSrc: showConfirmPassword ? <IoEyeOutline /> : <IoEyeOffOutline />,
+      onIconClick: () => setShowConfirmPassword(!showConfirmPassword),
     },
   ];
 
