@@ -51,12 +51,8 @@ function App() {
             <>
               <Route path="/favourites" element={<FavouritesPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-            </>
-          )}
 
-          {/* Admin route */}
-          {isAdmin && (
-            <>
+              {/* Admin route */}
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/admin/add" element={<AddOrEditProductPage />} />
               <Route

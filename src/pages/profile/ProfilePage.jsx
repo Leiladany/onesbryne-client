@@ -3,11 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import Form from '../../components/layout/FormComponent';
 import DataService from '../../components/services/DataService';
-import { Stack } from '@mui/joy';
+import { Button, Stack } from '@mui/joy';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const { userId } = useContext(AuthContext);
+  const { userId, token } = useContext(AuthContext);
 
   const [data, setData] = useState({});
   const [newName, setNewName] = useState('');
@@ -33,8 +33,8 @@ const ProfilePage = () => {
 
     if (data) {
       const newData = {
-        name: newName || data.user.name,
-        email: newEmail || data.user.email,
+        newName: newName || data.user.name,
+        newEmail: newEmail || data.user.email,
       };
 
       try {
@@ -58,10 +58,6 @@ const ProfilePage = () => {
   useEffect(() => {
     getUserById();
   }, [userId]);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   // Form inputs
   const profileControls = [

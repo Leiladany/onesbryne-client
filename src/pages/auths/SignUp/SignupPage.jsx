@@ -6,10 +6,9 @@ import { Stack } from '@mui/joy';
 
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
 const SignupPage = () => {
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -18,28 +17,34 @@ const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState(null);
+
   const handleSignup = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
 
     const payload = { name, email, password };
 
     try {
       const response = await fetch(`${API_URL}/auth/signup`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(payload),
       });
-      if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.message);
-      }
-      const data = await response.json();
 
-      if (data) {
-        navigate('/login');
-      } else {
-        setError(data.message || 'Sign Up failed. Please try again.');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Sign Up failed. Please try again.');
       }
+
+      const data = await response.json();
+      console.log(data)
+      navigate('/login');
     } catch (error) {
       setError(error.message || 'An error occurred. Please try again later.');
     }

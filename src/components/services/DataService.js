@@ -1,29 +1,22 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
-const getAuthHeaders = (token) => ({
+const getAuthHeaders = () => ({
   'Content-Type': 'application/json',
-  Authorization: `Bearer ${token}`,
 });
 
 const handleResponse = async (response) => {
   if (!response.ok) {
-    let errData;
-    try {
-      errData = await response.json();
-    } catch {
-      throw new Error('Network response was not ok');
-    }
-    throw new Error(errData.message || 'Network response was not ok');
+    throw new Error(response.message || 'Network response was not ok');
   }
   return await response.json();
 };
 
 const DataService = {
-  async fetchData(endpoint, token) {
+  async fetchData(endpoint) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'GET',
-        headers: getAuthHeaders(token),
+        headers: getAuthHeaders(),
       });
       return await handleResponse(response);
     } catch (error) {
@@ -46,11 +39,11 @@ const DataService = {
     }
   },
 
-  async updateData(endpoint, data, token) {
+  async updateData(endpoint, data) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'PUT',
-        headers: getAuthHeaders(token),
+        headers: getAuthHeaders(),
         body: JSON.stringify(data),
       });
       return await handleResponse(response);
@@ -60,21 +53,13 @@ const DataService = {
     }
   },
 
-  async deleteData(endpoint, token) {
+  async deleteData(endpoint) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'DELETE',
-        headers: getAuthHeaders(token),
+        headers: getAuthHeaders(),
       });
-      if (!response.ok) {
-        let errData;
-        try {
-          errData = await response.json();
-        } catch {
-          throw new Error('Network response was not ok');
-        }
-        throw new Error(errData.message || 'Network response was not ok');
-      }
+      handleResponse();
       return { status: response.status, message: 'Delete successful' };
     } catch (error) {
       console.error('Error deleting data:', error);
