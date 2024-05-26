@@ -1,9 +1,18 @@
 'use client';
-import { Box, MenuButton, Menu, Stack, Dropdown, MenuItem, Typography } from '@mui/joy';
+import {
+  Box,
+  MenuButton,
+  Menu,
+  Stack,
+  Dropdown,
+  MenuItem,
+  Typography,
+  Link,
+} from '@mui/joy';
 import { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthContext';
-import LinkComponent from '../../../layout/link/Link';
+import LinkComponentWithLine from '../../../layout/LinkComponentWithLine';
 
 // Icons
 import { IoIosLogOut } from 'react-icons/io';
@@ -38,12 +47,12 @@ const Section3 = () => {
         <>
           {/* DESKTOP */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-            <LinkComponent
-              to="/signup"
+            <LinkComponentWithLine
+              href="/signup"
               children="Criar Conta"
               className="line"
             />
-            <LinkComponent to="/login" children="Entrar" className="line" />
+            <LinkComponentWithLine href="/login" children="Entrar" className="line" />
           </Box>
 
           {/* MOBILE */}
@@ -62,8 +71,8 @@ const Section3 = () => {
                 }}
               >
                 <MenuItem>
-                  <LinkComponent
-                    to="/signup"
+                  <Link
+                    href="/signup"
                     children="Criar Conta"
                     className="line"
                     onClick={() => setDropdownOpen(false)}
@@ -71,11 +80,7 @@ const Section3 = () => {
                 </MenuItem>
 
                 <MenuItem>
-                  <LinkComponent
-                    to="/login"
-                    children="Entrar"
-                    className="line"
-                  />
+                  <Link href="/login" children="Entrar" className="line" />
                 </MenuItem>
               </Menu>
             </Dropdown>
@@ -87,7 +92,7 @@ const Section3 = () => {
           {/* DESKTOP */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
             {isAdmin && (
-              <LinkComponent to="/admin">
+              <Link href="/admin">
                 <Stack>
                   {location.pathname === '/admin' ? (
                     <MdAdminPanelSettings color="white" size={20} />
@@ -95,10 +100,10 @@ const Section3 = () => {
                     <MdOutlineAdminPanelSettings color="white" size={20} />
                   )}
                 </Stack>
-              </LinkComponent>
+              </Link>
             )}
 
-            <LinkComponent to="/clothes">
+            <Link href="/clothes">
               <Stack>
                 {location.pathname === '/clothes' ? (
                   <PiDressFill color="white" size={20} />
@@ -106,9 +111,9 @@ const Section3 = () => {
                   <PiDress color="white" size={20} />
                 )}
               </Stack>
-            </LinkComponent>
+            </Link>
 
-            <LinkComponent to="/favourites">
+            <Link href="/favourites">
               <Stack onClick={handleStarClick}>
                 {location.pathname === '/favourites' ? (
                   <IoIosStar color="white" size={20} />
@@ -116,9 +121,9 @@ const Section3 = () => {
                   <IoIosStarOutline color="white" size={20} />
                 )}
               </Stack>
-            </LinkComponent>
+            </Link>
 
-            <LinkComponent to="/profile">
+            <Link href="/profile">
               <Stack>
                 {location.pathname === '/profile' ? (
                   <GoPersonFill color="white" size={20} />
@@ -126,13 +131,13 @@ const Section3 = () => {
                   <GoPerson color="white" size={20} />
                 )}
               </Stack>
-            </LinkComponent>
+            </Link>
 
-            <LinkComponent to="/" onClick={handleLogout}>
+            <Link href="/" onClick={handleLogout}>
               <Stack>
                 <IoIosLogOut color="white" size={20} />
               </Stack>
-            </LinkComponent>
+            </Link>
           </Box>
 
           {/* MOBILE */}
@@ -152,8 +157,8 @@ const Section3 = () => {
               >
                 <MenuItem>
                   {isAdmin && (
-                    <LinkComponent to="/admin">
-                      <Stack sx={{flexDirection: "row", gap: 1}}>
+                    <Link href="/admin">
+                      <Stack sx={{ flexDirection: 'row', gap: 1 }}>
                         {location.pathname === '/admin' ? (
                           <MdAdminPanelSettings color="white" size={20} />
                         ) : (
@@ -164,13 +169,13 @@ const Section3 = () => {
                         )}
                         <Typography>Admin</Typography>
                       </Stack>
-                    </LinkComponent>
+                    </Link>
                   )}
                 </MenuItem>
 
                 <MenuItem>
-                  <LinkComponent to="/clothes">
-                    <Stack sx={{flexDirection: "row", gap: 1}}>
+                  <Link href="/clothes">
+                    <Stack sx={{ flexDirection: 'row', gap: 1 }}>
                       {location.pathname === '/clothes' ? (
                         <PiDressFill color="white" size={20} />
                       ) : (
@@ -178,12 +183,15 @@ const Section3 = () => {
                       )}
                       <Typography>Roupas</Typography>
                     </Stack>
-                  </LinkComponent>
+                  </Link>
                 </MenuItem>
 
                 <MenuItem>
-                  <LinkComponent to="/favourites">
-                    <Stack sx={{flexDirection: "row", gap: 1}} onClick={handleStarClick}>
+                  <Link href="/favourites">
+                    <Stack
+                      sx={{ flexDirection: 'row', gap: 1 }}
+                      onClick={handleStarClick}
+                    >
                       {location.pathname === '/favourites' ? (
                         <IoIosStar color="white" size={20} />
                       ) : (
@@ -191,12 +199,12 @@ const Section3 = () => {
                       )}
                       <Typography>Favoritos</Typography>
                     </Stack>
-                  </LinkComponent>
+                  </Link>
                 </MenuItem>
 
                 <MenuItem>
-                  <LinkComponent to="/profile">
-                    <Stack sx={{flexDirection: "row", gap: 1}}>
+                  <Link href="/profile">
+                    <Stack sx={{ flexDirection: 'row', gap: 1 }}>
                       {location.pathname === '/profile' ? (
                         <GoPersonFill color="white" size={20} />
                       ) : (
@@ -204,16 +212,16 @@ const Section3 = () => {
                       )}
                       <Typography>Perfil</Typography>
                     </Stack>
-                  </LinkComponent>
+                  </Link>
                 </MenuItem>
 
                 <MenuItem>
-                  <LinkComponent to="/" onClick={handleLogout}>
-                    <Stack sx={{flexDirection: "row", gap: 1}}>
+                  <Link href="/" onClick={handleLogout}>
+                    <Stack sx={{ flexDirection: 'row', gap: 1 }}>
                       <IoIosLogOut color="white" size={20} />
                       <Typography>Sair</Typography>
                     </Stack>
-                  </LinkComponent>
+                  </Link>
                 </MenuItem>
               </Menu>
             </Dropdown>

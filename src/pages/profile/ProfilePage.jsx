@@ -1,17 +1,17 @@
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import FormComponent from "../../components/layout/form/Form";
-import DataService from "../../components/services/DataService";
-import { Stack } from "@mui/joy";
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import Form from '../../components/layout/FormComponent';
+import DataService from '../../components/services/DataService';
+import { Stack } from '@mui/joy';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
 
   const [data, setData] = useState({});
-  const [newName, setNewName] = useState("");
-  const [newEmail, setNewEmail] = useState("");
+  const [newName, setNewName] = useState('');
+  const [newEmail, setNewEmail] = useState('');
   const [error, setError] = useState(null);
 
   const getUserById = async () => {
@@ -23,8 +23,8 @@ const ProfilePage = () => {
         setNewEmail(userData.user.email);
       }
     } catch (error) {
-      console.error("Error fetching user:", error);
-      setError("Failed to fetch user data.");
+      console.error('Error fetching user:', error);
+      setError('Failed to fetch user data.');
     }
   };
 
@@ -40,17 +40,17 @@ const ProfilePage = () => {
       try {
         const updatedUser = await DataService.updateData(
           `/api/users/${userId}`,
-          newData
+          newData,
         );
         if (updatedUser) {
           setData(updatedUser);
-          navigate("/clothes");
+          navigate('/clothes');
         } else {
-          setError("Failed to update profile. Please try again.");
+          setError('Failed to update profile. Please try again.');
         }
       } catch (error) {
-        console.error("Error updating user:", error);
-        setError("Failed to update profile. Please try again.");
+        console.error('Error updating user:', error);
+        setError('Failed to update profile. Please try again.');
       }
     }
   };
@@ -66,26 +66,26 @@ const ProfilePage = () => {
   // Form inputs
   const profileControls = [
     {
-      label: "Name",
-      type: "text",
+      label: 'Name',
+      type: 'text',
       value: newName,
       onChange: (e) => setNewName(e.target.value),
-      placeholder: "Tiago Gil",
+      placeholder: 'Tiago Gil',
       required: false,
     },
     {
-      label: "Email",
-      type: "email",
+      label: 'Email',
+      type: 'email',
       value: newEmail,
       onChange: (e) => setNewEmail(e.target.value),
-      placeholder: "exemplo@gmail.com",
+      placeholder: 'exemplo@gmail.com',
       required: false,
     },
   ];
 
   return (
     <Stack id="container">
-      <FormComponent
+      <Form
         controls={profileControls}
         handleSubmit={handleUpdateProfile}
         buttonText="Actualizar Conta"

@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Button from '../../components/layout/button/Button';
+import Button from '../../components/layout/ButtonComponent';
 import DataService from '../../components/services/DataService';
-import ImgComponent from '../../components/layout/img/Img';
+import Img from '../../components/layout/ImgComponent';
 import { Stack, Typography } from '@mui/joy';
 
 const ClothesDetailsPage = () => {
@@ -44,7 +44,7 @@ const ClothesDetailsPage = () => {
         >
           <Stack sx={{ width: '50%', alignItems: 'center' }}>
             <Stack sx={{ width: { xs: '100%', md: '50%' } }}>
-              <ImgComponent src={product.img} alt={product.name} />
+              <Img src={product.img} alt={product.name} />
             </Stack>
           </Stack>
 

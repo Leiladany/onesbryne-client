@@ -2,7 +2,7 @@ import './ClothesTypePage.css';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import DataService from '../../components/services/DataService';
-import ImgComponent from '../../components/layout/img/Img';
+import Img from '../../components/layout/ImgComponent';
 
 import { IoIosStar, IoIosStarOutline } from 'react-icons/io';
 import {
@@ -77,7 +77,7 @@ const ClothesTypePage = () => {
                 height: '600px',
               }}
             >
-              <ImgComponent
+              <Img
                 src={product.img}
                 alt={product.name}
                 className="clothesType-img"

@@ -2,9 +2,9 @@ import './AdminPage.css';
 import { useState, useEffect } from 'react';
 import DataService from '../../components/services/DataService';
 import { useNavigate } from 'react-router-dom';
-import LinkComponent from '../../components/layout/link/Link';
-import ImgComponent from '../../components/layout/img/Img';
-import { Button, Chip, Select, Sheet, Stack, Table } from '@mui/joy';
+import Link from '../../components/layout/LinkComponentWithLine';
+import Img from '../../components/layout/ImgComponent';
+import { Button, Chip, Stack, Table } from '@mui/joy';
 
 import { MdEdit } from 'react-icons/md';
 import { MdDelete } from 'react-icons/md';
@@ -55,9 +55,9 @@ const AdminPage = () => {
   return (
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Stack component="section" sx={{ alignItems: 'center' }}>
-        <LinkComponent to="/admin/add" className="box">
+        <Link href="/admin/add" className="box">
           + Adicionar nova peça
-        </LinkComponent>
+        </Link>
       </Stack>
 
       <Stack
@@ -79,6 +79,14 @@ const AdminPage = () => {
             sx={{
               width: '100%',
               borderCollapse: 'collapse',
+              '& th': {
+                textAlign: 'center',
+                backgroundColor: 'primary.darkBlue',
+                color: 'common.white',
+              },
+              '& tr': {
+                color: 'neutral.400',
+              },
               '& th:nth-of-type(5), & td:nth-of-type(5)': {
                 display: { xs: 'none', lg: 'table-cell' },
               },
@@ -103,7 +111,7 @@ const AdminPage = () => {
                   <td>{product.name}</td>
                   <td>
                     {product.img ? (
-                      <ImgComponent
+                      <Img
                         src={product.img}
                         alt={product.name}
                         width="64px"

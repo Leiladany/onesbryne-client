@@ -1,5 +1,5 @@
 import { Stack, Divider } from '@mui/joy';
-import LinkComponent from '../../../layout/link/Link';
+import Link from '../../../layout/LinkComponentWithLine';
 
 const Section3 = () => {
   return (
@@ -12,20 +12,20 @@ const Section3 = () => {
         gap: 1,
       }}
     >
-      <LinkComponent children="Contacto" className="line" size="sm" />
+      <Link children="Contacto" className="line" level="body-xs" />
       <Divider
         orientation="vertical"
         sx={{ backgroundColor: 'common.white' }}
       />
-      <LinkComponent children="Entregas" className="line" size="sm" />
+      <Link children="Entregas" className="line" level="body-xs" />
       <Divider
         orientation="vertical"
         sx={{ backgroundColor: 'common.white' }}
       />
-      <LinkComponent
+      <Link
         children="Política de Privacidade"
         className="line"
-        size="sm"
+        level="body-xs"
       />
     </Stack>
   );
