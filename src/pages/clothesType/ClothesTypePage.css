@@ -18,14 +18,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.clothesType-star {
-  position: absolute;
-  left: 87%;
-  top: 2%;
-  cursor: pointer;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .clothesType-text {

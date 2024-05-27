@@ -3,25 +3,16 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import DataService from '../../components/services/DataService';
 import Img from '../../components/layout/ImgComponent';
+import { Button, Card, CardContent, Stack, Typography } from '@mui/joy';
 
-import { IoIosStar, IoIosStarOutline } from 'react-icons/io';
-import {
-  AspectRatio,
-  Box,
-  Button,
-  Card,
-  CardContent,
-  IconButton,
-  Stack,
-  Typography,
-} from '@mui/joy';
+import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 
 const ClothesTypePage = () => {
   const { type } = useParams();
 
   // States
   const [products, setProducts] = useState([]);
-  const [starClicked, setStarClicked] = useState({});
+  const [isFavourite, setIsFavourite] = useState(false);
 
   // Function to fetch all the products
   const fetchAllProducts = async () => {
@@ -36,11 +27,8 @@ const ClothesTypePage = () => {
   };
 
   // Function to handle if item is favourite
-  const handleIfFavourite = (index) => {
-    setStarClicked((prevState) => ({
-      ...prevState,
-      [index]: !prevState[index],
-    }));
+  const handleIsFavourite = () => {
+    setIsFavourite((prevIsFavourite) => !prevIsFavourite);
   };
 
   // Function to filter products
@@ -67,16 +55,42 @@ const ClothesTypePage = () => {
         }}
       >
         {filteredProducts.map((product, index) => (
-          <Link to={`/clothes/${type}/${product.id}`} key={index}>
-            <Card
-              key={index}
+          <Card
+            key={index}
+            sx={{
+              background: 'transparent',
+              borderColor: 'neutral.700',
+              width: { xs: '90%', md: '400px' },
+              height: '600px',
+            }}
+          >
+            <Button
+              variant="plain"
+              onClick={handleIsFavourite}
+              color="primary"
               sx={{
-                background: 'transparent',
-                borderColor: 'neutral.700',
-                width: { xs: '90%', md: '400px' },
-                height: '600px',
+                color: "primary.main",
+                m: 0,
+                p: 0,
+                position: 'absolute',
+                right: '8%',
+                top: '4%',
+                cursor: 'pointer',
+                zIndex: '2',
+                '&:hover': {
+                  bgcolor: 'transparent',
+                },
               }}
+              className="clothesType-heart"
             >
+              {isFavourite ? (
+                <IoIosHeart size={25} />
+              ) : (
+                <IoIosHeartEmpty size={25} />
+              )}
+            </Button>
+
+            <Link to={`/clothes/${type}/${product.id}`} key={index}>
               <Img
                 src={product.img}
                 alt={product.name}
@@ -98,8 +112,8 @@ const ClothesTypePage = () => {
                   </Typography>
                 </Stack>
               </CardContent>
-            </Card>
-          </Link>
+            </Link>
+          </Card>
         ))}
       </Stack>
     </Stack>

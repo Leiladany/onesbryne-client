@@ -3,22 +3,27 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import Form from '../../components/layout/FormComponent';
 import DataService from '../../components/services/DataService';
-import { Button, Stack } from '@mui/joy';
+import { Stack } from '@mui/joy';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const { userId, token } = useContext(AuthContext);
+  const { userId } = useContext(AuthContext);
 
-  const [data, setData] = useState({});
+  const [user, setUser] = useState({});
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    getUserById();
+  }, [userId]);
+
+  // Function to fetch user by id
   const getUserById = async () => {
     try {
       const userData = await DataService.fetchData(`/api/users/${userId}`);
       if (userData) {
-        setData(userData);
+        setUser(userData);
         setNewName(userData.user.name);
         setNewEmail(userData.user.email);
       }
@@ -28,10 +33,11 @@ const ProfilePage = () => {
     }
   };
 
-  const handleUpdateProfile = async (e) => {
+  // Function to update user by id
+  const updateUserById = async (e) => {
     e.preventDefault();
 
-    if (data) {
+    if (user) {
       const newData = {
         newName: newName || data.user.name,
         newEmail: newEmail || data.user.email,
@@ -54,10 +60,6 @@ const ProfilePage = () => {
       }
     }
   };
-
-  useEffect(() => {
-    getUserById();
-  }, [userId]);
 
   // Form inputs
   const profileControls = [
@@ -83,7 +85,7 @@ const ProfilePage = () => {
     <Stack id="container">
       <Form
         controls={profileControls}
-        handleSubmit={handleUpdateProfile}
+        handleSubmit={updateUserById}
         buttonText="Actualizar Conta"
       />
       {error && <p>{error}</p>}

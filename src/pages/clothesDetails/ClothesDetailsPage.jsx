@@ -1,18 +1,44 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import Button from '../../components/layout/ButtonComponent';
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
+import ButtonComponent from '../../components/layout/ButtonComponent';
 import DataService from '../../components/services/DataService';
 import Img from '../../components/layout/ImgComponent';
-import { Stack, Typography } from '@mui/joy';
+import { Stack, Typography, Button } from '@mui/joy';
+
+import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 
 const ClothesDetailsPage = () => {
   const { productId } = useParams();
+  const { userId } = useContext(AuthContext);
 
-  // State
   const [product, setProduct] = useState();
+  const [userFavourites, setUserFavourites] = useState([]);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [isLoadingFavourite, setisLoadingFavourite] = useState(true);
 
-  // Function to fetch the product
-  const fetchProduct = async () => {
+  useEffect(() => {
+    if (userId) {
+      getUserById();
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (productId) {
+      getProductById();
+    }
+  }, [productId]);
+
+  useEffect(() => {
+    if (productId && userFavourites.includes(productId)) {
+      setIsFavourite(true);
+    } else {
+      setIsFavourite(false);
+    }
+  }, [userFavourites]);
+
+  // Function to fetch product by id
+  const getProductById = async () => {
     try {
       const response = await DataService.fetchData(
         `/api/products/${productId}`,
@@ -25,9 +51,33 @@ const ClothesDetailsPage = () => {
     }
   };
 
-  useEffect(() => {
-    fetchProduct();
-  }, [productId]);
+  // Function to fetch user by id
+  const getUserById = async () => {
+    try {
+      const userData = await DataService.fetchData(`/api/users/${userId}`);
+      if (userData.user.favourites) {
+        setUserFavourites(userData.user.favourites);
+        setisLoadingFavourite(false);
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
+  };
+
+  // Function to add product to user favorites
+  const addProductToUserFavourites = async () => {
+    try {
+      await DataService.updateData(
+        `/api/users/${userId}/favourites`,
+        { productId: productId },
+        'PUT',
+      );
+
+      setIsFavourite(!isFavourite);
+    } catch (error) {
+      console.error('Error adding product to favorites:', error);
+    }
+  };
 
   return (
     <>
@@ -43,17 +93,42 @@ const ClothesDetailsPage = () => {
           }}
         >
           <Stack sx={{ width: '50%', alignItems: 'center' }}>
-            <Stack sx={{ width: { xs: '100%', md: '50%' } }}>
+            <Stack
+              sx={{ width: { xs: '100%', md: '50%', position: 'relative' } }}
+            >
+              <Button
+                variant="plain"
+                onClick={addProductToUserFavourites}
+                color="primary"
+                loading={isLoadingFavourite}
+                sx={{
+                  color: 'primary.main',
+                  m: 0,
+                  p: 0,
+                  position: 'absolute',
+                  right: '4%',
+                  top: '2%',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    bgcolor: 'transparent',
+                  },
+                }}
+              >
+                {isFavourite ? (
+                  <IoIosHeart size={25} />
+                ) : (
+                  <IoIosHeartEmpty size={25} />
+                )}
+              </Button>
+
               <Img src={product.img} alt={product.name} />
             </Stack>
           </Stack>
 
           <Stack sx={{ width: { xs: '100%', md: '50%' }, gap: 2 }}>
-            <Typography>{product.code}</Typography>
+            <Typography>#{product.code}</Typography>
 
-            <Stack
-              sx={{ flexDirection: 'row', justifyContent: 'space-between' }}
-            >
+            <Stack sx={{ flexDirection: 'row', gap: 2 }}>
               <Stack sx={{ flexDirection: 'row', gap: 1 }}>
                 <Typography>{product.name}</Typography>
                 <Typography>{product.price}€</Typography>
@@ -65,7 +140,7 @@ const ClothesDetailsPage = () => {
               {product.description}
             </Typography>
             <div>
-              <Button children="Contactar" />
+              <ButtonComponent children="Contactar" />
             </div>
           </Stack>
         </Stack>
