@@ -6,26 +6,49 @@ export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
   const [token, setToken] = useState(null);
 
-  const userData = (token, decodedToken) => {
-    if (token) setToken(token);
-    if (decodedToken.role === 'authenticated') setIsAuthenticated(true);
-    if (decodedToken.sub) setUserId(decodedToken.sub);
-  };
-
   const handleLogin = async (payload) => {
     try {
-      const response = await DataService.createData('/auth/login', payload);
-      if (response) {
-        const token = response.data.session.access_token;
+      const responseUserAuth = await DataService.createData(
+        '/auth/login',
+        payload,
+      );
+      if (responseUserAuth) {
+        const token = responseUserAuth.data.session.access_token;
         window.localStorage.setItem('authToken', token);
-        const decodedToken = jwtDecode(response.data.session.access_token);
+        const decodedToken = jwtDecode(
+          responseUserAuth.data.session.access_token,
+        );
         userData(token, decodedToken);
       }
     } catch (error) {
       console.error('Error during login:', error.message);
+    }
+  };
+
+  const fetchUserData = async (userId) => {
+    try {
+      const responseUserPublic = await DataService.fetchData(
+        `/api/users/${userId}`,
+      );
+      if (responseUserPublic) {
+        const userRole = responseUserPublic.user.role;
+        if (userRole === 'admin') setIsAdmin(true);
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error.message);
+    }
+  };
+
+  const userData = (token, decodedToken) => {
+    if (token) setToken(token);
+    if (decodedToken.aud === 'authenticated') setIsAuthenticated(true);
+    if (decodedToken.sub) {
+      setUserId(decodedToken.sub);
+      fetchUserData(decodedToken.sub);
     }
   };
 
@@ -34,12 +57,13 @@ const AuthContextProvider = ({ children }) => {
     setToken(null);
     window.localStorage.removeItem('authToken');
     setIsAuthenticated(false);
+    setIsAdmin(false);
   };
 
   useEffect(() => {
     const storedToken = window.localStorage.getItem('authToken');
     if (storedToken) {
-      const decodedStoreToken = jwtDecode(storedToken)
+      const decodedStoreToken = jwtDecode(storedToken);
       userData(storedToken, decodedStoreToken);
     }
   }, []);
@@ -48,6 +72,7 @@ const AuthContextProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         isAuthenticated,
+        isAdmin,
         userId,
         token,
         handleLogin,

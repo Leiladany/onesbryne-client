@@ -43,7 +43,6 @@ const SignupPage = () => {
       }
 
       const data = await response.json();
-      console.log(data)
       navigate('/login');
     } catch (error) {
       setError(error.message || 'An error occurred. Please try again later.');

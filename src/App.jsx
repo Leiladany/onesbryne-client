@@ -24,7 +24,7 @@ import NotFoundPage from './pages/404/NotFoundPage';
 
 function App() {
   const location = useLocation();
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, isAdmin } = useContext(AuthContext);
 
   const showSidebar = location.pathname.startsWith('/clothes/');
 
@@ -52,13 +52,17 @@ function App() {
               <Route path="/favourites" element={<FavouritesPage />} />
               <Route path="/profile" element={<ProfilePage />} />
 
-              {/* Admin route */}
-              <Route path="/admin" element={<AdminPage />} />
-              <Route path="/admin/add" element={<AddOrEditProductPage />} />
-              <Route
-                path="/admin/edit/:productId"
-                element={<AddOrEditProductPage />}
-              />
+              {isAdmin && (
+                <>
+                  {/* Admin route */}
+                  <Route path="/admin" element={<AdminPage />} />
+                  <Route path="/admin/add" element={<AddOrEditProductPage />} />
+                  <Route
+                    path="/admin/edit/:productId"
+                    element={<AddOrEditProductPage />}
+                  />
+                </>
+              )}
             </>
           )}
 
