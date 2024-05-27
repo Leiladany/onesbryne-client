@@ -1,16 +1,3 @@
-const API_URL = import.meta.env.VITE_API_URL;
-
-const getAuthHeaders = () => ({
-  'Content-Type': 'application/json',
-});
-
-const handleResponse = async (response) => {
-  if (!response.ok) {
-    throw new Error(response.message || 'Network response was not ok');
-  }
-  return await response.json();
-};
-
 const DataService = {
   async fetchData(endpoint) {
     try {
@@ -29,7 +16,7 @@ const DataService = {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getAuthHeaders(),
         body: JSON.stringify(data),
       });
       return await handleResponse(response);
@@ -59,13 +46,25 @@ const DataService = {
         method: 'DELETE',
         headers: getAuthHeaders(),
       });
-      handleResponse();
       return { status: response.status, message: 'Delete successful' };
     } catch (error) {
       console.error('Error deleting data:', error);
       throw error;
     }
   },
+};
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+const getAuthHeaders = () => ({
+  'Content-Type': 'application/json',
+});
+
+const handleResponse = async (response) => {
+  if (!response.ok) {
+    throw new Error(response.message || 'Network response was not ok');
+  }
+  return await response.json();
 };
 
 export default DataService;

@@ -67,7 +67,7 @@ const ClothesTypePage = () => {
         }}
       >
         {filteredProducts.map((product, index) => (
-          <Link to={`/clothes/${type}/${product._id}`} key={index}>
+          <Link to={`/clothes/${type}/${product.id}`} key={index}>
             <Card
               key={index}
               sx={{
