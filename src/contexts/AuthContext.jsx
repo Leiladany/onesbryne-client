@@ -1,48 +1,70 @@
-import { createContext, useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { createContext, useState, useEffect } from 'react';
+import DataService from '../components/services/DataService';
+import { jwtDecode } from 'jwt-decode';
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
-  const navigate = useNavigate();
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [userRole, setUserRole] = useState("");
+  const [token, setToken] = useState(null);
 
-  const isAdmin = userRole === "admin";
-
-  const handleLogin = (token) => {
+  const handleLogin = async (payload) => {
     try {
-      window.localStorage.setItem("authToken", token);
-      const decoded = jwtDecode(token);
-      setUserId(decoded.userId);
-      setUserRole(decoded.userRole);
-      setIsAuthenticated(true);
-      navigate("/clothes");
+      const responseUserAuth = await DataService.createData(
+        '/auth/login',
+        payload,
+      );
+      if (responseUserAuth) {
+        const token = responseUserAuth.data.session.access_token;
+        window.localStorage.setItem('authToken', token);
+        const decodedToken = jwtDecode(
+          responseUserAuth.data.session.access_token,
+        );
+        userData(token, decodedToken);
+      }
     } catch (error) {
-      console.error("Error during login:", error.message);
+      console.error('Error during login:', error.message);
+    }
+  };
+
+  const fetchUserData = async (userId) => {
+    try {
+      const responseUserPublic = await DataService.fetchData(
+        `/api/users/${userId}`,
+      );
+      if (responseUserPublic) {
+        const userRole = responseUserPublic.user.role;
+        if (userRole === 'admin') setIsAdmin(true);
+      }
+    } catch (error) {
+      console.error('Error fetching user data:', error.message);
+    }
+  };
+
+  const userData = (token, decodedToken) => {
+    if (token) setToken(token);
+    if (decodedToken.aud === 'authenticated') setIsAuthenticated(true);
+    if (decodedToken.sub) {
+      setUserId(decodedToken.sub);
+      fetchUserData(decodedToken.sub);
     }
   };
 
   const handleLogout = async () => {
-    window.localStorage.removeItem("authToken");
     setUserId(null);
+    setToken(null);
+    window.localStorage.removeItem('authToken');
     setIsAuthenticated(false);
+    setIsAdmin(false);
   };
 
   useEffect(() => {
-    const tokenFromStorage = window.localStorage.getItem("authToken");
-    if (tokenFromStorage) {
-      try {
-        const decoded = jwtDecode(tokenFromStorage);
-        setUserId(decoded.userId);
-        setUserRole(decoded.userRole);
-        setIsAuthenticated(true);
-      } catch (error) {
-        console.error("Error decoding token:", error);
-      }
+    const storedToken = window.localStorage.getItem('authToken');
+    if (storedToken) {
+      const decodedStoreToken = jwtDecode(storedToken);
+      userData(storedToken, decodedStoreToken);
     }
   }, []);
 
@@ -52,6 +74,7 @@ const AuthContextProvider = ({ children }) => {
         isAuthenticated,
         isAdmin,
         userId,
+        token,
         handleLogin,
         handleLogout,
       }}

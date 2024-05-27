@@ -6,9 +6,6 @@ import DataService from '../../components/services/DataService';
 import { types, sizes, statuses } from '../../components/utils/Arrays';
 import { Stack } from '@mui/joy';
 
-const API_URL = import.meta.env.VITE_API_URL;
-const token = window.localStorage.getItem('authToken');
-
 const AddOrEditProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
@@ -24,79 +21,75 @@ const AddOrEditProductPage = () => {
   const [status, setStatus] = useState('');
   const [error, setError] = useState('');
 
+  // Function to create a product
+  const handleSubmitCreate = async (e) => {
+    e.preventDefault();
+
+    const product = {
+      name,
+      img,
+      size,
+      price,
+      description,
+      type,
+      status,
+    };
+
+    try {
+      const response = await DataService.createData('/api/products', product);
+      if (response) {
+        navigate('/admin');
+      }
+    } catch (error) {
+      setError('Failed to create product. Please try again.');
+    }
+  };
+
   // Function to fetch a product
   const fetchProduct = async () => {
     try {
       const response = await DataService.fetchData(
         `/api/products/${productId}`,
       );
-      setProductData(response);
-      setName(response.name);
-      setImg(response.img);
-      setSize(response.size);
-      setPrice(response.price);
-      setDescription(response.description);
-      setType(response.type);
-      setStatus(response.status);
+      if (response) {
+        setProductData(response);
+        setName(response.name);
+        setImg(response.img);
+        setSize(response.size);
+        setPrice(response.price);
+        setDescription(response.description);
+        setType(response.type);
+        setStatus(response.status);
+      }
     } catch (error) {
-      console.error('Failed to fetch product details.', error);
-      setError('Failed to load the product data.');
-    }
-  };
-
-  // Function to create a product
-  const handleSubmitCreate = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('img', img);
-    formData.append('size', size);
-    formData.append('price', price);
-    formData.append('description', description);
-    formData.append('type', type);
-    formData.append('status', status);
-
-    try {
-      const response = await fetch(`${API_URL}/api/products`, {
-        method: 'POST',
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
-      if (!response.ok) throw new Error('Failed to create product.');
-      navigate('/admin');
-    } catch (error) {
-      setError('Failed to save the product. Please try again.');
-      console.error('Creation error:', error);
+      setError('Failed to fetch product. Please try again.');
     }
   };
 
   // Function to update a product
   const handleSubmitUpdate = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('img', img);
-    formData.append('size', size);
-    formData.append('price', price);
-    formData.append('description', description);
-    formData.append('type', type);
-    formData.append('status', status);
+
+    const updatedProduct = {
+      name,
+      img,
+      size,
+      price,
+      description,
+      type,
+      status,
+    };
 
     try {
-      const response = await fetch(`${API_URL}/api/products/${productId}`, {
-        method: 'PUT',
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
-      if (!response.ok) throw new Error('Failed to update product.');
-      navigate('/admin');
+      const response = await DataService.updateData(
+        `/api/products/${productId}`,
+        updatedProduct,
+      );
+      if (response) {
+        navigate('/admin');
+      }
     } catch (error) {
-      setError('Failed to update the product. Please try again.');
-      console.error('Update error:', error);
+      setError('Failed to update product. Please try again.');
     }
   };
 
@@ -117,9 +110,11 @@ const AddOrEditProductPage = () => {
     },
     {
       label: 'Image',
-      type: 'file',
-      onChange: (e) => setImg(e.target.files[0]),
-      required: productId ? false : true,
+      type: 'text',
+      value: img,
+      onChange: (e) => setImg(e.target.value),
+      placeholder: 'Product Image',
+      required: true,
     },
     {
       label: 'Size',
@@ -153,7 +148,7 @@ const AddOrEditProductPage = () => {
       options: types.map((type) => ({ value: type.type, label: type.type })),
       required: true,
     },
-     {
+    {
       label: 'Status',
       type: 'dropdown',
       value: status,

@@ -51,18 +51,18 @@ function App() {
             <>
               <Route path="/favourites" element={<FavouritesPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-            </>
-          )}
 
-          {/* Admin route */}
-          {isAdmin && (
-            <>
-              <Route path="/admin" element={<AdminPage />} />
-              <Route path="/admin/add" element={<AddOrEditProductPage />} />
-              <Route
-                path="/admin/edit/:productId"
-                element={<AddOrEditProductPage />}
-              />
+              {isAdmin && (
+                <>
+                  {/* Admin route */}
+                  <Route path="/admin" element={<AdminPage />} />
+                  <Route path="/admin/add" element={<AddOrEditProductPage />} />
+                  <Route
+                    path="/admin/edit/:productId"
+                    element={<AddOrEditProductPage />}
+                  />
+                </>
+              )}
             </>
           )}
 

@@ -39,7 +39,7 @@ const AdminPage = () => {
         `/api/products/${productId}`,
       );
       if (response) {
-        setProducts(products.filter((product) => product._id !== productId));
+        setProducts(products.filter((product) => product.id !== productId));
       } else {
         console.error('Failed to delete product');
       }
@@ -107,7 +107,7 @@ const AdminPage = () => {
 
             <tbody>
               {products.map((product) => (
-                <tr key={product._id}>
+                <tr key={product.id}>
                   <td>{product.name}</td>
                   <td>
                     {product.img ? (
@@ -137,7 +137,7 @@ const AdminPage = () => {
                   </td>
                   <td>
                     <Button
-                      onClick={() => handleEdit(product._id)}
+                      onClick={() => handleEdit(product.id)}
                       variant="plain"
                       sx={{
                         p: 1,
@@ -150,7 +150,7 @@ const AdminPage = () => {
                     </Button>
 
                     <Button
-                      onClick={() => handleDelete(product._id)}
+                      onClick={() => handleDelete(product.id)}
                       variant="plain"
                       sx={{
                         p: 1,
