@@ -1,10 +1,10 @@
 import { Stack } from '@mui/joy';
-import Link from "../../../components/layout/LinkComponentWithLine";
+import Button from "../../../components/layout/ButtonComponent";
 
 const Section3 = () => {
     return (
         <Stack component="section">
-            <Link href="/clothes" children="Explorar" className="box" />
+            <Button component="a" href="/clothes" children="Explorar" />
         </Stack>
     );
 }
