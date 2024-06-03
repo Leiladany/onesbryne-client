@@ -43,7 +43,7 @@ const Section2 = () => {
       }}
     >
       {sectionData.map((section, index) => (
-        <Stack key={index} sx={{ flexDirection: { xs: 'column', md: 'row' }, backgroundColor: 'primary.darkBlue', border: '1px solid #1e242c', borderRadius: '8px' }}>
+        <Stack key={index} sx={{ flexDirection: { xs: 'column', md: 'row' }, backgroundColor: 'primary.darkBlue', border: '1px solid #1e242c', borderRadius: '8px', mx: {xs: 2, lg: 0} }}>
           <Stack sx={{ alignItems: 'center', p: 2 }}>
             <img
               src={section.icon}
