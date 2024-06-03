@@ -1,8 +1,8 @@
 import { Button } from '@mui/joy';
 
-const ButtonComponent = ({
-  component = "button",
-  href = null,
+export const ButtonComponent = ({
+  component = 'button',
+  to = null,
   type,
   onClick,
   disabled = false,
@@ -12,8 +12,8 @@ const ButtonComponent = ({
   return (
     <Button
       variant="plain"
-      href={href}
       component={component}
+      to={to}
       type={type}
       onClick={onClick}
       className={className}
@@ -34,5 +34,3 @@ const ButtonComponent = ({
     </Button>
   );
 };
-
-export default ButtonComponent;

@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/joy";
+import { Stack, Typography } from '@mui/joy';
 
 const FavouritesPage = () => {
   return (

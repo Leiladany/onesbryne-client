@@ -4,7 +4,6 @@ import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { types } from '../../components/utils/Arrays';
 import AliceCarousel from 'react-alice-carousel';
-
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { Stack } from '@mui/joy';
 

@@ -1,17 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import FormComponent from '../../components/layout/FormComponent';
-import DataService from '../../components/services/DataService';
+import { FormComponent } from '../../components/layout/FormComponent';
+import { DataService } from '../../components/services/DataService';
 import { types, sizes, statuses } from '../../components/utils/Arrays';
 import { Stack } from '@mui/joy';
 
 const AddOrEditProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
-
-  // States
-  const [productData, setProductData] = useState({});
   const [name, setName] = useState('');
   const [img, setImg] = useState('');
   const [size, setSize] = useState('');
@@ -52,7 +49,6 @@ const AddOrEditProductPage = () => {
         `/api/products/${productId}`,
       );
       if (response) {
-        setProductData(response);
         setName(response.name);
         setImg(response.img);
         setSize(response.size);

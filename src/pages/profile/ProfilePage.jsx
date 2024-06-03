@@ -1,14 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
-import Form from '../../components/layout/FormComponent';
-import DataService from '../../components/services/DataService';
+import { FormComponent } from '../../components/layout/FormComponent';
+import { DataService } from '../../components/services/DataService';
 import { Stack } from '@mui/joy';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
-
   const [user, setUser] = useState({});
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
@@ -83,7 +82,7 @@ const ProfilePage = () => {
 
   return (
     <Stack id="container">
-      <Form
+      <FormComponent
         controls={profileControls}
         handleSubmit={updateUserById}
         buttonText="Actualizar Conta"

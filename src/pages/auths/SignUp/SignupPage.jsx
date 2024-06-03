@@ -1,15 +1,11 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Form from "../../../components/layout/FormComponent";
-import DataService from "../../../components/services/DataService";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FormComponent } from '../../../components/layout/FormComponent';
 import { Stack } from '@mui/joy';
-
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_API_URL;
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,6 +13,7 @@ const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -42,7 +39,7 @@ const SignupPage = () => {
         throw new Error(errorData.error || 'Sign Up failed. Please try again.');
       }
 
-      const data = await response.json();
+      await response.json();
       navigate('/login');
     } catch (error) {
       setError(error.message || 'An error occurred. Please try again later.');
@@ -93,7 +90,7 @@ const SignupPage = () => {
 
   return (
     <Stack id="container">
-      <Form
+      <FormComponent
         type="signup"
         controls={signupControls}
         handleSubmit={handleSignup}

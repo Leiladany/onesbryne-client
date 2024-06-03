@@ -1,18 +1,15 @@
 import './AdminPage.css';
 import { useState, useEffect } from 'react';
-import DataService from '../../components/services/DataService';
+import { DataService } from '../../components/services/DataService';
 import { useNavigate } from 'react-router-dom';
-import Link from '../../components/layout/LinkComponentWithLine';
-import Img from '../../components/layout/ImgComponent';
+import { LinkComponentWithLine } from '../../components/layout/LinkComponentWithLine';
+import { ImgComponent } from '../../components/layout/ImgComponent';
 import { Button, Chip, Stack, Table } from '@mui/joy';
-
 import { MdEdit } from 'react-icons/md';
 import { MdDelete } from 'react-icons/md';
 
 const AdminPage = () => {
   const navigate = useNavigate();
-
-  // States
   const [products, setProducts] = useState([]);
 
   // Function to fetch all the products
@@ -55,9 +52,9 @@ const AdminPage = () => {
   return (
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Stack component="section" sx={{ alignItems: 'center' }}>
-        <Link href="/admin/add" className="box">
+        <LinkComponentWithLine to="/admin/add" className="box">
           + Adicionar nova peça
-        </Link>
+        </LinkComponentWithLine>
       </Stack>
 
       <Stack
@@ -111,7 +108,7 @@ const AdminPage = () => {
                   <td>{product.name}</td>
                   <td>
                     {product.img ? (
-                      <Img
+                      <ImgComponent
                         src={product.img}
                         alt={product.name}
                         width="64px"

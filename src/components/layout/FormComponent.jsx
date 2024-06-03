@@ -1,11 +1,17 @@
 /* eslint-disable react/prop-types */
 import InputComponent from './input/Input';
 import SelectComponent from './select/Select';
-import Button from './ButtonComponent';
-import Link from './LinkComponentWithLine';
+import { ButtonComponent } from './ButtonComponent';
+import { LinkComponentWithLine } from './LinkComponentWithLine';
 import { Stack, Typography } from '@mui/joy';
 
-const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
+export const FormComponent = ({
+  type,
+  controls,
+  handleSubmit,
+  buttonText,
+  error,
+}) => {
   return (
     <Stack component="form" sx={{ width: { xs: '80%', md: '600px' }, gap: 4 }}>
       <Stack component="section" sx={{ gap: 4 }}>
@@ -55,7 +61,7 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
 
       {/* Submit button */}
       <Stack component="section" sx={{ alignItems: 'center', gap: 2 }}>
-        <Button
+        <ButtonComponent
           type="submit"
           disabled={false}
           onClick={handleSubmit}
@@ -85,7 +91,11 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
             <Typography sx={{ color: 'common.white' }}>
               Já tem uma conta?
             </Typography>
-            <Link href="/login" children="Clique Aqui" className="line" />
+            <LinkComponentWithLine
+              to="/login"
+              children="Clique Aqui"
+              className="line"
+            />
           </>
         )}
 
@@ -95,12 +105,14 @@ const FormComponent = ({ type, controls, handleSubmit, buttonText, error }) => {
             <Typography sx={{ color: 'common.white' }}>
               Ainda não tem conta?
             </Typography>
-            <Link href="/signup" children="Clique Aqui" className="line" />
+            <LinkComponentWithLine
+              to="/signup"
+              children="Clique Aqui"
+              className="line"
+            />
           </>
         )}
       </Stack>
     </Stack>
   );
 };
-
-export default FormComponent;

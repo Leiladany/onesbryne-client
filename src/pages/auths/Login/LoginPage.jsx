@@ -1,17 +1,14 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../../contexts/AuthContext";
-import Form from "../../../components/layout/FormComponent";
-import DataService from "../../../components/services/DataService";
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../../contexts/AuthContext';
+import { FormComponent } from '../../../components/layout/FormComponent';
 import { Stack } from '@mui/joy';
 import { useNavigate } from 'react-router-dom';
-
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const { handleLogin } = useContext(AuthContext);
-
-  const [email, setEmail] = useState('talmeidagil@hotmail.com');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
@@ -54,7 +51,7 @@ const LoginPage = () => {
 
   return (
     <Stack id="container">
-      <Form
+      <FormComponent
         type="login"
         controls={loginControls}
         handleSubmit={handleSubmit}

@@ -1,4 +1,29 @@
 import { Link } from '@mui/joy';
+import { Link as LinkReact } from 'react-router-dom';
+
+export const LinkComponentWithLine = ({
+  to,
+  children,
+  className,
+  level,
+  onClick,
+  disabled,
+}) => {
+  return (
+    <Link
+      component={LinkReact}
+      to={to}
+      onClick={onClick}
+      className={className}
+      level={level}
+      disabled={disabled}
+      underline="none"
+      sx={style}
+    >
+      {children}
+    </Link>
+  );
+};
 
 const style = {
   color: 'common.white',
@@ -39,28 +64,3 @@ const style = {
     transform: 'translateX(-50%) rotate(45deg) scaleY(1) scaleX(1)',
   },
 };
-
-const LinkComponentWithLine = ({
-  href,
-  children,
-  className,
-  level,
-  onClick,
-  disabled,
-}) => {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className={className}
-      level={level}
-      disabled={disabled}
-      underline="none"
-      sx={style}
-    >
-      {children}
-    </Link>
-  );
-};
-
-export default LinkComponentWithLine;

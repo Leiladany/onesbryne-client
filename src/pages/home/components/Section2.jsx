@@ -8,14 +8,12 @@ const sectionData = [
   {
     icon: homeIcon1,
     title: 'Cria a tua conta',
-    content:
-      'Começa por criar a tua conta para te conhecer-mos um pouco.',
+    content: 'Começa por criar a tua conta para te conhecer-mos um pouco.',
   },
   {
     icon: homeIcon2,
     title: 'Procura a roupa que queres',
-    content:
-      'Explora o nosso catálogo com vários tipos de roupa.',
+    content: 'Explora o nosso catálogo com vários tipos de roupa.',
   },
   {
     icon: homeIcon3,
@@ -27,7 +25,7 @@ const sectionData = [
     icon: homeIcon4,
     title: 'Contacta o vendedor',
     content:
-      "Envia um email ao vendedor com o código da peça de roupa que escolheste.",
+      'Envia um email ao vendedor com o código da peça de roupa que escolheste.',
   },
 ];
 
@@ -43,7 +41,16 @@ const Section2 = () => {
       }}
     >
       {sectionData.map((section, index) => (
-        <Stack key={index} sx={{ flexDirection: { xs: 'column', md: 'row' }, backgroundColor: 'primary.darkBlue', border: '1px solid #1e242c', borderRadius: '8px', mx: {xs: 2, lg: 0} }}>
+        <Stack
+          key={index}
+          sx={{
+            flexDirection: { xs: 'column', md: 'row' },
+            backgroundColor: 'primary.darkBlue',
+            border: '1px solid #1e242c',
+            borderRadius: '8px',
+            mx: { xs: 2, lg: 0 },
+          }}
+        >
           <Stack sx={{ alignItems: 'center', p: 2 }}>
             <img
               src={section.icon}

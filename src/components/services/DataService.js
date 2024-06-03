@@ -1,4 +1,4 @@
-const DataService = {
+export const DataService = {
   async fetchData(endpoint) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
@@ -66,5 +66,3 @@ const handleResponse = async (response) => {
   }
   return await response.json();
 };
-
-export default DataService;

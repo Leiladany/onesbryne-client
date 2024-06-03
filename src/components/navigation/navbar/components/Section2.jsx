@@ -1,9 +1,10 @@
-import { Link, Stack, Typography } from '@mui/joy';
+import { Link } from 'react-router-dom';
+import { Stack, Typography } from '@mui/joy';
 
 const Section2 = () => {
   return (
     <Stack component="section" sx={{ alignItems: 'center' }}>
-      <Link href="/" underline='none'>
+      <Link to="/" underline='none'>
         <Typography
           level="h1"
           sx={{

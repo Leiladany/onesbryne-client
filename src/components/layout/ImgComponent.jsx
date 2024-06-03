@@ -1,8 +1,7 @@
 import React from 'react';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-const ImgComponent = ({ src, alt, className, width, height, cover }) => {
+export const ImgComponent = ({ src, alt, className, width, height, cover }) => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const imgStyle = cover ? { objectFit: 'cover' } : {};
 
   return (
@@ -16,5 +15,3 @@ const ImgComponent = ({ src, alt, className, width, height, cover }) => {
     />
   );
 };
-
-export default ImgComponent;
