@@ -56,9 +56,13 @@ export const DataService = {
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const getAuthHeaders = () => ({
-  'Content-Type': 'application/json',
-});
+const getAuthHeaders = () => {
+  const token = window.localStorage.getItem("authToken");
+  return {
+    'Content-Type': 'application/json',
+    authorization: token ? `Bearer ${token}` : '',
+  };
+};
 
 const handleResponse = async (response) => {
   if (!response.ok) {
