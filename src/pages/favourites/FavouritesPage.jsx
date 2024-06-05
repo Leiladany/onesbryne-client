@@ -47,16 +47,16 @@ const FavouritesPage = () => {
         }}
       >
         {products.map((product, index) => (
-          <Card
-            key={index}
-            sx={{
-              background: 'transparent',
-              borderColor: 'neutral.700',
-              width: { xs: '90%', md: '400px' },
-              height: '600px',
-            }}
-          >
-            <Link to={`/clothes/${product.type}/${product.id}`} key={index}>
+          <Link to={`/clothes/${product.type}/${product.id}`} key={index}>
+            <Card
+              key={index}
+              sx={{
+                background: 'transparent',
+                borderColor: 'neutral.700',
+                width: { xs: '90%', md: '400px' },
+                height: '600px',
+              }}
+            >
               <ImgComponent
                 src={product.img}
                 alt={product.name}
@@ -78,8 +78,8 @@ const FavouritesPage = () => {
                   </Typography>
                 </Stack>
               </CardContent>
-            </Link>
-          </Card>
+            </Card>
+          </Link>
         ))}
       </Stack>
     </Stack>

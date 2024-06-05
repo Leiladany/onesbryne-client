@@ -45,16 +45,16 @@ const ClothesTypePage = () => {
         }}
       >
         {filteredProducts.map((product, index) => (
-          <Card
-            key={index}
-            sx={{
-              background: 'transparent',
-              borderColor: 'neutral.700',
-              width: { xs: '90%', md: '400px' },
-              height: '600px',
-            }}
-          >
-            <Link to={`/clothes/${type}/${product.id}`} key={index}>
+          <Link to={`/clothes/${type}/${product.id}`} key={index}>
+            <Card
+              key={index}
+              sx={{
+                background: 'transparent',
+                borderColor: 'neutral.700',
+                width: { xs: '90%', md: '400px' },
+                height: '600px',
+              }}
+            >
               <ImgComponent
                 src={product.img}
                 alt={product.name}
@@ -62,22 +62,11 @@ const ClothesTypePage = () => {
               />
 
               <CardContent orientation="horizontal">
-                <Stack
-                  sx={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                    alignItems: 'center',
-                    width: '100%',
-                  }}
-                >
-                  <Typography level="body-md">{product.name}</Typography>
-                  <Typography level="body-md" sx={{ textAlign: 'end' }}>
-                    {product.price} €
-                  </Typography>
-                </Stack>
+                <Typography level="body-md">{product.name}</Typography>
+                <Typography level="body-md">{product.price} €</Typography>
               </CardContent>
-            </Link>
-          </Card>
+            </Card>
+          </Link>
         ))}
       </Stack>
     </Stack>
