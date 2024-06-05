@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
-import { AuthContext } from '../../../contexts/AuthContext';
-import { FormComponent } from '../../../components/layout/FormComponent';
+import { AuthContext } from '../../contexts/AuthContext';
+import { FormComponent } from '../../components/layout/FormComponent';
 import { Stack } from '@mui/joy';
 import { useNavigate } from 'react-router-dom';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
