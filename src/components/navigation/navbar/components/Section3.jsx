@@ -13,7 +13,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthContext';
 import { LinkComponentWithLine } from '../../../layout/LinkComponentWithLine';
 import { IoIosLogOut } from 'react-icons/io';
-import { IoIosStar, IoIosStarOutline } from 'react-icons/io';
+import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { GoPerson, GoPersonFill } from 'react-icons/go';
 import { PiDress, PiDressFill } from 'react-icons/pi';
 import {
@@ -25,7 +25,7 @@ const Section3 = () => {
   const { handleLogout, isAuthenticated, isAdmin } = useContext(AuthContext);
   const location = useLocation();
 
-  const handleStarClick = () => {
+  const handleHeartClick = () => {
     (prevState) => !prevState;
   };
 
@@ -115,11 +115,11 @@ const Section3 = () => {
             </Link>
 
             <Link to="/favourites">
-              <Stack onClick={handleStarClick}>
+              <Stack onClick={handleHeartClick}>
                 {location.pathname === '/favourites' ? (
-                  <IoIosStar color="white" size={20} />
+                  <IoIosHeart color="white" size={20} />
                 ) : (
-                  <IoIosStarOutline color="white" size={20} />
+                  <IoIosHeartEmpty color="white" size={20} />
                 )}
               </Stack>
             </Link>
@@ -191,12 +191,12 @@ const Section3 = () => {
                   <Link to="/favourites">
                     <Stack
                       sx={{ flexDirection: 'row', gap: 1 }}
-                      onClick={handleStarClick}
+                      onClick={handleHeartClick}
                     >
                       {location.pathname === '/favourites' ? (
-                        <IoIosStar color="white" size={20} />
+                        <IoIosHeart color="white" size={20} />
                       ) : (
-                        <IoIosStarOutline color="white" size={20} />
+                        <IoIosHeartEmpty color="white" size={20} />
                       )}
                       <Typography>Favoritos</Typography>
                     </Stack>

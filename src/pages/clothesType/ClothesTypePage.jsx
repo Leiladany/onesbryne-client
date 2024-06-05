@@ -1,17 +1,13 @@
 import './ClothesTypePage.css';
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { DataService } from '../../components/services/DataService';
 import { ImgComponent } from '../../components/layout/ImgComponent';
-import { Button, Card, CardContent, Stack, Typography } from '@mui/joy';
-import { AuthContext } from '../../contexts/AuthContext';
-import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
+import { Card, CardContent, Stack, Typography } from '@mui/joy';
 
 const ClothesTypePage = () => {
   const { type } = useParams();
-  const { isAuthenticated } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
-  const [isFavourite, setIsFavourite] = useState(false);
 
   // Function to fetch all the products
   const fetchAllProducts = async () => {
@@ -23,11 +19,6 @@ const ClothesTypePage = () => {
     } catch (error) {
       console.error('Error fetching products:', error);
     }
-  };
-
-  // Function to handle if item is favourite
-  const handleIsFavourite = () => {
-    setIsFavourite((prevIsFavourite) => !prevIsFavourite);
   };
 
   // Function to filter products
@@ -63,34 +54,6 @@ const ClothesTypePage = () => {
               height: '600px',
             }}
           >
-            {isAuthenticated && (
-              <Button
-                variant="plain"
-                onClick={handleIsFavourite}
-                color="primary"
-                sx={{
-                  color: 'primary.main',
-                  m: 0,
-                  p: 0,
-                  position: 'absolute',
-                  right: '8%',
-                  top: '4%',
-                  cursor: 'pointer',
-                  zIndex: '2',
-                  '&:hover': {
-                    bgcolor: 'transparent',
-                  },
-                }}
-                className="clothesType-heart"
-              >
-                {isFavourite ? (
-                  <IoIosHeart size={25} />
-                ) : (
-                  <IoIosHeartEmpty size={25} />
-                )}
-              </Button>
-            )}
-
             <Link to={`/clothes/${type}/${product.id}`} key={index}>
               <ImgComponent
                 src={product.img}
