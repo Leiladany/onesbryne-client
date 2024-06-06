@@ -13,7 +13,7 @@ import { ClothesDetailsPage } from '../pages/clothes.details.page';
 import { FavouritesPage } from '../pages/favourites.page';
 import { ProfilePage } from '../pages/profile.page';
 import { AdminPage } from '../pages/admin.page';
-import { AddOrEditProductPage } from '../pages/addEditProduct.page';
+import { NewProductPage } from '../pages/newProduct.page';
 import { NotFoundPage } from '../pages/notFound.page';
 
 export const App = () => {
@@ -43,10 +43,10 @@ export const App = () => {
               {isAdmin && (
                 <>
                   <Route path="/admin" element={<AdminPage />} />
-                  <Route path="/admin/add" element={<AddOrEditProductPage />} />
+                  <Route path="/admin/add" element={<NewProductPage />} />
                   <Route
                     path="/admin/edit/:productId"
-                    element={<AddOrEditProductPage />}
+                    element={<NewProductPage />}
                   />
                 </>
               )}

@@ -39,3 +39,18 @@ export const profileToast = {
   successDelete: () =>
     toast.success('Conta apagada com sucesso.'),
 };
+
+export const adminToast = {
+  successCreate: () =>
+    toast.success('Producto criado com sucesso.'),
+  successUpdate: () =>
+    toast.success('Producto actualizado com sucesso.'),
+  successDelete: () =>
+    toast.success('Producto apagado com sucesso.'),
+  errorCreate: () =>
+    toast.error('Erro em criar o producto.'),
+  errorUpdate: () =>
+    toast.error('Erro em actualizar o producto.'),
+  errorDelete: () =>
+    toast.error('Erro em apagar o producto.'),
+};

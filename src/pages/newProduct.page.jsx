@@ -5,8 +5,9 @@ import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
 import { types, sizes, statuses } from '../components/utils/arrays';
 import { Stack } from '@mui/joy';
+import { adminToast } from '../components/utils/toasts';
 
-export const AddOrEditProductPage = () => {
+export const NewProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
   const [name, setName] = useState('');
@@ -17,9 +18,13 @@ export const AddOrEditProductPage = () => {
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
   const [status, setStatus] = useState('');
-  const [error, setError] = useState('');
 
-  // Function to create a product
+  useEffect(() => {
+    if (productId) {
+      fetchProduct();
+    }
+  }, [productId]);
+
   const handleSubmitCreate = async (e) => {
     e.preventDefault();
 
@@ -37,13 +42,15 @@ export const AddOrEditProductPage = () => {
       const response = await DataService.createData('/api/products', product);
       if (response) {
         navigate('/admin');
+        adminToast.successCreate();
+      } else {
+        adminToast.errorCreate();
       }
     } catch (error) {
-      setError('Failed to create product. Please try again.');
+      console.log('Failed to create product. Please try again.');
     }
   };
 
-  // Function to fetch a product
   const fetchProduct = async () => {
     try {
       const response = await DataService.fetchData(
@@ -51,7 +58,8 @@ export const AddOrEditProductPage = () => {
       );
       if (response) {
         setName(response.name);
-        setImg(response.img);
+        setImg1(response.img[0]);
+        setImg2(response.img[1]);
         setSize(response.size);
         setPrice(response.price);
         setDescription(response.description);
@@ -59,11 +67,10 @@ export const AddOrEditProductPage = () => {
         setStatus(response.status);
       }
     } catch (error) {
-      setError('Failed to fetch product. Please try again.');
+      console.log('Failed to fetch product. Please try again.');
     }
   };
 
-  // Function to update a product
   const handleSubmitUpdate = async (e) => {
     e.preventDefault();
 
@@ -82,19 +89,17 @@ export const AddOrEditProductPage = () => {
         `/api/products/${productId}`,
         updatedProduct,
       );
+      console.log(response)
       if (response) {
         navigate('/admin');
+        adminToast.successUpdate();
+      } else {
+        adminToast.errorUpdate();
       }
     } catch (error) {
       setError('Failed to update product. Please try again.');
     }
   };
-
-  useEffect(() => {
-    if (productId) {
-      fetchProduct();
-    }
-  }, [productId]);
 
   const formElements = [
     {
@@ -170,7 +175,6 @@ export const AddOrEditProductPage = () => {
         controls={formElements}
         handleSubmit={productId ? handleSubmitUpdate : handleSubmitCreate}
         buttonText={productId ? 'Update Product' : 'Add Product'}
-        error={error}
       />
     </Stack>
   );

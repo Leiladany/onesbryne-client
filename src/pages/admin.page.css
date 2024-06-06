@@ -1,9 +1,9 @@
 .admin-table tr th:nth-child(1) {
-  width: 80px;
+  width: 24px;
 }
 
 .admin-table tr th:nth-child(2) {
-  width: 64px;
+  width: 80px;
 }
 
 .admin-table tr th:nth-child(3) {
@@ -15,29 +15,39 @@
 }
 
 .admin-table tr th:nth-child(5) {
-  width: 50%;
-}
-
-.admin-table tr th:nth-child(6) {
   width: 64px;
 }
 
+.admin-table tr th:nth-child(6) {
+  width: 50%;
+}
+
 .admin-table tr th:nth-child(7) {
-  width: 88px;
+  width: 64px;
 }
 
 .admin-table tr th:nth-child(8) {
-  width: 80px;
+  width: 88px;
 }
 
-.admin-table tr td:nth-child(4) {
+.admin-table tr th:nth-child(9) {
+  width: 40px;
+}
+
+.admin-table tr th:nth-child(10) {
+  width: 40px;
+}
+
+.admin-table tr td:nth-child(5) {
   text-align: right;
 }
 
-.admin-table tr td:nth-child(2),
+.admin-table tr td:nth-child(1),
 .admin-table tr td:nth-child(3),
-.admin-table tr td:nth-child(6),
+.admin-table tr td:nth-child(4),
 .admin-table tr td:nth-child(7),
-.admin-table tr td:nth-child(8) {
+.admin-table tr td:nth-child(8),
+.admin-table tr td:nth-child(9),
+.admin-table tr td:nth-child(10) {
   text-align: center;
 }
