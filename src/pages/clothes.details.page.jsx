@@ -53,10 +53,10 @@ export const ClothesDetailsPage = () => {
       const userData = await DataService.fetchData(`/api/users/${userId}`);
       if (userData.user.favourites) {
         setUserFavourites(userData.user.favourites);
-        setisLoadingFavourite(false)
+        setisLoadingFavourite(false);
       } else {
         setUserFavourites([]);
-        setisLoadingFavourite(false)
+        setisLoadingFavourite(false);
       }
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -102,17 +102,20 @@ export const ClothesDetailsPage = () => {
                   color="primary"
                   loading={isLoadingFavourite}
                   sx={{
-                    color: 'primary.main',
+                    bgcolor: "primary.maint",
+                    color: 'neutral.100',
                     m: 0,
-                    p: 0,
+                    p: 1,
                     position: 'absolute',
                     right: '4%',
                     top: '2%',
                     cursor: 'pointer',
                     border: 'none',
+                    borderRadius: "50%",
                     '&:hover': {
-                      bgcolor: 'transparent',
-                    },
+                      bgcolor: "primary.maint",
+                      color: 'neutral.100'
+                    }
                   }}
                 >
                   {isFavourite ? (

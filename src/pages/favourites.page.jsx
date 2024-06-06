@@ -1,8 +1,8 @@
-import { Card, CardContent, Stack, Typography } from '@mui/joy';
+import { Stack, Typography } from '@mui/joy';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { DataService } from '../components/services/data-service';
-import { Link } from 'react-router-dom';
+import { ClothesCard } from '../components/layout/clothes-card';
 
 export const FavouritesPage = () => {
   const { userId } = useContext(AuthContext);
@@ -46,39 +46,7 @@ export const FavouritesPage = () => {
         }}
       >
         {products.map((product, index) => (
-          <Link to={`/clothes/${product.type}/${product.id}`} key={index}>
-            <Card
-              key={index}
-              sx={{
-                background: 'transparent',
-                borderColor: 'neutral.700',
-                width: { xs: '90%', md: '400px' },
-                height: '600px',
-              }}
-            >
-              <img
-                src={product.img[0]}
-                alt={product.name}
-                className="clothesType-img"
-              />
-
-              <CardContent orientation="horizontal">
-                <Stack
-                  sx={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                    alignItems: 'center',
-                    width: '100%',
-                  }}
-                >
-                  <Typography level="body-md">{product.name}</Typography>
-                  <Typography level="body-md" sx={{ textAlign: 'end' }}>
-                    {product.price} €
-                  </Typography>
-                </Stack>
-              </CardContent>
-            </Card>
-          </Link>
+          <ClothesCard key={index} product={product} />
         ))}
       </Stack>
     </Stack>

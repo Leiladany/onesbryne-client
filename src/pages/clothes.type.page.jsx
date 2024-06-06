@@ -1,8 +1,8 @@
-import './clothes.type.page.css';
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { DataService } from '../components/services/data-service';
-import { Card, CardContent, Stack, Typography } from '@mui/joy';
+import { Stack, Typography } from '@mui/joy';
+import { ClothesCard } from '../components/layout/clothes-card';
 
 export const ClothesTypePage = () => {
   const { type } = useParams();
@@ -44,28 +44,7 @@ export const ClothesTypePage = () => {
         }}
       >
         {filteredProducts.map((product, index) => (
-          <Link to={`/clothes/${type}/${product.id}`} key={index}>
-            <Card
-              key={index}
-              sx={{
-                background: 'transparent',
-                borderColor: 'neutral.700',
-                width: { xs: '90%', md: '400px' },
-                height: '600px',
-              }}
-            >
-              <img
-                src={product.img[0]}
-                alt={product.name}
-                className="clothesType-img"
-              />
-
-              <CardContent orientation="horizontal">
-                <Typography level="body-md">{product.name}</Typography>
-                <Typography level="body-md">{product.price} €</Typography>
-              </CardContent>
-            </Card>
-          </Link>
+          <ClothesCard key={index} product={product} />
         ))}
       </Stack>
     </Stack>
