@@ -57,7 +57,7 @@ export const FavouritesPage = () => {
               }}
             >
               <img
-                src={product.img}
+                src={product.img[0]}
                 alt={product.name}
                 className="clothesType-img"
               />

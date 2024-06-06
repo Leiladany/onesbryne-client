@@ -47,8 +47,6 @@ export const AdminPage = () => {
     fetchAllProducts();
   }, []);
 
-  console.log(products);
-
   return (
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Stack component="section" sx={{ alignItems: 'center' }}>
@@ -109,7 +107,7 @@ export const AdminPage = () => {
                   <td>
                     {product.img ? (
                       <img
-                        src={product.img[1]}
+                        src={product.img[0]}
                         alt={product.name}
                         width="64px"
                         height="64px"

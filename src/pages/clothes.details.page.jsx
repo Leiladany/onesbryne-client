@@ -53,7 +53,10 @@ export const ClothesDetailsPage = () => {
       const userData = await DataService.fetchData(`/api/users/${userId}`);
       if (userData.user.favourites) {
         setUserFavourites(userData.user.favourites);
-        setisLoadingFavourite(false);
+        setisLoadingFavourite(false)
+      } else {
+        setUserFavourites([]);
+        setisLoadingFavourite(false)
       }
     } catch (error) {
       console.error('Error fetching user:', error);
@@ -106,6 +109,7 @@ export const ClothesDetailsPage = () => {
                     right: '4%',
                     top: '2%',
                     cursor: 'pointer',
+                    border: 'none',
                     '&:hover': {
                       bgcolor: 'transparent',
                     },
@@ -119,7 +123,7 @@ export const ClothesDetailsPage = () => {
                 </Button>
               )}
 
-              <img src={product.img} alt={product.name} />
+              <img src={product.img[0]} alt={product.name} />
             </Stack>
           </Stack>
 
