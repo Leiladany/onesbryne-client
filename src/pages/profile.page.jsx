@@ -1,17 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/auth.context';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
 import { Stack } from '@mui/joy';
+import { errorToast, profileToast } from '../components/utils/toasts';
 
 export const ProfilePage = () => {
-  const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
   const [user, setUser] = useState({});
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     getUserById();
@@ -48,10 +46,10 @@ export const ProfilePage = () => {
           newData,
         );
         if (updatedUser) {
-          setData(updatedUser);
-          navigate('/clothes');
+          setUser(updatedUser);
+          profileToast.successUpdate()
         } else {
-          setError('Failed to update profile. Please try again.');
+          errorToast()
         }
       } catch (error) {
         console.error('Error updating user:', error);
@@ -87,7 +85,6 @@ export const ProfilePage = () => {
         handleSubmit={updateUserById}
         buttonText="Actualizar Conta"
       />
-      {error && <p>{error}</p>}
     </Stack>
   );
 };

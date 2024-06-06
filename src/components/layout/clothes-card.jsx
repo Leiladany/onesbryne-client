@@ -13,7 +13,7 @@ export const ClothesCard = ({ product }) => {
         sx={{
           background: 'transparent',
           borderColor: 'neutral.700',
-          width: { xs: '90%', md: '400px' },
+          width: { md: '400px' },
           height: '600px',
           justifyContent: 'flex-end',
         }}

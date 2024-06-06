@@ -4,15 +4,13 @@ import SelectComponent from './select/Select';
 import { LinkWithLine } from './link-with-line';
 import { Button, Stack, Typography } from '@mui/joy';
 
-export const Form = ({
-  type,
-  controls,
-  handleSubmit,
-  buttonText,
-  error,
-}) => {
+export const Form = ({ type, controls, handleSubmit, buttonText, error }) => {
   return (
-    <Stack component="form" sx={{ width: { xs: '80%', md: '600px' }, gap: 4 }}>
+    <Stack
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ width: { xs: '80%', md: '600px' }, gap: 4 }}
+    >
       <Stack component="section" sx={{ gap: 4 }}>
         {controls.map((control, index) => (
           <Stack
@@ -60,16 +58,9 @@ export const Form = ({
 
       {/* Submit button */}
       <Stack component="section" sx={{ alignItems: 'center', gap: 2 }}>
-        <Button type="submit" disabled={false} onClick={handleSubmit}>
+        <Button type="submit" disabled={false}>
           {buttonText}
         </Button>
-
-        {/* Handler for error */}
-        {error && (
-          <Stack sx={{ alignItems: 'center' }}>
-            <p>{error}</p>
-          </Stack>
-        )}
       </Stack>
 
       <Stack
@@ -87,11 +78,7 @@ export const Form = ({
             <Typography sx={{ color: 'common.white' }}>
               Já tem uma conta?
             </Typography>
-            <LinkWithLine
-              to="/login"
-              children="Clique Aqui"
-              className="line"
-            />
+            <LinkWithLine to="/login" children="Clique Aqui" className="line" />
           </>
         )}
 

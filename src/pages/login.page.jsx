@@ -2,28 +2,18 @@ import { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { Form } from '../components/layout/form';
 import { Stack } from '@mui/joy';
-import { useNavigate } from 'react-router-dom';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
 export const LoginPage = () => {
-  const navigate = useNavigate();
   const { handleLogin } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = { email, password };
-
-    try {
-      await handleLogin(payload);
-      navigate('/clothes');
-    } catch (error) {
-      console.error('Login error:', error);
-      setError('Login failed. Please try again.');
-    }
+    await handleLogin(payload);
   };
 
   // Form inputs
@@ -56,7 +46,6 @@ export const LoginPage = () => {
         controls={loginControls}
         handleSubmit={handleSubmit}
         buttonText="Entrar"
-        error={error}
       />
     </Stack>
   );

@@ -4,6 +4,7 @@ import { AuthContext } from '../contexts/auth.context';
 import { DataService } from '../components/services/data-service';
 import { Stack, Typography, Button } from '@mui/joy';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
+import { errorToast, favouritesToast, contactToast } from '../components/utils/toasts';
 
 export const ClothesDetailsPage = () => {
   const { productId } = useParams();
@@ -33,7 +34,6 @@ export const ClothesDetailsPage = () => {
     }
   }, [userFavourites]);
 
-  // Function to fetch product by id
   const getProductById = async () => {
     try {
       const response = await DataService.fetchData(
@@ -47,7 +47,6 @@ export const ClothesDetailsPage = () => {
     }
   };
 
-  // Function to fetch user by id
   const getUserById = async () => {
     try {
       const userData = await DataService.fetchData(`/api/users/${userId}`);
@@ -63,7 +62,6 @@ export const ClothesDetailsPage = () => {
     }
   };
 
-  // Function to add product to user favorites
   const addProductToUserFavourites = async () => {
     try {
       await DataService.updateData(
@@ -71,10 +69,22 @@ export const ClothesDetailsPage = () => {
         { productId: productId },
         'PUT',
       );
-
       setIsFavourite(!isFavourite);
+      favouritesToast.success();
     } catch (error) {
-      console.error('Error adding product to favorites:', error);
+      errorToast(error)
+    }
+  };
+
+  const handleContact = async () => {
+    try {
+      if (isAuthenticated) {
+        contactToast.success()
+      } else {
+        contactToast.warning()
+      }
+    } catch (error) {
+      errorToast(error)
     }
   };
 
@@ -102,7 +112,7 @@ export const ClothesDetailsPage = () => {
                   color="primary"
                   loading={isLoadingFavourite}
                   sx={{
-                    bgcolor: "primary.maint",
+                    bgcolor: 'primary.maint',
                     color: 'neutral.100',
                     m: 0,
                     p: 1,
@@ -111,11 +121,11 @@ export const ClothesDetailsPage = () => {
                     top: '2%',
                     cursor: 'pointer',
                     border: 'none',
-                    borderRadius: "50%",
+                    borderRadius: '50%',
                     '&:hover': {
-                      bgcolor: "primary.maint",
-                      color: 'neutral.100'
-                    }
+                      bgcolor: 'primary.maint',
+                      color: 'neutral.100',
+                    },
                   }}
                 >
                   {isFavourite ? (
@@ -145,7 +155,7 @@ export const ClothesDetailsPage = () => {
               {product.description}
             </Typography>
             <div>
-              <Button>Contactar</Button>
+              <Button onClick={handleContact}>Contactar</Button>
             </div>
           </Stack>
         </Stack>

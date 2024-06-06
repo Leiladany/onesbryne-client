@@ -5,9 +5,8 @@ export const DataService = {
         method: 'GET',
         headers: getAuthHeaders(),
       });
-      return await handleResponse(response);
+      return await response.json();
     } catch (error) {
-      console.error('Error fetching data:', error);
       throw error;
     }
   },
@@ -19,9 +18,8 @@ export const DataService = {
         headers: getAuthHeaders(),
         body: JSON.stringify(data),
       });
-      return await handleResponse(response);
+      return await response.json();
     } catch (error) {
-      console.error('Error creating data:', error);
       throw error;
     }
   },
@@ -33,9 +31,8 @@ export const DataService = {
         headers: getAuthHeaders(),
         body: JSON.stringify(data),
       });
-      return await handleResponse(response);
+      return await response.json();
     } catch (error) {
-      console.error('Error updating data:', error);
       throw error;
     }
   },
@@ -48,7 +45,6 @@ export const DataService = {
       });
       return { status: response.status, message: 'Delete successful' };
     } catch (error) {
-      console.error('Error deleting data:', error);
       throw error;
     }
   },
@@ -57,16 +53,9 @@ export const DataService = {
 const API_URL = import.meta.env.VITE_API_URL;
 
 const getAuthHeaders = () => {
-  const token = window.localStorage.getItem("authToken");
+  const token = window.localStorage.getItem('authToken');
   return {
     'Content-Type': 'application/json',
     authorization: token ? `Bearer ${token}` : '',
   };
-};
-
-const handleResponse = async (response) => {
-  if (!response.ok) {
-    throw new Error(response.message || 'Network response was not ok');
-  }
-  return await response.json();
 };

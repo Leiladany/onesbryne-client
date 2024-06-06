@@ -37,7 +37,8 @@ export const ClothesTypePage = () => {
 
       <Stack
         sx={{
-          flexDirection: 'row',
+          width: '100%',
+          flexDirection: { xs: 'column', lg: 'row' },
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: 6,

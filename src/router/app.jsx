@@ -17,7 +17,7 @@ import { AddOrEditProductPage } from '../pages/addEditProduct.page';
 import { NotFoundPage } from '../pages/notFound.page';
 
 export const App = () => {
-  const { isAuthenticated, isAdmin } = useContext(AuthContext);
+  const { isAuthenticated, isAdmin, userId } = useContext(AuthContext);
 
   return (
     <div className="app-container">
