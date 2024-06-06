@@ -1,13 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import { ButtonComponent } from '../../components/layout/ButtonComponent';
-import { DataService } from '../../components/services/DataService';
-import { ImgComponent } from '../../components/layout/ImgComponent';
+import { AuthContext } from '../contexts/auth.context';
+import { DataService } from '../components/services/data-service';
 import { Stack, Typography, Button } from '@mui/joy';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 
-const ClothesDetailsPage = () => {
+export const ClothesDetailsPage = () => {
   const { productId } = useParams();
   const { userId, isAuthenticated } = useContext(AuthContext);
   const [product, setProduct] = useState();
@@ -121,7 +119,7 @@ const ClothesDetailsPage = () => {
                 </Button>
               )}
 
-              <ImgComponent src={product.img} alt={product.name} />
+              <img src={product.img} alt={product.name} />
             </Stack>
           </Stack>
 
@@ -140,7 +138,7 @@ const ClothesDetailsPage = () => {
               {product.description}
             </Typography>
             <div>
-              <ButtonComponent children="Contactar" />
+              <Button>Contactar</Button>
             </div>
           </Stack>
         </Stack>
@@ -148,5 +146,3 @@ const ClothesDetailsPage = () => {
     </>
   );
 };
-
-export default ClothesDetailsPage;

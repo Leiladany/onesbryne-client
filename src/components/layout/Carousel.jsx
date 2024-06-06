@@ -2,7 +2,7 @@ import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { types } from '../../components/utils/Arrays';
+import { types } from '../utils/arrays';
 import { Box, Button } from '@mui/joy';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 

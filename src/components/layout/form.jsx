@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import InputComponent from './input/Input';
 import SelectComponent from './select/Select';
-import { ButtonComponent } from './ButtonComponent';
-import { LinkComponentWithLine } from './LinkComponentWithLine';
-import { Stack, Typography } from '@mui/joy';
+import { LinkWithLine } from './link-with-line';
+import { Button, Stack, Typography } from '@mui/joy';
 
-export const FormComponent = ({
+export const Form = ({
   type,
   controls,
   handleSubmit,
@@ -61,12 +60,9 @@ export const FormComponent = ({
 
       {/* Submit button */}
       <Stack component="section" sx={{ alignItems: 'center', gap: 2 }}>
-        <ButtonComponent
-          type="submit"
-          disabled={false}
-          onClick={handleSubmit}
-          children={buttonText}
-        />
+        <Button type="submit" disabled={false} onClick={handleSubmit}>
+          {buttonText}
+        </Button>
 
         {/* Handler for error */}
         {error && (
@@ -91,7 +87,7 @@ export const FormComponent = ({
             <Typography sx={{ color: 'common.white' }}>
               Já tem uma conta?
             </Typography>
-            <LinkComponentWithLine
+            <LinkWithLine
               to="/login"
               children="Clique Aqui"
               className="line"
@@ -105,7 +101,7 @@ export const FormComponent = ({
             <Typography sx={{ color: 'common.white' }}>
               Ainda não tem conta?
             </Typography>
-            <LinkComponentWithLine
+            <LinkWithLine
               to="/signup"
               children="Clique Aqui"
               className="line"

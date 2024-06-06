@@ -1,28 +1,23 @@
 import './app.css';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from './contexts/AuthContext';
-import Navbar from './components/navigation/navbar/Navbar';
-import Footer from './components/navigation/footer/Footer';
-import Sidebar from './components/navigation/sidebar/Sidebar';
-import LoginPage from './pages/auths/LoginPage';
-import SignupPage from './pages/auths/SignupPage';
-import HomePage from './pages/home/HomePage';
-import ClothesPage from './pages/clothes/ClothesPage';
-import ClothesTypePage from './pages/clothesType/ClothesTypePage';
-import ClothesDetailsPage from './pages/clothesDetails/ClothesDetailsPage';
-import FavouritesPage from './pages/favourites/FavouritesPage';
-import ProfilePage from './pages/profile/ProfilePage';
-import AdminPage from './pages/admin/AdminPage';
-import AddOrEditProductPage from './pages/admin/AddOrEditProductPage';
+import { AuthContext } from '../contexts/auth.context';
+import { Navbar } from '../components/navigation/navbar';
+import { Footer } from '../components/navigation/footer';
+import { LoginPage } from '../pages/login.page';
+import { SignupPage } from '../pages/signup.page';
+import { HomePage } from '../pages/home.page';
+import { ClothesPage } from '../pages/clothes.carousel.page';
+import { ClothesTypePage } from '../pages/clothes.type.page';
+import { ClothesDetailsPage } from '../pages/clothes.details.page';
+import { FavouritesPage } from '../pages/favourites.page';
+import { ProfilePage } from '../pages/profile.page';
+import { AdminPage } from '../pages/admin.page';
+import { AddOrEditProductPage } from '../pages/addEditProduct.page';
+import { NotFoundPage } from '../pages/notFound.page';
 
-import NotFoundPage from './pages/404/NotFoundPage';
-
-function App() {
-  const location = useLocation();
+export const App = () => {
   const { isAuthenticated, isAdmin } = useContext(AuthContext);
-
-  const showSidebar = location.pathname.startsWith('/clothes/');
 
   return (
     <div className="app-container">
@@ -64,6 +59,4 @@ function App() {
       <Footer />
     </div>
   );
-}
-
-export default App;
+};

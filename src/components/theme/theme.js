@@ -3,7 +3,7 @@ import { extendTheme } from '@mui/joy/styles';
 
 const colors = {
   black: '#060B10',
-  darkBlue: '#12181F'
+  darkBlue: '#12181F',
 };
 
 const headingStyles = [
@@ -26,7 +26,7 @@ export const theme = extendTheme({
       palette: {
         primary: {
           main: colors.black,
-          darkBlue: colors.darkBlue
+          darkBlue: colors.darkBlue,
         },
       },
     },
@@ -37,4 +37,22 @@ export const theme = extendTheme({
       { color: 'white', fontFamily: 'Arial' },
     ]),
   ),
+  components: {
+    JoyButton: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          color: 'common.white',
+          backgroundColor: 'transparent',
+          border: '1px solid',
+          borderRadius: '2px',
+          borderColor: theme.vars.palette.neutral[600],
+          transition: 'ease 0.3s',
+          '&:hover': {
+            backgroundColor: 'transparent',
+            borderColor: theme.vars.palette.neutral[300],
+          },
+        }),
+      },
+    },
+  },
 });

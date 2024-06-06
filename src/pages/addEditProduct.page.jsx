@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { FormComponent } from '../../components/layout/FormComponent';
-import { DataService } from '../../components/services/DataService';
-import { types, sizes, statuses } from '../../components/utils/Arrays';
+import { Form } from '../components/layout/form';
+import { DataService } from '../components/services/data-service';
+import { types, sizes, statuses } from '../components/utils/arrays';
 import { Stack } from '@mui/joy';
 
-const AddOrEditProductPage = () => {
+export const AddOrEditProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
   const [name, setName] = useState('');
@@ -156,7 +156,7 @@ const AddOrEditProductPage = () => {
 
   return (
     <Stack id="container">
-      <FormComponent
+      <Form
         type={productId ? 'editPiece' : 'addNewPiece'}
         controls={formElements}
         handleSubmit={productId ? handleSubmitUpdate : handleSubmitCreate}
@@ -166,5 +166,3 @@ const AddOrEditProductPage = () => {
     </Stack>
   );
 };
-
-export default AddOrEditProductPage;

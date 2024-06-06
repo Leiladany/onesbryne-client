@@ -1,14 +1,13 @@
-import './AdminPage.css';
+import './admin.page.css';
 import { useState, useEffect } from 'react';
-import { DataService } from '../../components/services/DataService';
+import { DataService } from '../components/services/data-service';
 import { useNavigate } from 'react-router-dom';
-import { LinkComponentWithLine } from '../../components/layout/LinkComponentWithLine';
-import { ImgComponent } from '../../components/layout/ImgComponent';
+import { LinkWithLine } from '../components/layout/link-with-line';
 import { Button, Chip, Stack, Table } from '@mui/joy';
 import { MdEdit } from 'react-icons/md';
 import { MdDelete } from 'react-icons/md';
 
-const AdminPage = () => {
+export const AdminPage = () => {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
@@ -52,9 +51,9 @@ const AdminPage = () => {
   return (
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Stack component="section" sx={{ alignItems: 'center' }}>
-        <LinkComponentWithLine to="/admin/add" className="box">
+        <LinkWithLine to="/admin/add" className="box">
           + Adicionar nova peça
-        </LinkComponentWithLine>
+        </LinkWithLine>
       </Stack>
 
       <Stack
@@ -108,12 +107,12 @@ const AdminPage = () => {
                   <td>{product.name}</td>
                   <td>
                     {product.img ? (
-                      <ImgComponent
+                      <img
                         src={product.img}
                         alt={product.name}
                         width="64px"
                         height="64px"
-                        cover
+                        cover="true"
                       />
                     ) : null}
                   </td>
@@ -168,5 +167,3 @@ const AdminPage = () => {
     </Stack>
   );
 };
-
-export default AdminPage;

@@ -10,8 +10,8 @@ import {
 } from '@mui/joy';
 import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { AuthContext } from '../../../../contexts/AuthContext';
-import { LinkComponentWithLine } from '../../../layout/LinkComponentWithLine';
+import { AuthContext } from '../../contexts/auth.context';
+import { LinkWithLine } from '../layout/link-with-line';
 import { IoIosLogOut } from 'react-icons/io';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { GoPerson, GoPersonFill } from 'react-icons/go';
@@ -21,7 +21,7 @@ import {
   MdOutlineAdminPanelSettings,
 } from 'react-icons/md';
 
-const Section3 = () => {
+export const NavbarLinks = () => {
   const { handleLogout, isAuthenticated, isAdmin } = useContext(AuthContext);
   const location = useLocation();
 
@@ -44,12 +44,12 @@ const Section3 = () => {
         <>
           {/* DESKTOP */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-            <LinkComponentWithLine
+            <LinkWithLine
               to="/signup"
               children="Criar Conta"
               className="line"
             />
-            <LinkComponentWithLine
+            <LinkWithLine
               to="/login"
               children="Entrar"
               className="line"
@@ -232,5 +232,3 @@ const Section3 = () => {
     </Stack>
   );
 };
-
-export default Section3;

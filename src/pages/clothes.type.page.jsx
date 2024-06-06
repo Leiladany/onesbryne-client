@@ -1,11 +1,10 @@
-import './ClothesTypePage.css';
+import './clothes.type.page.css';
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { DataService } from '../../components/services/DataService';
-import { ImgComponent } from '../../components/layout/ImgComponent';
+import { DataService } from '../components/services/data-service';
 import { Card, CardContent, Stack, Typography } from '@mui/joy';
 
-const ClothesTypePage = () => {
+export const ClothesTypePage = () => {
   const { type } = useParams();
   const [products, setProducts] = useState([]);
 
@@ -55,7 +54,7 @@ const ClothesTypePage = () => {
                 height: '600px',
               }}
             >
-              <ImgComponent
+              <img
                 src={product.img}
                 alt={product.name}
                 className="clothesType-img"
@@ -72,5 +71,3 @@ const ClothesTypePage = () => {
     </Stack>
   );
 };
-
-export default ClothesTypePage;

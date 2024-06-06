@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import { FormComponent } from '../../components/layout/FormComponent';
+import { AuthContext } from '../contexts/auth.context';
+import { Form } from '../components/layout/form';
 import { Stack } from '@mui/joy';
 import { useNavigate } from 'react-router-dom';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
-const LoginPage = () => {
+export const LoginPage = () => {
   const navigate = useNavigate();
   const { handleLogin } = useContext(AuthContext);
   const [email, setEmail] = useState('');
@@ -51,7 +51,7 @@ const LoginPage = () => {
 
   return (
     <Stack id="container">
-      <FormComponent
+      <Form
         type="login"
         controls={loginControls}
         handleSubmit={handleSubmit}
@@ -61,5 +61,3 @@ const LoginPage = () => {
     </Stack>
   );
 };
-
-export default LoginPage;

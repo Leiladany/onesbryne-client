@@ -1,10 +1,10 @@
 import { createContext, useState, useEffect } from 'react';
-import { DataService } from '../components/services/DataService';
+import { DataService } from '../components/services/data-service';
 import { jwtDecode } from 'jwt-decode';
 
 export const AuthContext = createContext();
 
-const AuthContextProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
@@ -83,5 +83,3 @@ const AuthContextProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-export default AuthContextProvider;

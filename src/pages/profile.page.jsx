@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
-import { FormComponent } from '../../components/layout/FormComponent';
-import { DataService } from '../../components/services/DataService';
+import { AuthContext } from '../contexts/auth.context';
+import { Form } from '../components/layout/form';
+import { DataService } from '../components/services/data-service';
 import { Stack } from '@mui/joy';
 
-const ProfilePage = () => {
+export const ProfilePage = () => {
   const navigate = useNavigate();
   const { userId } = useContext(AuthContext);
   const [user, setUser] = useState({});
@@ -82,7 +82,7 @@ const ProfilePage = () => {
 
   return (
     <Stack id="container">
-      <FormComponent
+      <Form
         controls={profileControls}
         handleSubmit={updateUserById}
         buttonText="Actualizar Conta"
@@ -91,5 +91,3 @@ const ProfilePage = () => {
     </Stack>
   );
 };
-
-export default ProfilePage;

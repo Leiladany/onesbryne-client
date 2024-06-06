@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormComponent } from '../../components/layout/FormComponent';
+import { Form } from '../components/layout/form';
 import { Stack } from '@mui/joy';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
-const SignupPage = () => {
+export const SignupPage = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -90,7 +90,7 @@ const SignupPage = () => {
 
   return (
     <Stack id="container">
-      <FormComponent
+      <Form
         type="signup"
         controls={signupControls}
         handleSubmit={handleSignup}
@@ -100,5 +100,3 @@ const SignupPage = () => {
     </Stack>
   );
 };
-
-export default SignupPage;

@@ -1,7 +1,7 @@
 import { Link } from '@mui/joy';
 import { Link as LinkReact } from 'react-router-dom';
 
-export const LinkComponentWithLine = ({
+export const LinkWithLine = ({
   to,
   children,
   className,

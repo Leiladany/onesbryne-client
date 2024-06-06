@@ -1,11 +1,10 @@
 import { Card, CardContent, Stack, Typography } from '@mui/joy';
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
-import { DataService } from '../../components/services/DataService';
-import { ImgComponent } from '../../components/layout/ImgComponent';
+import { AuthContext } from '../contexts/auth.context';
+import { DataService } from '../components/services/data-service';
 import { Link } from 'react-router-dom';
 
-const FavouritesPage = () => {
+export const FavouritesPage = () => {
   const { userId } = useContext(AuthContext);
   const [products, setProducts] = useState([]);
 
@@ -57,7 +56,7 @@ const FavouritesPage = () => {
                 height: '600px',
               }}
             >
-              <ImgComponent
+              <img
                 src={product.img}
                 alt={product.name}
                 className="clothesType-img"
@@ -85,5 +84,3 @@ const FavouritesPage = () => {
     </Stack>
   );
 };
-
-export default FavouritesPage;

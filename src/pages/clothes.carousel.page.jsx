@@ -1,7 +1,7 @@
 import { Stack } from '@mui/joy';
-import { Carousel } from '../../components/layout/Carousel';
+import { Carousel } from '../components/layout/carousel';
 
-const ClothesPage = () => {
+export const ClothesPage = () => {
   return (
     <Stack
       id="container"
@@ -11,5 +11,3 @@ const ClothesPage = () => {
     </Stack>
   );
 };
-
-export default ClothesPage;
