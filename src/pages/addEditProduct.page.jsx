@@ -10,7 +10,8 @@ export const AddOrEditProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
   const [name, setName] = useState('');
-  const [img, setImg] = useState('');
+  const [img1, setImg1] = useState('');
+  const [img2, setImg2] = useState('');
   const [size, setSize] = useState('');
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
@@ -24,7 +25,7 @@ export const AddOrEditProductPage = () => {
 
     const product = {
       name,
-      img,
+      img: [img1, img2],
       size,
       price,
       description,
@@ -68,7 +69,7 @@ export const AddOrEditProductPage = () => {
 
     const updatedProduct = {
       name,
-      img,
+      img: [img1, img2],
       size,
       price,
       description,
@@ -105,11 +106,19 @@ export const AddOrEditProductPage = () => {
       required: true,
     },
     {
-      label: 'Image',
+      label: 'Image 1',
       type: 'text',
-      value: img,
-      onChange: (e) => setImg(e.target.value),
-      placeholder: 'Product Image',
+      value: img1,
+      onChange: (e) => setImg1(e.target.value),
+      placeholder: 'Enter URL for Image 1',
+      required: true,
+    },
+    {
+      label: 'Image 2',
+      type: 'text',
+      value: img2,
+      onChange: (e) => setImg2(e.target.value),
+      placeholder: 'Enter URL for Image 2',
       required: true,
     },
     {

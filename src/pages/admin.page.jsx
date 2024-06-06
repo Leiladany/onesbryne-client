@@ -4,8 +4,7 @@ import { DataService } from '../components/services/data-service';
 import { useNavigate } from 'react-router-dom';
 import { LinkWithLine } from '../components/layout/link-with-line';
 import { Button, Chip, Stack, Table } from '@mui/joy';
-import { MdEdit } from 'react-icons/md';
-import { MdDelete } from 'react-icons/md';
+import { MdEdit, MdDelete } from 'react-icons/md';
 
 export const AdminPage = () => {
   const navigate = useNavigate();
@@ -47,6 +46,8 @@ export const AdminPage = () => {
   useEffect(() => {
     fetchAllProducts();
   }, []);
+
+  console.log(products);
 
   return (
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
@@ -108,7 +109,7 @@ export const AdminPage = () => {
                   <td>
                     {product.img ? (
                       <img
-                        src={product.img}
+                        src={product.img[1]}
                         alt={product.name}
                         width="64px"
                         height="64px"
@@ -134,7 +135,6 @@ export const AdminPage = () => {
                   <td>
                     <Button
                       onClick={() => handleEdit(product.id)}
-                      variant="plain"
                       sx={{
                         p: 1,
                         '&:hover': {
@@ -147,7 +147,6 @@ export const AdminPage = () => {
 
                     <Button
                       onClick={() => handleDelete(product.id)}
-                      variant="plain"
                       sx={{
                         p: 1,
                         '&:hover': {
