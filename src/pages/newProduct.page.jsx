@@ -13,11 +13,11 @@ export const NewProductPage = () => {
   const [name, setName] = useState('');
   const [img1, setImg1] = useState('');
   const [img2, setImg2] = useState('');
-  const [size, setSize] = useState('');
+  const [size, setSize] = useState("");
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
-  const [type, setType] = useState('');
-  const [status, setStatus] = useState('');
+  const [type, setType] = useState("");
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     if (productId) {
@@ -106,7 +106,7 @@ export const NewProductPage = () => {
       label: 'Name',
       type: 'text',
       value: name,
-      onChange: (e) => setName(e.target.value),
+      setValue: setName,
       placeholder: 'Product Name',
       required: true,
     },
@@ -114,7 +114,7 @@ export const NewProductPage = () => {
       label: 'Image 1',
       type: 'text',
       value: img1,
-      onChange: (e) => setImg1(e.target.value),
+      setValue: setImg1,
       placeholder: 'Enter URL for Image 1',
       required: true,
     },
@@ -122,7 +122,7 @@ export const NewProductPage = () => {
       label: 'Image 2',
       type: 'text',
       value: img2,
-      onChange: (e) => setImg2(e.target.value),
+      setValue: setImg2,
       placeholder: 'Enter URL for Image 2',
       required: true,
     },
@@ -130,15 +130,15 @@ export const NewProductPage = () => {
       label: 'Size',
       type: 'dropdown',
       value: size,
-      onChange: (e) => setSize(e.target.value),
-      options: sizes.map((size) => ({ value: size, label: size })),
+      setValue: setSize,
+      options: sizes.map((size) => size),
       required: true,
     },
     {
       label: 'Price',
       type: 'number',
       value: price,
-      onChange: (e) => setPrice(e.target.value),
+      setValue: setPrice,
       placeholder: '100',
       required: true,
     },
@@ -146,7 +146,7 @@ export const NewProductPage = () => {
       label: 'Description',
       type: 'text',
       value: description,
-      onChange: (e) => setDescription(e.target.value),
+      setValue: setDescription,
       placeholder: 'Description',
       required: true,
     },
@@ -154,16 +154,16 @@ export const NewProductPage = () => {
       label: 'Type',
       type: 'dropdown',
       value: type,
-      onChange: (e) => setType(e.target.value),
-      options: types.map((type) => ({ value: type.type, label: type.type })),
+      setValue: setType,
+      options: types.map((type) =>  type.type ),
       required: true,
     },
     {
       label: 'Status',
       type: 'dropdown',
       value: status,
-      onChange: (e) => setStatus(e.target.value),
-      options: statuses.map((status) => ({ value: status, label: status })),
+      setValue: setStatus,
+      options: statuses.map((status) => status ),
       required: true,
     },
   ];

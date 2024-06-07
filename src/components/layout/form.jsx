@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import InputComponent from './input/Input';
-import SelectComponent from './select/Select';
+import { InputWithLine } from './input-with-line';
 import { LinkWithLine } from './link-with-line';
+import { SelectWithLine } from './select-with-line';
 import { Button, Stack, Typography } from '@mui/joy';
 
 export const Form = ({ type, controls, handleSubmit, buttonText, error }) => {
@@ -11,45 +11,33 @@ export const Form = ({ type, controls, handleSubmit, buttonText, error }) => {
       onSubmit={handleSubmit}
       sx={{ width: { xs: '80%', md: '600px' }, gap: 4 }}
     >
-      <Stack component="section" sx={{ gap: 4 }}>
+      <Stack component="section" sx={{ gap: 8 }}>
         {controls.map((control, index) => (
           <Stack
             key={index}
-            sx={{ alignItems: 'center', gap: 4, position: 'relative' }}
+            sx={{ alignItems: 'center', gap: 2, position: 'relative' }}
           >
             {control.label}
 
             <Stack sx={{ width: '100%' }}>
               {control.type === 'dropdown' ? (
-                <SelectComponent
+                <SelectWithLine
                   type={control.type}
                   value={control.value}
-                  onChange={control.onChange}
+                  setValue={control.setValue}
                   required={control.required}
                   options={control.options}
                 />
               ) : (
-                <InputComponent
+                <InputWithLine
                   type={control.type}
                   value={control.value}
-                  onChange={control.onChange}
+                  setValue={control.setValue}
                   placeholder={control.placeholder}
                   required={control.required}
+                  onIconClick={control.onIconClick}
+                  iconSrc={control.iconSrc}
                 />
-              )}
-
-              {/* Eye icon */}
-              {control.icon && (
-                <Stack
-                  onClick={control.onIconClick}
-                  sx={{
-                    cursor: 'pointer',
-                    position: 'absolute',
-                    right: 0,
-                  }}
-                >
-                  {control.iconSrc}
-                </Stack>
               )}
             </Stack>
           </Stack>
