@@ -2,7 +2,7 @@ import './admin.page.css';
 import { useState, useEffect } from 'react';
 import { DataService } from '../components/services/data-service';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Stack } from '@mui/joy';
+import { Button, Stack, Typography } from '@mui/joy';
 import { adminToast } from '../components/utils/toasts';
 import { AdminTable } from '../components/layout/admin-table';
 
@@ -48,6 +48,8 @@ export const AdminPage = () => {
 
   return (
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+      <Typography level="h4">Admin</Typography>
+
       <Stack component="section" sx={{ alignItems: 'center' }}>
         <Button component={Link} to="/admin/add" className="box">
           + Adicionar nova peça

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
-import { Stack } from '@mui/joy';
+import { Stack, Typography } from '@mui/joy';
 import { errorToast, profileToast } from '../components/utils/toasts';
 
 export const ProfilePage = () => {
@@ -71,15 +71,16 @@ export const ProfilePage = () => {
     {
       label: 'Email',
       type: 'email',
+      value: newEmail,
       setValue: setNewEmail,
-      onChange: (e) => setNewEmail(e.target.value),
       placeholder: 'exemplo@gmail.com',
       required: false,
     },
   ];
 
   return (
-    <Stack id="container">
+    <Stack id="container"  sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+      <Typography level="h4">Perfil</Typography>
       <Form
         controls={profileControls}
         handleSubmit={updateUserById}

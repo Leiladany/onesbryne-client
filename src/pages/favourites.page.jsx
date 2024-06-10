@@ -35,7 +35,7 @@ export const FavouritesPage = () => {
 
   return (
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
-      <Typography level="h3">My favourites</Typography>
+      <Typography level="h4">Favoritos</Typography>
 
       <Stack
         sx={{
