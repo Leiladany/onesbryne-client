@@ -6,17 +6,22 @@ import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
 export const LoginPage = () => {
   const { handleLogin } = useContext(AuthContext);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitLoading(true);
     const payload = { email, password };
-    await handleLogin(payload);
+    try {
+      await handleLogin(payload);
+    } finally {
+      setIsSubmitLoading(false);
+    }
   };
 
-  // Form inputs
   const loginControls = [
     {
       label: 'Email',
@@ -46,6 +51,7 @@ export const LoginPage = () => {
         controls={loginControls}
         handleSubmit={handleSubmit}
         buttonText="Entrar"
+        isLoading={isSubmitLoading}
       />
     </Stack>
   );

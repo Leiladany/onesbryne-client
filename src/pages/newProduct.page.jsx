@@ -4,12 +4,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
 import { types, sizes, statuses } from '../components/utils/arrays';
-import { Stack } from '@mui/joy';
+import { Stack, CircularProgress } from '@mui/joy';
 import { adminToast } from '../components/utils/toasts';
 
 export const NewProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const [code, setCode] = useState('');
   const [name, setName] = useState('');
   const [img1, setImg1] = useState('');
@@ -26,8 +28,31 @@ export const NewProductPage = () => {
     }
   }, [productId]);
 
+  const fetchProduct = async () => {
+    setIsLoading(true);
+    try {
+      const response = await DataService.fetchData(`/api/products/${productId}`);
+      if (response) {
+        setCode(response.code);
+        setName(response.name);
+        setImg1(response.img[0]);
+        setImg2(response.img[1]);
+        setSize(response.size);
+        setPrice(response.price);
+        setDescription(response.description);
+        setType(response.type);
+        setStatus(response.status);
+      }
+    } catch (error) {
+      console.log('Failed to fetch product. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSubmitCreate = async (e) => {
     e.preventDefault();
+    setIsSubmitLoading(true);
 
     const product = {
       code,
@@ -50,32 +75,14 @@ export const NewProductPage = () => {
       }
     } catch (error) {
       console.log('Failed to create product. Please try again.');
-    }
-  };
-
-  const fetchProduct = async () => {
-    try {
-      const response = await DataService.fetchData(
-        `/api/products/${productId}`,
-      );
-      if (response) {
-        setCode(response.code);
-        setName(response.name);
-        setImg1(response.img[0]);
-        setImg2(response.img[1]);
-        setSize(response.size);
-        setPrice(response.price);
-        setDescription(response.description);
-        setType(response.type);
-        setStatus(response.status);
-      }
-    } catch (error) {
-      console.log('Failed to fetch product. Please try again.');
+    } finally {
+      setIsSubmitLoading(false);
     }
   };
 
   const handleSubmitUpdate = async (e) => {
     e.preventDefault();
+    setIsSubmitLoading(true);
 
     const updatedProduct = {
       code,
@@ -89,10 +96,7 @@ export const NewProductPage = () => {
     };
 
     try {
-      const response = await DataService.updateData(
-        `/api/products/${productId}`,
-        updatedProduct,
-      );
+      const response = await DataService.updateData(`/api/products/${productId}`, updatedProduct);
       if (response) {
         navigate('/admin');
         adminToast.successUpdate();
@@ -100,11 +104,13 @@ export const NewProductPage = () => {
         adminToast.errorUpdate();
       }
     } catch (error) {
-      setError('Failed to update product. Please try again.');
+      console.log('Failed to update product. Please try again.');
+    } finally {
+      setIsSubmitLoading(false);
     }
   };
 
-  const formElements = [
+  const newProductControls = [
     {
       label: 'Código',
       type: 'number',
@@ -181,12 +187,17 @@ export const NewProductPage = () => {
 
   return (
     <Stack id="container">
-      <Form
-        type={productId ? 'editPiece' : 'addNewPiece'}
-        controls={formElements}
-        handleSubmit={productId ? handleSubmitUpdate : handleSubmitCreate}
-        buttonText={productId ? 'Editar' : 'Adicionar'}
-      />
+      {isLoading ? (
+        <CircularProgress variant='plain' color='neutral' />
+      ) : (
+        <Form
+          type={productId ? 'editPiece' : 'addNewPiece'}
+          controls={newProductControls}
+          handleSubmit={productId ? handleSubmitUpdate : handleSubmitCreate}
+          buttonText={productId ? 'Editar' : 'Adicionar'}
+          isLoading={isSubmitLoading}
+        />
+      )}
     </Stack>
   );
 };

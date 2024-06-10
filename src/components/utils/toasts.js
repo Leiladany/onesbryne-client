@@ -19,7 +19,7 @@ export const loginToast = {
 };
 
 export const logoutToast = {
-  success: () => toast.success('Sessão termianda com sucesso!'),
+  success: () => toast.success('Sessão terminada com sucesso!'),
   error: () => toast.error('Erro ao terminar sessão.'),
 };
 

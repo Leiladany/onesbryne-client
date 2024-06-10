@@ -60,7 +60,7 @@ export const AdminPage = () => {
       </Stack>
 
       {isLoading ? (
-        <CircularProgress variant="soft" />
+        <CircularProgress variant='plain' color='neutral' />
       ) : (
         <Stack
           component="section"

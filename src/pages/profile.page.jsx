@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
-import { Stack, Typography } from '@mui/joy';
+import { Stack, Typography, CircularProgress } from '@mui/joy';
 import { errorToast, profileToast } from '../components/utils/toasts';
 
 export const ProfilePage = () => {
   const { userId } = useContext(AuthContext);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState({});
   const [newName, setNewName] = useState('');
   const [newEmail, setNewEmail] = useState('');
@@ -15,7 +17,6 @@ export const ProfilePage = () => {
     getUserById();
   }, [userId]);
 
-  // Function to fetch user by id
   const getUserById = async () => {
     try {
       const userData = await DataService.fetchData(`/api/users/${userId}`);
@@ -25,19 +26,20 @@ export const ProfilePage = () => {
         setNewEmail(userData.user.email);
       }
     } catch (error) {
-      console.error('Error fetching user:', error);
-      setError('Failed to fetch user data.');
+      throw error;
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // Function to update user by id
   const updateUserById = async (e) => {
     e.preventDefault();
+    setIsSubmitLoading(true);
 
     if (user) {
       const newData = {
-        newName: newName || data.user.name,
-        newEmail: newEmail || data.user.email,
+        newName: newName || user.name,
+        newEmail: newEmail || user.email,
       };
 
       try {
@@ -47,18 +49,18 @@ export const ProfilePage = () => {
         );
         if (updatedUser) {
           setUser(updatedUser);
-          profileToast.successUpdate()
+          profileToast.successUpdate();
         } else {
-          errorToast()
+          errorToast();
         }
       } catch (error) {
-        console.error('Error updating user:', error);
-        setError('Failed to update profile. Please try again.');
+        throw error;
+      } finally {
+        setIsSubmitLoading(false);
       }
     }
   };
 
-  // Form inputs
   const profileControls = [
     {
       label: 'Name',
@@ -79,13 +81,18 @@ export const ProfilePage = () => {
   ];
 
   return (
-    <Stack id="container"  sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+    <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h4">Perfil</Typography>
-      <Form
-        controls={profileControls}
-        handleSubmit={updateUserById}
-        buttonText="Editar Conta"
-      />
+      {isLoading ? (
+        <CircularProgress variant="plain" color="neutral" />
+      ) : (
+        <Form
+          controls={profileControls}
+          handleSubmit={updateUserById}
+          buttonText="Editar Conta"
+          isLoading={isSubmitLoading}
+        />
+      )}
     </Stack>
   );
 };

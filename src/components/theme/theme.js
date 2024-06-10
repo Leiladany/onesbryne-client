@@ -4,7 +4,7 @@ import { extendTheme } from '@mui/joy/styles';
 const colors = {
   main: 'rgb(6, 11, 16)',
   maint: 'rgba(6, 11, 16, 0.7)',
-  darkBlue: '#12181F',
+  darkBlue: 'rgb(18, 24, 31)',
 };
 
 const headingStyles = [

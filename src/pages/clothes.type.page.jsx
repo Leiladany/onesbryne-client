@@ -9,7 +9,6 @@ export const ClothesTypePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
-  // Function to fetch all the products
   const fetchAllProducts = async () => {
     try {
       const response = await DataService.fetchData('/api/products');
@@ -23,7 +22,6 @@ export const ClothesTypePage = () => {
     }
   };
 
-  // Function to filter products
   const filteredProducts = useMemo(() => {
     return products.filter(
       (product) => product.type.toLowerCase() === type.toLowerCase(),

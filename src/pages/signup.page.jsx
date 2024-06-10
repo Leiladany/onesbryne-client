@@ -7,6 +7,7 @@ import { signupToast } from '../components/utils/toasts';
 
 export const SignupPage = () => {
   const { handleSignup } = useContext(AuthContext);
+  const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +17,7 @@ export const SignupPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitLoading(true);
 
     const payload = { name, email, password };
 
@@ -29,10 +31,11 @@ export const SignupPage = () => {
       }
     } catch (error) {
       throw error
+    } finally {
+      setIsSubmitLoading(false);
     }
   };
 
-  // Form inputs
   const signupControls = [
     {
       label: 'Primeiro e Último Nome',
@@ -81,6 +84,7 @@ export const SignupPage = () => {
         controls={signupControls}
         handleSubmit={handleSubmit}
         buttonText="Criar Conta"
+        isLoading={isSubmitLoading}
       />
     </Stack>
   );

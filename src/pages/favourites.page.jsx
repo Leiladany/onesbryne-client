@@ -1,4 +1,4 @@
-import { Stack, Typography } from '@mui/joy';
+import { Stack, Typography, CircularProgress } from '@mui/joy';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { DataService } from '../components/services/data-service';
@@ -6,6 +6,7 @@ import { ClothesCard } from '../components/layout/clothes-card';
 
 export const FavouritesPage = () => {
   const { userId } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -14,8 +15,8 @@ export const FavouritesPage = () => {
     }
   }, [userId]);
 
-  // Function to fetch favourite products
   const getUserFavouriteProducts = async (userId) => {
+    setIsLoading(true);
     try {
       const userData = await DataService.fetchData(`/api/users/${userId}`);
       if (userData.user.favourites) {
@@ -30,6 +31,8 @@ export const FavouritesPage = () => {
       }
     } catch (error) {
       console.error('Error fetching favourite products:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -37,7 +40,9 @@ export const FavouritesPage = () => {
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h4">Favoritos</Typography>
 
-      {products ? (
+      {isLoading ? (
+        <CircularProgress variant='plain' color='neutral' />
+      ) : !products.length > 0 ? (
         <Typography level="body-sm">sem roupa nos favoritos</Typography>
       ) : (
         <Stack

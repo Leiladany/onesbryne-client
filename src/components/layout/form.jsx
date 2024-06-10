@@ -3,7 +3,7 @@ import { Inputs } from './inputs';
 import { LinkWithLine } from './link-with-line';
 import { Button, Stack, Typography } from '@mui/joy';
 
-export const Form = ({ type, controls, handleSubmit, buttonText }) => {
+export const Form = ({ type, controls, handleSubmit, buttonText, isLoading  }) => {
   return (
     <Stack
       component="form"
@@ -35,7 +35,7 @@ export const Form = ({ type, controls, handleSubmit, buttonText }) => {
       </Stack>
 
       <Stack component="section" sx={{ alignItems: 'center', gap: 2 }}>
-        <Button type="submit" disabled={false}>
+        <Button type="submit" loading={isLoading}>
           {buttonText}
         </Button>
       </Stack>
