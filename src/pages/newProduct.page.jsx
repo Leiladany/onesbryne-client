@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
 import { types, sizes, statuses } from '../components/utils/arrays';
-import { Stack } from '@mui/joy';
+import { Option, Select, Stack } from '@mui/joy';
 import { adminToast } from '../components/utils/toasts';
 
 export const NewProductPage = () => {
@@ -13,11 +13,11 @@ export const NewProductPage = () => {
   const [name, setName] = useState('');
   const [img1, setImg1] = useState('');
   const [img2, setImg2] = useState('');
-  const [size, setSize] = useState("");
-  const [price, setPrice] = useState(0);
+  const [size, setSize] = useState('');
+  const [price, setPrice] = useState(null);
   const [description, setDescription] = useState('');
-  const [type, setType] = useState("");
-  const [status, setStatus] = useState("");
+  const [type, setType] = useState('');
+  const [status, setStatus] = useState('');
 
   useEffect(() => {
     if (productId) {
@@ -89,7 +89,6 @@ export const NewProductPage = () => {
         `/api/products/${productId}`,
         updatedProduct,
       );
-      console.log(response)
       if (response) {
         navigate('/admin');
         adminToast.successUpdate();
@@ -103,31 +102,47 @@ export const NewProductPage = () => {
 
   const formElements = [
     {
-      label: 'Name',
+      label: 'Nome',
       type: 'text',
       value: name,
       setValue: setName,
-      placeholder: 'Product Name',
+      placeholder: 'Nome do produto',
       required: true,
     },
     {
-      label: 'Image 1',
+      label: 'Descrição',
+      type: 'text',
+      value: description,
+      setValue: setDescription,
+      placeholder: 'Descrição do produto',
+      required: true,
+    },
+    {
+      label: 'Imagem 1',
       type: 'text',
       value: img1,
       setValue: setImg1,
-      placeholder: 'Enter URL for Image 1',
+      placeholder: 'Link para a imagem 1',
       required: true,
     },
     {
-      label: 'Image 2',
+      label: 'Imagem 2',
       type: 'text',
       value: img2,
       setValue: setImg2,
-      placeholder: 'Enter URL for Image 2',
+      placeholder: 'Link para a imagem 1',
       required: true,
     },
     {
-      label: 'Size',
+      label: 'Preço',
+      type: 'number',
+      value: price,
+      setValue: setPrice,
+      placeholder: 'Preço do produto',
+      required: true,
+    },
+    {
+      label: 'Tamanho',
       type: 'dropdown',
       value: size,
       setValue: setSize,
@@ -135,35 +150,19 @@ export const NewProductPage = () => {
       required: true,
     },
     {
-      label: 'Price',
-      type: 'number',
-      value: price,
-      setValue: setPrice,
-      placeholder: '100',
-      required: true,
-    },
-    {
-      label: 'Description',
-      type: 'text',
-      value: description,
-      setValue: setDescription,
-      placeholder: 'Description',
-      required: true,
-    },
-    {
-      label: 'Type',
+      label: 'Tipo',
       type: 'dropdown',
       value: type,
       setValue: setType,
-      options: types.map((type) =>  type.type ),
+      options: types.map((type) => type.type),
       required: true,
     },
     {
-      label: 'Status',
+      label: 'Estado',
       type: 'dropdown',
       value: status,
       setValue: setStatus,
-      options: statuses.map((status) => status ),
+      options: statuses.map((status) => status),
       required: true,
     },
   ];
@@ -174,7 +173,7 @@ export const NewProductPage = () => {
         type={productId ? 'editPiece' : 'addNewPiece'}
         controls={formElements}
         handleSubmit={productId ? handleSubmitUpdate : handleSubmitCreate}
-        buttonText={productId ? 'Update Product' : 'Add Product'}
+        buttonText={productId ? 'Editar' : 'Adicionar'}
       />
     </Stack>
   );

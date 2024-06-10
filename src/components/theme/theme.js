@@ -59,11 +59,11 @@ export const theme = extendTheme({
     JoyInput: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: 'white',
+          color: theme.vars.palette.neutral[300],
           backgroundColor: 'transparent',
           width: '100%',
           '&:hover': {
-            color: 'white',
+            color: theme.vars.palette.neutral[300],
           },
           '&:focus-within::before': {
             boxShadow: 'none',
@@ -80,13 +80,16 @@ export const theme = extendTheme({
     JoySelect: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: 'white',
+          color: theme.vars.palette.neutral[300],
           backgroundColor: 'transparent',
           width: '100%',
-          textAlign: "center",
+          textAlign: 'center',
           '&:hover': {
-            color: 'white',
+            color: theme.vars.palette.neutral[300],
             backgroundColor: 'transparent',
+          },
+          '& button': {
+            justifyContent: 'center',
           },
         }),
       },

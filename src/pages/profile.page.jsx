@@ -83,7 +83,7 @@ export const ProfilePage = () => {
       <Form
         controls={profileControls}
         handleSubmit={updateUserById}
-        buttonText="Actualizar Conta"
+        buttonText="Editar Conta"
       />
     </Stack>
   );

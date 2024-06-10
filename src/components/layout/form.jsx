@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-import { InputWithLine } from './input-with-line';
+import { Inputs } from './inputs';
 import { LinkWithLine } from './link-with-line';
-import { SelectWithLine } from './select-with-line';
 import { Button, Stack, Typography } from '@mui/joy';
 
-export const Form = ({ type, controls, handleSubmit, buttonText, error }) => {
+export const Form = ({ type, controls, handleSubmit, buttonText }) => {
   return (
     <Stack
       component="form"
@@ -20,31 +19,21 @@ export const Form = ({ type, controls, handleSubmit, buttonText, error }) => {
             {control.label}
 
             <Stack sx={{ width: '100%' }}>
-              {control.type === 'dropdown' ? (
-                <SelectWithLine
-                  type={control.type}
-                  value={control.value}
-                  setValue={control.setValue}
-                  required={control.required}
-                  options={control.options}
-                />
-              ) : (
-                <InputWithLine
-                  type={control.type}
-                  value={control.value}
-                  setValue={control.setValue}
-                  placeholder={control.placeholder}
-                  required={control.required}
-                  onIconClick={control.onIconClick}
-                  iconSrc={control.iconSrc}
-                />
-              )}
+              <Inputs
+                type={control.type}
+                value={control.value}
+                setValue={control.setValue}
+                placeholder={control.placeholder}
+                required={control.required}
+                onIconClick={control.onIconClick}
+                iconSrc={control.iconSrc}
+                options={control.options}
+              />
             </Stack>
           </Stack>
         ))}
       </Stack>
 
-      {/* Submit button */}
       <Stack component="section" sx={{ alignItems: 'center', gap: 2 }}>
         <Button type="submit" disabled={false}>
           {buttonText}
@@ -60,7 +49,6 @@ export const Form = ({ type, controls, handleSubmit, buttonText, error }) => {
           gap: 1,
         }}
       >
-        {/* Handler if you have an account */}
         {type === 'signup' && (
           <>
             <Typography sx={{ color: 'common.white' }}>
@@ -70,7 +58,6 @@ export const Form = ({ type, controls, handleSubmit, buttonText, error }) => {
           </>
         )}
 
-        {/* Handler if you don't have an account */}
         {type === 'login' && (
           <>
             <Typography sx={{ color: 'common.white' }}>
