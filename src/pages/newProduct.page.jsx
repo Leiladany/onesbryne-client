@@ -4,12 +4,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
 import { types, sizes, statuses } from '../components/utils/arrays';
-import { Option, Select, Stack } from '@mui/joy';
+import { Stack } from '@mui/joy';
 import { adminToast } from '../components/utils/toasts';
 
 export const NewProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
+  const [code, setCode] = useState(null);
   const [name, setName] = useState('');
   const [img1, setImg1] = useState('');
   const [img2, setImg2] = useState('');
@@ -29,6 +30,7 @@ export const NewProductPage = () => {
     e.preventDefault();
 
     const product = {
+      code,
       name,
       img: [img1, img2],
       size,
@@ -57,6 +59,7 @@ export const NewProductPage = () => {
         `/api/products/${productId}`,
       );
       if (response) {
+        setCode(response.code)
         setName(response.name);
         setImg1(response.img[0]);
         setImg2(response.img[1]);
@@ -75,6 +78,7 @@ export const NewProductPage = () => {
     e.preventDefault();
 
     const updatedProduct = {
+      code,
       name,
       img: [img1, img2],
       size,
@@ -101,6 +105,14 @@ export const NewProductPage = () => {
   };
 
   const formElements = [
+    {
+      label: 'Código',
+      type: 'number',
+      value: code,
+      setValue: setCode,
+      placeholder: 'Código do produto',
+      required: true,
+    },
     {
       label: 'Nome',
       type: 'text',
