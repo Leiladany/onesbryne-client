@@ -64,14 +64,14 @@ export const ProfilePage = () => {
       label: 'Name',
       type: 'text',
       value: newName,
-      onChange: (e) => setNewName(e.target.value),
+      setValue: setNewName,
       placeholder: 'Tiago Gil',
       required: false,
     },
     {
       label: 'Email',
       type: 'email',
-      value: newEmail,
+      setValue: setNewEmail,
       onChange: (e) => setNewEmail(e.target.value),
       placeholder: 'exemplo@gmail.com',
       required: false,
@@ -83,7 +83,7 @@ export const ProfilePage = () => {
       <Form
         controls={profileControls}
         handleSubmit={updateUserById}
-        buttonText="Actualizar Conta"
+        buttonText="Editar Conta"
       />
     </Stack>
   );
