@@ -67,6 +67,11 @@ export const Footer = () => {
             gap: 1,
           }}
         >
+          <LinkWithLine to="/guide" children="Guia" className="line" level="body-xs" />
+          <Divider
+            orientation="vertical"
+            sx={{ backgroundColor: 'common.white' }}
+          />
           <LinkWithLine children="Contacto" className="line" level="body-xs" />
           <Divider
             orientation="vertical"
@@ -78,7 +83,7 @@ export const Footer = () => {
             sx={{ backgroundColor: 'common.white' }}
           />
           <LinkWithLine
-            children="Política de Privacidade"
+            children="Política de privacidade"
             className="line"
             level="body-xs"
           />

@@ -6,7 +6,7 @@ import { Navbar } from '../components/navigation/navbar';
 import { Footer } from '../components/navigation/footer';
 import { LoginPage } from '../pages/login.page';
 import { SignupPage } from '../pages/signup.page';
-import { HomePage } from '../pages/home.page';
+import { GuidePage } from '../pages/guide.page';
 import { ClothesPage } from '../pages/clothes.carousel.page';
 import { ClothesTypePage } from '../pages/clothes.type.page';
 import { ClothesDetailsPage } from '../pages/clothes.details.page';
@@ -24,10 +24,9 @@ export const App = () => {
 
       <div className="app-content-container">
         <Routes>
-          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/guide" element={<GuidePage />} />
           <Route path="/clothes" element={<ClothesPage />} />
           <Route path="/clothes/:type" element={<ClothesTypePage />} />
           <Route
@@ -49,10 +48,9 @@ export const App = () => {
                   />
                 </>
               )}
-              <Route path="*" element={<Navigate to={'/profile'} />} />
             </>
           )}
-          <Route path="*" element={<Navigate to={'/'} />} />
+          <Route path="*" element={<Navigate to={'/clothes'} />} />
         </Routes>
       </div>
 

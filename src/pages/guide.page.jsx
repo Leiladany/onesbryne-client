@@ -32,32 +32,19 @@ const sectionData = [
   },
 ];
 
-export const HomePage = () => {
+export const GuidePage = () => {
   return (
     <Stack id="container" sx={{ gap: 10 }}>
       <Stack component="section" sx={{ alignItems: 'center' }}>
         <Typography
-          level="h1"
-          sx={{
-            color: 'common.white',
-            fontWeight: 'lighter',
-            fontSize: '32px',
-          }}
-        >
-          O que é ?
-        </Typography>
-        <Typography
           level="h3"
           sx={{
             color: 'common.white',
-            fontWeight: 'lighter',
-            fontSize: '16px',
           }}
         >
-          Uma loja de venda de roupa em 2º mão !
+          Como utilizar
         </Typography>
       </Stack>
-
       <Stack
         component="section"
         sx={{
