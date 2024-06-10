@@ -48,9 +48,9 @@ export const adminToast = {
   successDelete: () =>
     toast.success('Producto apagado com sucesso.'),
   errorCreate: () =>
-    toast.error('Erro em criar o producto.'),
+    toast.error('Erro ao criar o producto.'),
   errorUpdate: () =>
-    toast.error('Erro em editadar o producto.'),
+    toast.error('Erro ao editar o producto.'),
   errorDelete: () =>
-    toast.error('Erro em apagar o producto.'),
+    toast.error('Erro ao apagar o producto.'),
 };

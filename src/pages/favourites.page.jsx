@@ -37,19 +37,23 @@ export const FavouritesPage = () => {
     <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h4">Favoritos</Typography>
 
-      <Stack
-        sx={{
-          width: "100%",
-          flexDirection: {xs: "column", lg:'row'},
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: 6,
-        }}
-      >
-        {products.map((product, index) => (
-          <ClothesCard key={index} product={product} />
-        ))}
-      </Stack>
+      {products ? (
+        <Typography level="body-sm">sem roupa nos favoritos</Typography>
+      ) : (
+        <Stack
+          sx={{
+            width: '100%',
+            flexDirection: { xs: 'column', lg: 'row' },
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            gap: 6,
+          }}
+        >
+          {products.map((product, index) => (
+            <ClothesCard key={index} product={product} />
+          ))}
+        </Stack>
+      )}
     </Stack>
   );
 };

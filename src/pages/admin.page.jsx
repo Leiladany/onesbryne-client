@@ -2,12 +2,13 @@ import './admin.page.css';
 import { useState, useEffect } from 'react';
 import { DataService } from '../components/services/data-service';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Stack, Typography } from '@mui/joy';
+import { Button, Stack, Typography, CircularProgress } from '@mui/joy';
 import { adminToast } from '../components/utils/toasts';
 import { AdminTable } from '../components/layout/admin-table';
 
 export const AdminPage = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -23,6 +24,8 @@ export const AdminPage = () => {
       }
     } catch (error) {
       console.error('Error fetching products');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,22 +59,26 @@ export const AdminPage = () => {
         </Button>
       </Stack>
 
-      <Stack
-        component="section"
-        sx={{
-          alignItems: { xs: 'normal', md: 'center' },
-          overflowX: { xs: 'auto', md: 'visible' },
-          width: '100%',
-        }}
-      >
-        {products.length > 0 && (
-          <AdminTable
-            products={products}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
-        )}
-      </Stack>
+      {isLoading ? (
+        <CircularProgress variant="soft" />
+      ) : (
+        <Stack
+          component="section"
+          sx={{
+            alignItems: { xs: 'normal', md: 'center' },
+            overflowX: { xs: 'auto', md: 'visible' },
+            width: '100%',
+          }}
+        >
+          {products.length > 0 && (
+            <AdminTable
+              products={products}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
+          )}
+        </Stack>
+      )}
     </Stack>
   );
 };

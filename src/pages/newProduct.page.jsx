@@ -10,12 +10,12 @@ import { adminToast } from '../components/utils/toasts';
 export const NewProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
-  const [code, setCode] = useState(null);
+  const [code, setCode] = useState('');
   const [name, setName] = useState('');
   const [img1, setImg1] = useState('');
   const [img2, setImg2] = useState('');
   const [size, setSize] = useState('');
-  const [price, setPrice] = useState(null);
+  const [price, setPrice] = useState('null');
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
   const [status, setStatus] = useState('');
@@ -42,11 +42,11 @@ export const NewProductPage = () => {
 
     try {
       const response = await DataService.createData('/api/products', product);
-      if (response) {
+      if (response.error) {
+        adminToast.errorCreate();
+      } else {
         navigate('/admin');
         adminToast.successCreate();
-      } else {
-        adminToast.errorCreate();
       }
     } catch (error) {
       console.log('Failed to create product. Please try again.');
@@ -59,7 +59,7 @@ export const NewProductPage = () => {
         `/api/products/${productId}`,
       );
       if (response) {
-        setCode(response.code)
+        setCode(response.code);
         setName(response.name);
         setImg1(response.img[0]);
         setImg2(response.img[1]);
