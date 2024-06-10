@@ -35,7 +35,7 @@ export const contactToast = {
 
 export const profileToast = {
   successUpdate: () =>
-    toast.success('Conta actualizada com sucesso.'),
+    toast.success('Conta editada com sucesso.'),
   successDelete: () =>
     toast.success('Conta apagada com sucesso.'),
 };
@@ -44,13 +44,13 @@ export const adminToast = {
   successCreate: () =>
     toast.success('Producto criado com sucesso.'),
   successUpdate: () =>
-    toast.success('Producto actualizado com sucesso.'),
+    toast.success('Producto editado com sucesso.'),
   successDelete: () =>
     toast.success('Producto apagado com sucesso.'),
   errorCreate: () =>
     toast.error('Erro em criar o producto.'),
   errorUpdate: () =>
-    toast.error('Erro em actualizar o producto.'),
+    toast.error('Erro em editadar o producto.'),
   errorDelete: () =>
     toast.error('Erro em apagar o producto.'),
 };

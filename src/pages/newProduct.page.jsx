@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
 import { types, sizes, statuses } from '../components/utils/arrays';
-import { Stack } from '@mui/joy';
+import { Option, Select, Stack } from '@mui/joy';
 import { adminToast } from '../components/utils/toasts';
 
 export const NewProductPage = () => {
@@ -14,7 +14,7 @@ export const NewProductPage = () => {
   const [img1, setImg1] = useState('');
   const [img2, setImg2] = useState('');
   const [size, setSize] = useState('');
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(null);
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
   const [status, setStatus] = useState('');
@@ -89,7 +89,6 @@ export const NewProductPage = () => {
         `/api/products/${productId}`,
         updatedProduct,
       );
-      console.log(response)
       if (response) {
         navigate('/admin');
         adminToast.successUpdate();
@@ -103,67 +102,67 @@ export const NewProductPage = () => {
 
   const formElements = [
     {
-      label: 'Name',
+      label: 'Nome',
       type: 'text',
       value: name,
-      onChange: (e) => setName(e.target.value),
-      placeholder: 'Product Name',
+      setValue: setName,
+      placeholder: 'Nome do produto',
       required: true,
     },
     {
-      label: 'Image 1',
-      type: 'text',
-      value: img1,
-      onChange: (e) => setImg1(e.target.value),
-      placeholder: 'Enter URL for Image 1',
-      required: true,
-    },
-    {
-      label: 'Image 2',
-      type: 'text',
-      value: img2,
-      onChange: (e) => setImg2(e.target.value),
-      placeholder: 'Enter URL for Image 2',
-      required: true,
-    },
-    {
-      label: 'Size',
-      type: 'dropdown',
-      value: size,
-      onChange: (e) => setSize(e.target.value),
-      options: sizes.map((size) => ({ value: size, label: size })),
-      required: true,
-    },
-    {
-      label: 'Price',
-      type: 'number',
-      value: price,
-      onChange: (e) => setPrice(e.target.value),
-      placeholder: '100',
-      required: true,
-    },
-    {
-      label: 'Description',
+      label: 'Descrição',
       type: 'text',
       value: description,
-      onChange: (e) => setDescription(e.target.value),
-      placeholder: 'Description',
+      setValue: setDescription,
+      placeholder: 'Descrição do produto',
       required: true,
     },
     {
-      label: 'Type',
+      label: 'Imagem 1',
+      type: 'text',
+      value: img1,
+      setValue: setImg1,
+      placeholder: 'Link para a imagem 1',
+      required: true,
+    },
+    {
+      label: 'Imagem 2',
+      type: 'text',
+      value: img2,
+      setValue: setImg2,
+      placeholder: 'Link para a imagem 1',
+      required: true,
+    },
+    {
+      label: 'Preço',
+      type: 'number',
+      value: price,
+      setValue: setPrice,
+      placeholder: 'Preço do produto',
+      required: true,
+    },
+    {
+      label: 'Tamanho',
+      type: 'dropdown',
+      value: size,
+      setValue: setSize,
+      options: sizes.map((size) => size),
+      required: true,
+    },
+    {
+      label: 'Tipo',
       type: 'dropdown',
       value: type,
-      onChange: (e) => setType(e.target.value),
-      options: types.map((type) => ({ value: type.type, label: type.type })),
+      setValue: setType,
+      options: types.map((type) => type.type),
       required: true,
     },
     {
-      label: 'Status',
+      label: 'Estado',
       type: 'dropdown',
       value: status,
-      onChange: (e) => setStatus(e.target.value),
-      options: statuses.map((status) => ({ value: status, label: status })),
+      setValue: setStatus,
+      options: statuses.map((status) => status),
       required: true,
     },
   ];
@@ -174,7 +173,7 @@ export const NewProductPage = () => {
         type={productId ? 'editPiece' : 'addNewPiece'}
         controls={formElements}
         handleSubmit={productId ? handleSubmitUpdate : handleSubmitCreate}
-        buttonText={productId ? 'Update Product' : 'Add Product'}
+        buttonText={productId ? 'Editar' : 'Adicionar'}
       />
     </Stack>
   );
