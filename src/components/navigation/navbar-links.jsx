@@ -49,11 +49,7 @@ export const NavbarLinks = () => {
               children="Criar Conta"
               className="line"
             />
-            <LinkWithLine
-              to="/login"
-              children="Entrar"
-              className="line"
-            />
+            <LinkWithLine to="/login" children="Entrar" className="line" />
           </Box>
 
           {/* MOBILE */}
@@ -72,16 +68,19 @@ export const NavbarLinks = () => {
                 }}
               >
                 <MenuItem>
-                  <Link
+                  <LinkWithLine
                     to="/signup"
                     children="Criar Conta"
                     className="line"
-                    onClick={() => setDropdownOpen(false)}
                   />
                 </MenuItem>
 
                 <MenuItem>
-                  <Link to="/login" children="Entrar" className="line" />
+                  <LinkWithLine
+                    to="/login"
+                    children="Entrar"
+                    className="line"
+                  />
                 </MenuItem>
               </Menu>
             </Dropdown>
@@ -95,7 +94,7 @@ export const NavbarLinks = () => {
             {isAdmin && (
               <Link to="/admin">
                 <Stack>
-                  {location.pathname === '/admin' ? (
+                  {location.pathname.startsWith('/admin') ? (
                     <MdAdminPanelSettings color="white" size={20} />
                   ) : (
                     <MdOutlineAdminPanelSettings color="white" size={20} />
@@ -106,7 +105,7 @@ export const NavbarLinks = () => {
 
             <Link to="/clothes">
               <Stack>
-                {location.pathname === '/clothes' ? (
+                {location.pathname.startsWith('/clothes') ? (
                   <PiDressFill color="white" size={20} />
                 ) : (
                   <PiDress color="white" size={20} />
@@ -116,7 +115,7 @@ export const NavbarLinks = () => {
 
             <Link to="/favourites">
               <Stack onClick={handleHeartClick}>
-                {location.pathname === '/favourites' ? (
+                {location.pathname.startsWith('/favourites') ? (
                   <IoIosHeart color="white" size={20} />
                 ) : (
                   <IoIosHeartEmpty color="white" size={20} />
@@ -126,7 +125,7 @@ export const NavbarLinks = () => {
 
             <Link to="/profile">
               <Stack>
-                {location.pathname === '/profile' ? (
+                {location.pathname.startsWith('/profile') ? (
                   <GoPersonFill color="white" size={20} />
                 ) : (
                   <GoPerson color="white" size={20} />
@@ -160,7 +159,7 @@ export const NavbarLinks = () => {
                   {isAdmin && (
                     <Link to="/admin">
                       <Stack sx={{ flexDirection: 'row', gap: 1 }}>
-                        {location.pathname === '/admin' ? (
+                        {location.pathname.startsWith('/admin') ? (
                           <MdAdminPanelSettings color="white" size={20} />
                         ) : (
                           <MdOutlineAdminPanelSettings
@@ -177,7 +176,7 @@ export const NavbarLinks = () => {
                 <MenuItem>
                   <Link to="/clothes">
                     <Stack sx={{ flexDirection: 'row', gap: 1 }}>
-                      {location.pathname === '/clothes' ? (
+                      {location.pathname.startsWith('/clothes') ? (
                         <PiDressFill color="white" size={20} />
                       ) : (
                         <PiDress color="white" size={20} />
@@ -193,7 +192,7 @@ export const NavbarLinks = () => {
                       sx={{ flexDirection: 'row', gap: 1 }}
                       onClick={handleHeartClick}
                     >
-                      {location.pathname === '/favourites' ? (
+                      {location.pathname.startsWith('/favourites') ? (
                         <IoIosHeart color="white" size={20} />
                       ) : (
                         <IoIosHeartEmpty color="white" size={20} />
@@ -206,7 +205,7 @@ export const NavbarLinks = () => {
                 <MenuItem>
                   <Link to="/profile">
                     <Stack sx={{ flexDirection: 'row', gap: 1 }}>
-                      {location.pathname === '/profile' ? (
+                      {location.pathname.startsWith('/profile') ? (
                         <GoPersonFill color="white" size={20} />
                       ) : (
                         <GoPerson color="white" size={20} />
