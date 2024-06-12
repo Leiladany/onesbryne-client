@@ -1,4 +1,3 @@
-import './app.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
@@ -14,15 +13,16 @@ import { FavouritesPage } from '../pages/favourites.page';
 import { ProfilePage } from '../pages/profile.page';
 import { AdminPage } from '../pages/admin.page';
 import { NewProductPage } from '../pages/newProduct.page';
+import { AppContainer, RoutesContainer } from '../components/layout/containers';
 
 export const App = () => {
   const { isAuthenticated, isAdmin } = useContext(AuthContext);
 
   return (
-    <div className="app-container">
+    <AppContainer>
       <Navbar />
 
-      <div className="app-content-container">
+      <RoutesContainer>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
@@ -52,9 +52,9 @@ export const App = () => {
           )}
           <Route path="*" element={<Navigate to={'/clothes'} />} />
         </Routes>
-      </div>
+      </RoutesContainer>
 
       <Footer />
-    </div>
+    </AppContainer>
   );
 };

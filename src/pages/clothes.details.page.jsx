@@ -9,6 +9,7 @@ import {
   favouritesToast,
   contactToast,
 } from '../components/utils/toasts';
+import { PageContainer } from '../components/layout/containers';
 
 export const ClothesDetailsPage = () => {
   const { productId } = useParams();
@@ -113,7 +114,7 @@ export const ClothesDetailsPage = () => {
   };
 
   return (
-    <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+    <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       {isLoading ? (
         <CircularProgress variant="plain" color='neutral' />
       ) : (
@@ -178,6 +179,6 @@ export const ClothesDetailsPage = () => {
           </Stack>
         </>
       )}
-    </Stack>
+    </PageContainer>
   );
 };

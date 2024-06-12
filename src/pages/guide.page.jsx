@@ -2,6 +2,7 @@
 'use client';
 import { Link } from 'react-router-dom';
 import { Stack, Typography, Button } from '@mui/joy';
+import { PageContainer } from '../components/layout/containers';
 import homeIcon1 from '../assets/home-icon-1.png';
 import homeIcon2 from '../assets/home-icon-2.png';
 import homeIcon3 from '../assets/home-icon-3.png';
@@ -34,7 +35,7 @@ const sectionData = [
 
 export const GuidePage = () => {
   return (
-    <Stack id="container" sx={{ gap: 10 }}>
+    <PageContainer sx={{ gap: 10 }}>
       <Stack component="section" sx={{ alignItems: 'center' }}>
         <Typography
           level="h3"
@@ -98,6 +99,6 @@ export const GuidePage = () => {
           Explorar
         </Button>
       </Stack>
-    </Stack>
+    </PageContainer>
   );
 };

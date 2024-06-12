@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { DataService } from '../components/services/data-service';
 import { Stack, Typography, Skeleton, Card, CardCover } from '@mui/joy';
 import { ClothesCard } from '../components/layout/clothes-card';
+import { PageContainer } from '../components/layout/containers';
 
 export const ClothesTypePage = () => {
   const { type } = useParams();
@@ -33,7 +34,7 @@ export const ClothesTypePage = () => {
   }, []);
 
   return (
-    <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+    <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h3">{type.toUpperCase()}</Typography>
 
       <Stack
@@ -66,6 +67,6 @@ export const ClothesTypePage = () => {
               <ClothesCard key={index} product={product} />
             ))}
       </Stack>
-    </Stack>
+    </PageContainer>
   );
 };

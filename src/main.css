@@ -10,18 +10,6 @@ body {
 
 a {
   text-decoration: none;
-  cursor: pointer;
-}
-
-button {
-  cursor: pointer;
-}
-
-#container {
-  color: white;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  align-items: center;
 }
 
 ::-webkit-scrollbar {

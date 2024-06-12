@@ -1,13 +1,12 @@
-import { Stack } from '@mui/joy';
 import { Carousel } from '../components/layout/carousel';
+import { PageContainer } from '../components/layout/containers';
 
 export const ClothesPage = () => {
   return (
-    <Stack
-      id="container"
+    <PageContainer
       sx={{ position: 'relative', px: 6, mx: { xs: 2, md: 10 } }}
     >
       <Carousel />
-    </Stack>
+    </PageContainer>
   );
 };

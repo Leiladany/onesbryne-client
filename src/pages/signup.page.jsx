@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
 import { Form } from '../components/layout/form';
-import { Stack } from '@mui/joy';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { AuthContext } from '../contexts/auth.context';
 import { signupToast } from '../components/utils/toasts';
+import { PageContainer } from '../components/layout/containers';
 
 export const SignupPage = () => {
   const { handleSignup } = useContext(AuthContext);
@@ -78,7 +78,7 @@ export const SignupPage = () => {
   ];
 
   return (
-    <Stack id="container">
+    <PageContainer>
       <Form
         type="signup"
         controls={signupControls}
@@ -86,6 +86,6 @@ export const SignupPage = () => {
         buttonText="Criar Conta"
         isLoading={isSubmitLoading}
       />
-    </Stack>
+    </PageContainer>
   );
 };

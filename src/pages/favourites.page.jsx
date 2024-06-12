@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { DataService } from '../components/services/data-service';
 import { ClothesCard } from '../components/layout/clothes-card';
+import { PageContainer } from '../components/layout/containers';
 
 export const FavouritesPage = () => {
   const { userId } = useContext(AuthContext);
@@ -37,7 +38,7 @@ export const FavouritesPage = () => {
   };
 
   return (
-    <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+    <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h4">Favoritos</Typography>
 
       {isLoading ? (
@@ -59,6 +60,6 @@ export const FavouritesPage = () => {
           ))}
         </Stack>
       )}
-    </Stack>
+    </PageContainer>
   );
 };

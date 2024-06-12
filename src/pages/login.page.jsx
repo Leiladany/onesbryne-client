@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { Form } from '../components/layout/form';
-import { Stack } from '@mui/joy';
+import { PageContainer } from '../components/layout/containers';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 
 export const LoginPage = () => {
@@ -45,7 +45,7 @@ export const LoginPage = () => {
   ];
 
   return (
-    <Stack id="container">
+    <PageContainer>
       <Form
         type="login"
         controls={loginControls}
@@ -53,6 +53,6 @@ export const LoginPage = () => {
         buttonText="Entrar"
         isLoading={isSubmitLoading}
       />
-    </Stack>
+    </PageContainer>
   );
 };

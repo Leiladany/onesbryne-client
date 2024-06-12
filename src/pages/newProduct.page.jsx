@@ -4,8 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
 import { types, sizes, statuses } from '../components/utils/arrays';
-import { Stack, CircularProgress } from '@mui/joy';
+import { CircularProgress } from '@mui/joy';
 import { adminToast } from '../components/utils/toasts';
+import { PageContainer } from '../components/layout/containers';
 
 export const NewProductPage = () => {
   const navigate = useNavigate();
@@ -186,7 +187,7 @@ export const NewProductPage = () => {
   ];
 
   return (
-    <Stack id="container">
+    <PageContainer>
       {isLoading ? (
         <CircularProgress variant='plain' color='neutral' />
       ) : (
@@ -198,6 +199,6 @@ export const NewProductPage = () => {
           isLoading={isSubmitLoading}
         />
       )}
-    </Stack>
+    </PageContainer>
   );
 };

@@ -2,8 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
-import { Stack, Typography, CircularProgress } from '@mui/joy';
+import { Typography, CircularProgress } from '@mui/joy';
 import { errorToast, profileToast } from '../components/utils/toasts';
+import { PageContainer } from '../components/layout/containers';
 
 export const ProfilePage = () => {
   const { userId } = useContext(AuthContext);
@@ -81,7 +82,7 @@ export const ProfilePage = () => {
   ];
 
   return (
-    <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+    <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h4">Perfil</Typography>
       {isLoading ? (
         <CircularProgress variant="plain" color="neutral" />
@@ -93,6 +94,6 @@ export const ProfilePage = () => {
           isLoading={isSubmitLoading}
         />
       )}
-    </Stack>
+    </PageContainer>
   );
 };

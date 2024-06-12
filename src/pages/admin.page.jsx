@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button, Stack, Typography, CircularProgress } from '@mui/joy';
 import { adminToast } from '../components/utils/toasts';
 import { AdminTable } from '../components/layout/admin-table';
+import { PageContainer } from '../components/layout/containers';
 
 export const AdminPage = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ export const AdminPage = () => {
   };
 
   return (
-    <Stack id="container" sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+    <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h4">Admin</Typography>
 
       <Stack component="section" sx={{ alignItems: 'center' }}>
@@ -79,6 +80,6 @@ export const AdminPage = () => {
           )}
         </Stack>
       )}
-    </Stack>
+    </PageContainer>
   );
 };

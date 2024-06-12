@@ -7,12 +7,13 @@ import { Box, Button } from '@mui/joy';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 export const Carousel = () => {
-  // Carousel handlers
   const carouselRef = useRef(null);
 
   const responsive = {
-    0: { items: 1 },
-    1024: { items: 5 },
+    0: { items: 2 },
+    600: { items: 3 },
+    1200: { items: 5 },
+    1500: { items: 6 },
   };
 
   const handlePrev = () => {
@@ -23,10 +24,9 @@ export const Carousel = () => {
     carouselRef.current.slideNext();
   };
 
-  // Types map
   const items = types.map((type, index) => (
     <Box
-    component={Link}
+      component={Link}
       to={`/clothes/${type.type.toLowerCase()}`}
       key={index}
       style={{ backgroundImage: `url(${type.img})` }}
@@ -74,17 +74,16 @@ export const Carousel = () => {
 };
 
 const item = {
-  backgroundColor: 'lightgrey',
   color: 'black',
-  margin: '0 1rem',
-  height: '30rem',
+  mx: {xs: 0.5 , md: 1},
+  height: { xs: '240px', md: '480px' },
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  borderRadius: '5px',
+  borderRadius: '8px',
   textDecoration: 'none',
   backgroundSize: 'cover',
-  backgroundPosition: 'center',
+  backgroundPosition: 'top',
   transition: 'background-color 0.3s, transform 0.3s ease, boxShadow 0.3s ease',
   ':hover': {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
@@ -94,6 +93,7 @@ const item = {
 
 const itemContent = {
   backgroundColor: 'rgba(255, 255, 255, 0.5)',
+  borderRadius: '32px',
   width: '100%',
   height: '100%',
   display: 'flex',
