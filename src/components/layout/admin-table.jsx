@@ -16,7 +16,6 @@ export const AdminTable = ({ products, onEdit, onDelete }) => {
         '& th': {
           textAlign: 'center',
           backgroundColor: 'primary.darkBlue',
-          color: 'common.white',
         },
         '& tr': {
           color: 'neutral.400',

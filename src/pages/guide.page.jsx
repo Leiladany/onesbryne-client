@@ -37,14 +37,7 @@ export const GuidePage = () => {
   return (
     <PageContainer sx={{ gap: 10 }}>
       <Stack component="section" sx={{ alignItems: 'center' }}>
-        <Typography
-          level="h3"
-          sx={{
-            color: 'common.white',
-          }}
-        >
-          Como utilizar
-        </Typography>
+        <Typography level="h3">Como utilizar</Typography>
       </Stack>
       <Stack
         component="section"

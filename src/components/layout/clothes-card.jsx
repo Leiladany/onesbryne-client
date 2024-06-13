@@ -22,7 +22,7 @@ export const ClothesCard = ({ product }) => {
           <img src={product.img[0]} alt={product.name} loading="lazy" />
         </CardCover>
 
-        <CardOverflow variant="solid" sx={{ bgcolor: 'primary.maint', py: 2 }}>
+        <CardOverflow variant="solid" sx={{ bgcolor: 'primary.darkBlue', py: 2 }}>
           <Typography level="body-md">{product.name}</Typography>
           <Typography level="body-md">{product.price} €</Typography>
         </CardOverflow>

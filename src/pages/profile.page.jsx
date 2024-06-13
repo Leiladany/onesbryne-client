@@ -85,7 +85,7 @@ export const ProfilePage = () => {
     <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h4">Perfil</Typography>
       {isLoading ? (
-        <CircularProgress variant="plain" color="neutral" />
+        <CircularProgress variant="plain" color='neutral' />
       ) : (
         <Form
           controls={profileControls}

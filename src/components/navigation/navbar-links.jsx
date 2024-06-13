@@ -55,9 +55,13 @@ export const NavbarLinks = () => {
             <LinkWithLine
               to="/signup"
               children="Criar Conta"
-              className="line"
+              level="title-md"
             />
-            <LinkWithLine to="/login" children="Entrar" className="line" />
+            <LinkWithLine
+              to="/login"
+              children="Entrar"
+              level="title-md"
+            />
           </Box>
 
           {/* MOBILE */}
@@ -79,7 +83,7 @@ export const NavbarLinks = () => {
                   <LinkWithLine
                     to="/signup"
                     children="Criar Conta"
-                    className="line"
+                    level="title-md"
                   />
                 </MenuItem>
 
@@ -87,7 +91,7 @@ export const NavbarLinks = () => {
                   <LinkWithLine
                     to="/login"
                     children="Entrar"
-                    className="line"
+                    level="title-md"
                   />
                 </MenuItem>
               </Menu>

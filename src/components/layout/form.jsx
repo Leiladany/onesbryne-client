@@ -3,7 +3,13 @@ import { Inputs } from './inputs';
 import { LinkWithLine } from './link-with-line';
 import { Button, Stack, Typography } from '@mui/joy';
 
-export const Form = ({ type, controls, handleSubmit, buttonText, isLoading  }) => {
+export const Form = ({
+  type,
+  controls,
+  handleSubmit,
+  buttonText,
+  isLoading,
+}) => {
   return (
     <Stack
       component="form"
@@ -51,22 +57,22 @@ export const Form = ({ type, controls, handleSubmit, buttonText, isLoading  }) =
       >
         {type === 'signup' && (
           <>
-            <Typography sx={{ color: 'common.white' }}>
-              Já tem uma conta?
-            </Typography>
-            <LinkWithLine to="/login" children="Clique Aqui" className="line" />
+            <Typography level='title-sm'>Já tem uma conta?</Typography>
+            <LinkWithLine
+              to="/login"
+              children="Clique Aqui"
+              level="title-sm"
+            />
           </>
         )}
 
         {type === 'login' && (
           <>
-            <Typography sx={{ color: 'common.white' }}>
-              Ainda não tem conta?
-            </Typography>
+            <Typography level='title-sm'>Ainda não tem conta?</Typography>
             <LinkWithLine
               to="/signup"
               children="Clique Aqui"
-              className="line"
+              level="title-sm"
             />
           </>
         )}

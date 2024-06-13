@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Stack, Typography, Divider } from '@mui/joy';
+import { LinkWithLine } from '../layout/link-with-line';
 
 export const Footer = () => {
   return (
@@ -64,35 +65,27 @@ export const Footer = () => {
             gridRow: { xs: '1', md: '1' },
           }}
         >
-          <Typography
-            component={Link}
+          <LinkWithLine
             to="/guide"
             children="Guia"
-            className="line"
             level="body-xs"
           />
           <Divider orientation="vertical" />
-          <Typography
+          <LinkWithLine
             component={Link}
-            to="/"
             children="Contacto"
-            className="line"
             level="body-xs"
           />
           <Divider orientation="vertical" />
-          <Typography
-            component={Link}
+          <LinkWithLine
             to="/"
             children="Entregas"
-            className="line"
             level="body-xs"
           />
           <Divider orientation="vertical" />
-          <Typography
-            component={Link}
+          <LinkWithLine
             to="/"
             children="Política de privacidade"
-            className="line"
             level="body-xs"
           />
         </Stack>

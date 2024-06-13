@@ -2,9 +2,8 @@
 import { extendTheme } from '@mui/joy/styles';
 
 const colors = {
-  main: 'rgb(6, 11, 16)',
-  maint: 'rgba(6, 11, 16, 0.7)',
-  darkBlue: 'rgb(18, 24, 31)',
+  main: '#061110',
+  darkBlue: '#12181F',
 };
 
 const headingStyles = [
@@ -23,27 +22,22 @@ const headingStyles = [
 
 export const theme = extendTheme({
   colorSchemes: {
-    light: {
+    dark: {
       palette: {
         primary: {
           main: colors.main,
-          maint: colors.maint,
           darkBlue: colors.darkBlue,
         },
       },
     },
   },
   typography: Object.fromEntries(
-    headingStyles.map((heading) => [
-      heading,
-      { color: 'white', fontFamily: 'Arial' },
-    ]),
+    headingStyles.map((heading) => [heading, { fontFamily: 'Arial' }]),
   ),
   components: {
     JoyButton: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: 'common.white',
           backgroundColor: 'transparent',
           border: '1px solid',
           borderRadius: '2px',
@@ -59,12 +53,8 @@ export const theme = extendTheme({
     JoyInput: {
       styleOverrides: {
         root: ({ theme }) => ({
-          color: theme.vars.palette.neutral[300],
           backgroundColor: 'transparent',
           width: '100%',
-          '&:hover': {
-            color: theme.vars.palette.neutral[300],
-          },
           '&:focus-within::before': {
             boxShadow: 'none',
           },
@@ -92,6 +82,14 @@ export const theme = extendTheme({
             justifyContent: 'center',
           },
         }),
+      },
+    },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: colors.main, // Change this to your desired background color
+          // You can add more styles as needed
+        },
       },
     },
   },
