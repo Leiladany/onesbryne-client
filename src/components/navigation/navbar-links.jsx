@@ -7,8 +7,9 @@ import {
   Dropdown,
   MenuItem,
   Typography,
+  LinearProgress,
 } from '@mui/joy';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth.context';
 import { LinkWithLine } from '../layout/link-with-line';
@@ -24,6 +25,13 @@ import {
 export const NavbarLinks = () => {
   const { handleLogout, isAuthenticated, isAdmin } = useContext(AuthContext);
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (isAuthenticated && isAdmin) {
+      setIsLoading(false);
+    }
+  }, [isAuthenticated, isAdmin]);
 
   const handleHeartClick = () => {
     (prevState) => !prevState;
@@ -90,55 +98,61 @@ export const NavbarLinks = () => {
         /* IS AUTHENTICATED */
         <>
           {/* DESKTOP */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-            {isAdmin && (
-              <Link to="/admin">
+          {isLoading ? (
+            <Box sx={{ width: '20%' }}>
+              <LinearProgress variant="plain" color="neutral" thickness={2} />
+            </Box>
+          ) : (
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+              {isAdmin && (
+                <Link to="/admin">
+                  <Stack>
+                    {location.pathname.startsWith('/admin') ? (
+                      <MdAdminPanelSettings color="white" size={20} />
+                    ) : (
+                      <MdOutlineAdminPanelSettings color="white" size={20} />
+                    )}
+                  </Stack>
+                </Link>
+              )}
+
+              <Link to="/clothes">
                 <Stack>
-                  {location.pathname.startsWith('/admin') ? (
-                    <MdAdminPanelSettings color="white" size={20} />
+                  {location.pathname.startsWith('/clothes') ? (
+                    <PiDressFill color="white" size={20} />
                   ) : (
-                    <MdOutlineAdminPanelSettings color="white" size={20} />
+                    <PiDress color="white" size={20} />
                   )}
                 </Stack>
               </Link>
-            )}
 
-            <Link to="/clothes">
-              <Stack>
-                {location.pathname.startsWith('/clothes') ? (
-                  <PiDressFill color="white" size={20} />
-                ) : (
-                  <PiDress color="white" size={20} />
-                )}
-              </Stack>
-            </Link>
+              <Link to="/favourites">
+                <Stack onClick={handleHeartClick}>
+                  {location.pathname.startsWith('/favourites') ? (
+                    <IoIosHeart color="white" size={20} />
+                  ) : (
+                    <IoIosHeartEmpty color="white" size={20} />
+                  )}
+                </Stack>
+              </Link>
 
-            <Link to="/favourites">
-              <Stack onClick={handleHeartClick}>
-                {location.pathname.startsWith('/favourites') ? (
-                  <IoIosHeart color="white" size={20} />
-                ) : (
-                  <IoIosHeartEmpty color="white" size={20} />
-                )}
-              </Stack>
-            </Link>
+              <Link to="/profile">
+                <Stack>
+                  {location.pathname.startsWith('/profile') ? (
+                    <GoPersonFill color="white" size={20} />
+                  ) : (
+                    <GoPerson color="white" size={20} />
+                  )}
+                </Stack>
+              </Link>
 
-            <Link to="/profile">
-              <Stack>
-                {location.pathname.startsWith('/profile') ? (
-                  <GoPersonFill color="white" size={20} />
-                ) : (
-                  <GoPerson color="white" size={20} />
-                )}
-              </Stack>
-            </Link>
-
-            <Link to="/" onClick={handleLogout}>
-              <Stack>
-                <IoIosLogOut color="white" size={20} />
-              </Stack>
-            </Link>
-          </Box>
+              <Link to="/" onClick={handleLogout}>
+                <Stack>
+                  <IoIosLogOut color="white" size={20} />
+                </Stack>
+              </Link>
+            </Box>
+          )}
 
           {/* MOBILE */}
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

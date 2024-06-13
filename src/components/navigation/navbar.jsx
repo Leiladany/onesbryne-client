@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { NavbarLinks } from './navbar-links';
 import { Link } from 'react-router-dom';
-import { Stack, Typography } from '@mui/joy';
+import { Divider, Stack, Typography } from '@mui/joy';
 
 export const Navbar = () => {
   return (
@@ -36,13 +36,7 @@ export const Navbar = () => {
         <NavbarLinks />
       </Stack>
 
-      <Stack
-        sx={{
-          backgroundColor: 'common.white',
-          mx: { xs: 2, md: 10 },
-          height: '1px',
-        }}
-      />
+      <Divider sx={{ mx: { xs: 2, md: 10 } }} />
     </Stack>
   );
 };

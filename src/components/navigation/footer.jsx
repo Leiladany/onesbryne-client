@@ -1,25 +1,14 @@
-import { LinkWithLine } from '../layout/link-with-line';
-import {
-  Stack,
-  Typography,
-  Divider,
-} from '@mui/joy';
+import { Link } from 'react-router-dom';
+import { Stack, Typography, Divider } from '@mui/joy';
 
 export const Footer = () => {
   return (
     <Stack component="footer">
-      <Stack
-        component="section"
-        sx={{
-          backgroundColor: 'common.white',
-          mx: { xs: 2, md: 10 },
-          height: '1px',
-        }}
-      />
+      <Divider sx={{ mx: { xs: 2, md: 10 } }} />
+
       <Stack
         sx={{
           py: 2,
-          flexDirection: { sx: 'column', md: 'row' },
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' },
           zIndex: '1000',
@@ -28,19 +17,24 @@ export const Footer = () => {
       >
         <Stack
           component="section"
-          sx={{ display: { xs: 'none', md: 'flex' } }}
+          sx={{
+            display: { xs: 'none', md: 'flex' },
+          }}
         />
 
         <Stack
+          component="section"
           sx={{
             flexDirection: 'row',
             justifyContent: 'center',
             gap: 1,
+            gridColumn: { xs: '1', md: '2' },
+            gridRow: { xs: '2', md: '1' },
           }}
         >
           <Typography
+            level="body-sm"
             sx={{
-              fontSize: '12px',
               fontWeight: 'lighter',
             }}
           >
@@ -48,9 +42,9 @@ export const Footer = () => {
           </Typography>
 
           <Typography
+            level="body-sm"
             sx={{
               fontFamily: 'italiana, sans-serif',
-              fontSize: '12px',
               fontWeight: 'lighter',
             }}
           >
@@ -59,30 +53,44 @@ export const Footer = () => {
         </Stack>
 
         <Stack
+          component="section"
           sx={{
             pr: { xs: 0, md: 10 },
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: { xs: 'center', md: 'right' },
             gap: 1,
+            gridColumn: { xs: '1', md: '3' },
+            gridRow: { xs: '1', md: '1' },
           }}
         >
-          <LinkWithLine to="/guide" children="Guia" className="line" level="body-xs" />
-          <Divider
-            orientation="vertical"
-            sx={{ backgroundColor: 'common.white' }}
+          <Typography
+            component={Link}
+            to="/guide"
+            children="Guia"
+            className="line"
+            level="body-xs"
           />
-          <LinkWithLine children="Contacto" className="line" level="body-xs" />
-          <Divider
-            orientation="vertical"
-            sx={{ backgroundColor: 'common.white' }}
+          <Divider orientation="vertical" />
+          <Typography
+            component={Link}
+            to="/"
+            children="Contacto"
+            className="line"
+            level="body-xs"
           />
-          <LinkWithLine children="Entregas" className="line" level="body-xs" />
-          <Divider
-            orientation="vertical"
-            sx={{ backgroundColor: 'common.white' }}
+          <Divider orientation="vertical" />
+          <Typography
+            component={Link}
+            to="/"
+            children="Entregas"
+            className="line"
+            level="body-xs"
           />
-          <LinkWithLine
+          <Divider orientation="vertical" />
+          <Typography
+            component={Link}
+            to="/"
             children="Política de privacidade"
             className="line"
             level="body-xs"
