@@ -3,7 +3,7 @@ import AliceCarousel from 'react-alice-carousel';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { types } from '../utils/arrays';
-import { Box, Button } from '@mui/joy';
+import { Button, Card, Typography } from '@mui/joy';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 export const Carousel = () => {
@@ -25,17 +25,17 @@ export const Carousel = () => {
   };
 
   const items = types.map((type, index) => (
-    <Box
+    <Card
+      key={index}
       component={Link}
       to={`/clothes/${type.type.toLowerCase()}`}
-      key={index}
       style={{ backgroundImage: `url(${type.img})` }}
       sx={{ ...item }}
     >
-      <Box sx={{ ...itemContent }}>
-        <h3>{type.type}</h3>
-      </Box>
-    </Box>
+      <Typography level="h3" sx={{ color: 'neutral.900' }}>
+        {type.type}
+      </Typography>
+    </Card>
   ));
 
   return (
@@ -74,34 +74,52 @@ export const Carousel = () => {
 };
 
 const item = {
-  color: 'black',
-  mx: {xs: 0.5 , md: 1},
-  height: { xs: '240px', md: '480px' },
   display: 'flex',
-  justifyContent: 'center',
   alignItems: 'center',
+  justifyContent: 'center',
+  mx: { xs: 0.5, md: 1 },
+  height: { xs: '240px', md: '480px' },
   borderRadius: '8px',
   textDecoration: 'none',
   backgroundSize: 'cover',
   backgroundPosition: 'top',
+  position: 'relative',
+  overflow: 'hidden',
+  '> *': {
+    position: 'relative',
+    zIndex: 2,
+  },
+
+  '::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    zIndex: 1,
+  },
+
   transition: 'background-color 0.3s, transform 0.3s ease, boxShadow 0.3s ease',
   ':hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     transform: 'scale(1.03)',
   },
 };
 
-const itemContent = {
-  backgroundColor: 'rgba(255, 255, 255, 0.5)',
-  borderRadius: '32px',
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  flexDirection: 'column',
-  padding: '1rem',
-};
+const items = types.map((type, index) => (
+  <Card
+    key={index}
+    component={Link}
+    to={`/clothes/${type.type.toLowerCase()}`}
+    style={{ backgroundImage: `url(${type.img})` }}
+    sx={{ ...item }}
+  >
+    <Typography level="h3" sx={{ color: 'neutral.900', textAlign: 'center' }}>
+      {type.type}
+    </Typography>
+  </Card>
+));
 
 const arrow = {
   bgcolor: 'primary.darkBlue',
