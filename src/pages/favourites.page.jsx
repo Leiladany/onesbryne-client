@@ -49,10 +49,10 @@ export const FavouritesPage = () => {
         <Stack
           sx={{
             width: '100%',
-            flexDirection: { xs: 'column', lg: 'row' },
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: 6,
+            display: "grid",
+            gridTemplateColumns: {xs: "1fr 1fr", md: "1fr 1fr 1fr", lg: "1fr 1fr 1fr 1fr"},
+            rowGap: 4,
+            columnGap: 1,
           }}
         >
           {products.map((product, index) => (

@@ -1,10 +1,5 @@
 import { Link } from 'react-router-dom';
-import {
-  Card,
-  CardCover,
-  CardOverflow,
-  Typography,
-} from '@mui/joy';
+import { Card, CardCover, CardOverflow, Typography } from '@mui/joy';
 
 export const ClothesCard = ({ product }) => {
   return (
@@ -13,18 +8,21 @@ export const ClothesCard = ({ product }) => {
         sx={{
           background: 'transparent',
           borderColor: 'neutral.700',
-          width: { md: '400px' },
-          height: '600px',
+          height: { xs: '300px', sm: '600px' },
           justifyContent: 'flex-end',
+          borderRadius: 0,
         }}
       >
         <CardCover>
           <img src={product.img[0]} alt={product.name} loading="lazy" />
         </CardCover>
 
-        <CardOverflow variant="solid" sx={{ bgcolor: 'primary.darkBlue', py: 2 }}>
-          <Typography level="body-md">{product.name}</Typography>
-          <Typography level="body-md">{product.price} €</Typography>
+        <CardOverflow
+          variant="solid"
+          sx={{ bgcolor: 'primary.darkBlue', py: 1 }}
+        >
+          <Typography level="body-sm">{product.name}</Typography>
+          <Typography level="body-sm">{product.price} €</Typography>
         </CardOverflow>
       </Card>
     </Link>

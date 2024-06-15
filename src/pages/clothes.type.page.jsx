@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { DataService } from '../components/services/data-service';
-import { Stack, Typography, Skeleton, Card, CardCover } from '@mui/joy';
+import {
+  Stack,
+  Typography,
+  CircularProgress,
+} from '@mui/joy';
 import { ClothesCard } from '../components/layout/clothes-card';
 import { PageContainer } from '../components/layout/containers';
 
@@ -37,36 +41,23 @@ export const ClothesTypePage = () => {
     <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h3">{type.toUpperCase()}</Typography>
 
-      <Stack
-        sx={{
-          width: '100%',
-          flexDirection: { xs: 'column', lg: 'row' },
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: 6,
-        }}
-      >
-        {isLoading
-          ? Array.from(new Array(9)).map((_, index) => (
-              <Card
-                key={index}
-                sx={{
-                  background: 'transparent',
-                  borderColor: 'neutral.700',
-                  width: { md: '400px' },
-                  height: '600px',
-                  justifyContent: 'flex-end',
-                }}
-              >
-                <CardCover>
-                  <Skeleton variant="rectangular" width={400} height={600} />
-                </CardCover>
-              </Card>
-            ))
-          : filteredProducts.map((product, index) => (
-              <ClothesCard key={index} product={product} />
-            ))}
-      </Stack>
+      {isLoading ? (
+        <CircularProgress variant="plain" color="neutral" />
+      ) : (
+        <Stack
+          sx={{
+            width: '100%',
+            display: "grid",
+            gridTemplateColumns: {xs: "1fr 1fr", md: "1fr 1fr 1fr", lg: "1fr 1fr 1fr 1fr"},
+            rowGap: 4,
+            columnGap: 1,
+          }}
+        >
+          {filteredProducts.map((product, index) => (
+            <ClothesCard key={index} product={product} />
+          ))}
+        </Stack>
+      )}
     </PageContainer>
   );
 };
