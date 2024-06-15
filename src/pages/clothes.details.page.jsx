@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { DataService } from '../components/services/data-service';
-import { Stack, Typography, Button, CircularProgress } from '@mui/joy';
+import { Stack, Typography, Button, CircularProgress, Box } from '@mui/joy';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import {
   errorToast,
@@ -114,16 +114,15 @@ export const ClothesDetailsPage = () => {
   };
 
   return (
-    <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
+    <PageContainer sx={{ mx: { xs: 2, md: 10 }, gap: 4 }}>
       {isLoading ? (
-        <CircularProgress variant="plain" color='neutral' />
+        <CircularProgress variant="plain" color="neutral" />
       ) : (
         <>
           <Typography level="h4">{product.name}</Typography>
-          <Stack sx={{ width: '50%', alignItems: 'center' }}>
-            <Stack
-              sx={{ width: { xs: '100%', md: '50%', position: 'relative' } }}
-            >
+
+          <Stack sx={{ flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
+            <Stack sx={{ width: '300px', position: 'relative' }}>
               {isAuthenticated && (
                 <Button
                   variant="plain"
@@ -157,25 +156,26 @@ export const ClothesDetailsPage = () => {
 
               <img src={product.img[0]} alt={product.name} />
             </Stack>
-          </Stack>
 
-          <Stack sx={{ width: { xs: '100%', md: '50%' }, gap: 2 }}>
-            <Typography>#{product.code}</Typography>
-
-            <Stack sx={{ flexDirection: 'row', gap: 2 }}>
-              <Stack sx={{ flexDirection: 'row', gap: 1 }}>
-                <Typography>{product.name}</Typography>
+            <Stack sx={{ width: '300px', alignItems: 'center', gap: 4 }}>
+              <Stack sx={{ alignItems: 'center', gap: 2 }}>
+                <Typography
+                  startDecorator={<Typography>#{product.code}</Typography>}
+                  sx={{width: "100%"}}
+                >
+                  {product.name}
+                </Typography>
                 <Typography>{product.price}€</Typography>
+                <Typography>{product.size}</Typography>
               </Stack>
-              <Typography>{product.size}</Typography>
-            </Stack>
 
-            <Typography sx={{ textAlign: 'justify' }}>
-              {product.description}
-            </Typography>
-            <div>
-              <Button onClick={handleContact}>Contactar</Button>
-            </div>
+              <Typography sx={{ textAlign: 'justify' }}>
+                {product.description}
+              </Typography>
+              <Stack>
+                <Button onClick={handleContact}>Contactar</Button>
+              </Stack>
+            </Stack>
           </Stack>
         </>
       )}
