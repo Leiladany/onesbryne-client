@@ -1,11 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { DataService } from '../components/services/data-service';
-import {
-  Stack,
-  Typography,
-  CircularProgress,
-} from '@mui/joy';
+import { Stack, Typography, CircularProgress } from '@mui/joy';
 import { ClothesCard } from '../components/layout/clothes-card';
 import { PageContainer } from '../components/layout/containers';
 
@@ -14,9 +10,13 @@ export const ClothesTypePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    fetchAllProducts();
+  }, []);
+
   const fetchAllProducts = async () => {
     try {
-      const response = await DataService.fetchData('/api/products');
+      const response = await DataService.getData('/api/products/status/available');
       if (response) {
         setProducts(response);
       }
@@ -33,10 +33,6 @@ export const ClothesTypePage = () => {
     );
   }, [products, type]);
 
-  useEffect(() => {
-    fetchAllProducts();
-  }, []);
-
   return (
     <PageContainer sx={{ gap: 4, mx: { xs: 2, md: 10 } }}>
       <Typography level="h3">{type.toUpperCase()}</Typography>
@@ -47,8 +43,12 @@ export const ClothesTypePage = () => {
         <Stack
           sx={{
             width: '100%',
-            display: "grid",
-            gridTemplateColumns: {xs: "1fr 1fr", md: "1fr 1fr 1fr", lg: "1fr 1fr 1fr 1fr"},
+            display: 'grid',
+            gridTemplateColumns: {
+              xs: '1fr 1fr',
+              md: '1fr 1fr 1fr',
+              lg: '1fr 1fr 1fr 1fr',
+            },
             rowGap: 4,
             columnGap: 1,
           }}

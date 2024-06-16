@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card, CardCover, CardOverflow, Typography } from '@mui/joy';
+import { Card, CardCover, CardOverflow, Divider, Stack, Typography } from '@mui/joy';
 
 export const ClothesCard = ({ product }) => {
   return (
@@ -21,14 +21,15 @@ export const ClothesCard = ({ product }) => {
           variant="solid"
           sx={{
             bgcolor: 'primary.darkBlue',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr 1fr',
             py: 1,
           }}
         >
-          <Typography level="body-sm">{product.name}</Typography>
-          <Typography level="body-sm" sx={{textAlign: "center"}}>{product.size}</Typography>
-          <Typography level="body-sm" sx={{textAlign: "end"}}>{product.price} €</Typography>
+          <Stack sx={{flexDirection: "row", gap: 1}}>
+            <Typography level="body-sm">{product.name}</Typography>
+            <Divider orientation="vertical" />
+            <Typography level="body-sm">{product.size}</Typography>
+          </Stack>
+          <Typography level="title-sm">{product.price} €</Typography>
         </CardOverflow>
       </Card>
     </Link>

@@ -20,7 +20,7 @@ export const ProfilePage = () => {
 
   const getUserById = async () => {
     try {
-      const userData = await DataService.fetchData(`/api/users/${userId}`);
+      const userData = await DataService.getData(`/api/users/${userId}`);
       if (userData) {
         setUser(userData);
         setNewName(userData.user.name);
@@ -44,7 +44,7 @@ export const ProfilePage = () => {
       };
 
       try {
-        const updatedUser = await DataService.updateData(
+        const updatedUser = await DataService.putData(
           `/api/users/${userId}`,
           newData,
         );

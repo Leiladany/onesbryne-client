@@ -27,7 +27,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const handleSignup = async (payload) => {
     try {
-      const response = await DataService.createData('/auth/signup', payload);
+      const response = await DataService.postData('/auth/signup', payload);
       console.log(response);
       if (response.data) {
         const token = response.data.session.access_token;
@@ -45,7 +45,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const handleLogin = async (payload) => {
     try {
-      const response = await DataService.createData('/auth/login', payload);
+      const response = await DataService.postData('/auth/login', payload);
       if (response.error) {
         loginToast.error();
       } else if (response.data) {
@@ -73,7 +73,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const fetchUserData = async (userId) => {
     try {
-      const responseUserPublic = await DataService.fetchData(
+      const responseUserPublic = await DataService.getData(
         `/api/users/${userId}`,
       );
       if (responseUserPublic) {

@@ -19,10 +19,10 @@ export const FavouritesPage = () => {
   const getUserFavouriteProducts = async (userId) => {
     setIsLoading(true);
     try {
-      const userData = await DataService.fetchData(`/api/users/${userId}`);
+      const userData = await DataService.getData(`/api/users/${userId}`);
       if (userData.user.favourites) {
         const userFavourites = userData.user.favourites;
-        const response = await DataService.fetchData('/api/products');
+        const response = await DataService.getData('/api/products/status/available');
         if (response) {
           const filteredProducts = response.filter((product) =>
             userFavourites.includes(product.id),

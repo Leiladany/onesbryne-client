@@ -32,7 +32,7 @@ export const NewProductPage = () => {
   const fetchProduct = async () => {
     setIsLoading(true);
     try {
-      const response = await DataService.fetchData(`/api/products/${productId}`);
+      const response = await DataService.getData(`/api/products/${productId}`);
       if (response) {
         setCode(response.code);
         setName(response.name);
@@ -67,7 +67,7 @@ export const NewProductPage = () => {
     };
 
     try {
-      const response = await DataService.createData('/api/products', product);
+      const response = await DataService.postData('/api/products', product);
       if (response.error) {
         adminToast.errorCreate();
       } else {
@@ -97,7 +97,7 @@ export const NewProductPage = () => {
     };
 
     try {
-      const response = await DataService.updateData(`/api/products/${productId}`, updatedProduct);
+      const response = await DataService.putData(`/api/products/${productId}`, updatedProduct);
       if (response) {
         navigate('/admin');
         adminToast.successUpdate();

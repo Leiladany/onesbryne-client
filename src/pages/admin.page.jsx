@@ -17,7 +17,7 @@ export const AdminPage = () => {
 
   const fetchAllProducts = async () => {
     try {
-      const products = await DataService.fetchData('/api/products');
+      const products = await DataService.getData('/api/products');
       if (products) {
         products.sort((a, b) => (a.code > b.code ? 1 : -1));
         setProducts(products);

@@ -1,5 +1,5 @@
 export const DataService = {
-  async fetchData(endpoint) {
+  async getData(endpoint) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'GET',
@@ -11,7 +11,7 @@ export const DataService = {
     }
   },
 
-  async createData(endpoint, data) {
+  async postData(endpoint, data) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
@@ -24,7 +24,7 @@ export const DataService = {
     }
   },
 
-  async updateData(endpoint, data) {
+  async putData(endpoint, data) {
     try {
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'PUT',

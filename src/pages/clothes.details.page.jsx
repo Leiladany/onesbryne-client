@@ -55,7 +55,7 @@ export const ClothesDetailsPage = () => {
   const getProductById = async () => {
     setIsLoadingProduct(true);
     try {
-      const response = await DataService.fetchData(
+      const response = await DataService.getData(
         `/api/products/${productId}`,
       );
       if (response) {
@@ -71,7 +71,7 @@ export const ClothesDetailsPage = () => {
   const getUserById = async () => {
     setIsLoadingUser(true);
     try {
-      const userData = await DataService.fetchData(`/api/users/${userId}`);
+      const userData = await DataService.getData(`/api/users/${userId}`);
       if (userData.user.favourites) {
         setUserFavourites(userData.user.favourites);
       } else {
@@ -87,7 +87,7 @@ export const ClothesDetailsPage = () => {
   const addProductToUserFavourites = async () => {
     setIsLoadingFavourite(true);
     try {
-      await DataService.updateData(
+      await DataService.putData(
         `/api/users/${userId}/favourites`,
         { productId: productId },
         'PUT',
