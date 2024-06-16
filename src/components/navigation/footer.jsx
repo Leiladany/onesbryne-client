@@ -5,21 +5,21 @@ import { LinkWithLine } from '../layout/link-with-line';
 export const Footer = () => {
   return (
     <Stack component="footer">
-      <Divider sx={{ mx: { xs: 2, md: 10 } }} />
+      <Divider sx={{ mx: { xs: 2, lg: 10 } }} />
 
       <Stack
         sx={{
           py: 2,
           display: 'grid',
-          gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' },
+          gridTemplateColumns: { xs: '1fr', lg: '1fr 1fr 1fr' },
           zIndex: '1000',
-          gap: { xs: 2, md: 0 },
+          gap: { xs: 2, lg: 0 },
         }}
       >
         <Stack
           component="section"
           sx={{
-            display: { xs: 'none', md: 'flex' },
+            display: { xs: 'none', lg: 'flex' },
           }}
         />
 
@@ -29,8 +29,8 @@ export const Footer = () => {
             flexDirection: 'row',
             justifyContent: 'center',
             gap: 1,
-            gridColumn: { xs: '1', md: '2' },
-            gridRow: { xs: '2', md: '1' },
+            gridColumn: { xs: '1', lg: '2' },
+            gridRow: { xs: '2', lg: '1' },
           }}
         >
           <Typography
@@ -56,13 +56,13 @@ export const Footer = () => {
         <Stack
           component="section"
           sx={{
-            pr: { xs: 0, md: 10 },
+            pr: { xs: 0, lg: 10 },
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: { xs: 'center', md: 'right' },
+            justifyContent: { xs: 'center', lg: 'right' },
             gap: 1,
-            gridColumn: { xs: '1', md: '3' },
-            gridRow: { xs: '1', md: '1' },
+            gridColumn: { xs: '1', lg: '3' },
+            gridRow: { xs: '1', lg: '1' },
           }}
         >
           <LinkWithLine

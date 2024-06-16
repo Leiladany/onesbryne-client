@@ -41,7 +41,7 @@ export const NavbarLinks = () => {
     <Stack
       component="section"
       sx={{
-        pr: { xs: 2, md: 10 },
+        pr: { xs: 2, lg: 10 },
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'right',
@@ -51,7 +51,7 @@ export const NavbarLinks = () => {
         /* IS NOT AUTHENTICATED */
         <>
           {/* DESKTOP */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+          <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 2 }}>
             <LinkWithLine
               to="/signup"
               children="Criar Conta"
@@ -65,7 +65,7 @@ export const NavbarLinks = () => {
           </Box>
 
           {/* MOBILE */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', lg: 'none' } }}>
             <Dropdown>
               <MenuButton variant="plain" sx={{ p: 0 }}>
                 <GoPerson color="white" size={25} />
@@ -107,7 +107,7 @@ export const NavbarLinks = () => {
               <LinearProgress variant="plain" color="neutral" thickness={2} />
             </Box>
           ) : (
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+            <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 2 }}>
               {isAdmin && (
                 <Link to="/admin">
                   <Stack>
@@ -159,7 +159,7 @@ export const NavbarLinks = () => {
           )}
 
           {/* MOBILE */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ display: { xs: 'flex', lg: 'none' } }}>
             <Dropdown>
               <MenuButton variant="plain" sx={{ p: 0 }}>
                 <GoPerson color="white" size={25} />

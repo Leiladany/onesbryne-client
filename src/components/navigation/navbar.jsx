@@ -24,7 +24,7 @@ export const Navbar = () => {
               sx={{
                 fontFamily: 'italiana, sans-serif',
                 fontWeight: 'lighter',
-                fontSize: { xs: '32px', md: '64px' },
+                fontSize: { xs: '32px', lg: '64px' },
                 textAlign: 'center',
               }}
             >
@@ -36,7 +36,7 @@ export const Navbar = () => {
         <NavbarLinks />
       </Stack>
 
-      <Divider sx={{ mx: { xs: 2, md: 10 } }} />
+      <Divider sx={{ mx: { xs: 2, lg: 10 } }} />
     </Stack>
   );
 };
