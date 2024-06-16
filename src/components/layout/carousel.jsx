@@ -3,7 +3,7 @@ import AliceCarousel from 'react-alice-carousel';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { types } from '../utils/arrays';
-import { Button, Card, Typography } from '@mui/joy';
+import { Box, Button, Card, Typography } from '@mui/joy';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 export const Carousel = () => {
@@ -32,14 +32,14 @@ export const Carousel = () => {
       style={{ backgroundImage: `url(${type.img})` }}
       sx={{ ...item }}
     >
-      <Typography level="h3" sx={{ color: 'neutral.900' }}>
+      <Typography level="title-lg" sx={{ color: 'neutral.900' }}>
         {type.type}
       </Typography>
     </Card>
   ));
 
   return (
-    <>
+    <Box sx={{ width: '100%', position: 'relative' }}>
       <AliceCarousel
         ref={carouselRef}
         items={items}
@@ -54,22 +54,22 @@ export const Carousel = () => {
         onClick={handlePrev}
         sx={{
           ...arrow,
-          left: '0px',
+          left: '10px',
         }}
       >
-        <MdKeyboardArrowLeft size={20} />
+        <MdKeyboardArrowLeft size={15} />
       </Button>
 
       <Button
         onClick={handleNext}
         sx={{
           ...arrow,
-          right: '0px',
+          right: '10px',
         }}
       >
-        <MdKeyboardArrowRight size={20} />
+        <MdKeyboardArrowRight size={15} />
       </Button>
-    </>
+    </Box>
   );
 };
 
@@ -77,19 +77,16 @@ const item = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  mx: { xs: 0.5, md: 1 },
   height: { xs: '240px', md: '480px' },
-  borderRadius: '8px',
+  borderRadius: '0px',
   textDecoration: 'none',
   backgroundSize: 'cover',
   backgroundPosition: 'top',
   position: 'relative',
   overflow: 'hidden',
   '> *': {
-    position: 'relative',
     zIndex: 2,
   },
-
   '::before': {
     content: '""',
     position: 'absolute',
@@ -100,33 +97,20 @@ const item = {
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
     zIndex: 1,
   },
-
   transition: 'background-color 0.3s, transform 0.3s ease, boxShadow 0.3s ease',
   ':hover': {
     transform: 'scale(1.03)',
   },
 };
 
-const items = types.map((type, index) => (
-  <Card
-    key={index}
-    component={Link}
-    to={`/clothes/${type.type.toLowerCase()}`}
-    style={{ backgroundImage: `url(${type.img})` }}
-    sx={{ ...item }}
-  >
-    <Typography level="h3" sx={{ color: 'neutral.900', textAlign: 'center' }}>
-      {type.type}
-    </Typography>
-  </Card>
-));
-
 const arrow = {
+  height: '36px',
+  width: '36px',
+  alignItems: 'center',
+  justifyContent: 'center',
   bgcolor: 'primary.darkBlue',
   padding: 1,
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   borderRadius: '50%',
   position: 'absolute',
   top: '50%',

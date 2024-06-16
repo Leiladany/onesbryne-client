@@ -3,10 +3,10 @@ import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { Navbar } from '../components/navigation/navbar';
 import { Footer } from '../components/navigation/footer';
+import { HomePage } from '../pages/home.page';
 import { LoginPage } from '../pages/login.page';
 import { SignupPage } from '../pages/signup.page';
 import { GuidePage } from '../pages/guide.page';
-import { ClothesPage } from '../pages/clothes.carousel.page';
 import { ClothesTypePage } from '../pages/clothes.type.page';
 import { ClothesDetailsPage } from '../pages/clothes.details.page';
 import { FavouritesPage } from '../pages/favourites.page';
@@ -24,10 +24,10 @@ export const App = () => {
 
       <RoutesContainer>
         <Routes>
+          <Route path="/home" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/guide" element={<GuidePage />} />
-          <Route path="/clothes" element={<ClothesPage />} />
           <Route path="/clothes/:type" element={<ClothesTypePage />} />
           <Route
             path="/clothes/:type/:productId"
@@ -50,7 +50,7 @@ export const App = () => {
               )}
             </>
           )}
-          <Route path="*" element={<Navigate to={'/clothes'} />} />
+          <Route path="*" element={<Navigate to={'/home'} />} />
         </Routes>
       </RoutesContainer>
 

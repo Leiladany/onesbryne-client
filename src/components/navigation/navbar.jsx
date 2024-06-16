@@ -18,7 +18,7 @@ export const Navbar = () => {
         <Stack component="section" />
 
         <Stack component="section" sx={{ alignItems: 'center' }}>
-          <Link to="/" underline="none">
+          <Link to="/home" underline="none">
             <Typography
               level="h1"
               sx={{

@@ -19,10 +19,16 @@ export const ClothesCard = ({ product }) => {
 
         <CardOverflow
           variant="solid"
-          sx={{ bgcolor: 'primary.darkBlue', py: 1 }}
+          sx={{
+            bgcolor: 'primary.darkBlue',
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr',
+            py: 1,
+          }}
         >
           <Typography level="body-sm">{product.name}</Typography>
-          <Typography level="body-sm">{product.price} €</Typography>
+          <Typography level="body-sm" sx={{textAlign: "center"}}>{product.size}</Typography>
+          <Typography level="body-sm" sx={{textAlign: "end"}}>{product.price} €</Typography>
         </CardOverflow>
       </Card>
     </Link>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Stack, Typography, Divider } from '@mui/joy';
 import { LinkWithLine } from '../layout/link-with-line';
 
@@ -72,19 +71,19 @@ export const Footer = () => {
           />
           <Divider orientation="vertical" />
           <LinkWithLine
-            component={Link}
+            to="/home"
             children="Contacto"
             level="body-xs"
           />
           <Divider orientation="vertical" />
           <LinkWithLine
-            to="/"
+            to="/home"
             children="Entregas"
             level="body-xs"
           />
           <Divider orientation="vertical" />
           <LinkWithLine
-            to="/"
+            to="/home"
             children="Política de privacidade"
             level="body-xs"
           />

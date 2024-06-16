@@ -13,10 +13,9 @@ import { useContext, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth.context';
 import { LinkWithLine } from '../layout/link-with-line';
-import { IoIosLogOut } from 'react-icons/io';
-import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
+import { IoIosLogOut, IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import { GoPerson, GoPersonFill } from 'react-icons/go';
-import { PiDress, PiDressFill } from 'react-icons/pi';
+import { IoHome, IoHomeOutline } from "react-icons/io5";
 import {
   MdAdminPanelSettings,
   MdOutlineAdminPanelSettings,
@@ -33,9 +32,37 @@ export const NavbarLinks = () => {
     }
   }, [isAuthenticated, isAdmin]);
 
-  const handleHeartClick = () => {
-    (prevState) => !prevState;
-  };
+  const iconProps = { color: 'white', size: 20 };
+
+  const links = [
+    {
+      label: 'Admin',
+      to: '/admin',
+      icons: [
+        <MdOutlineAdminPanelSettings {...iconProps} />,
+        <MdAdminPanelSettings {...iconProps} />,
+      ],
+      condition: isAdmin,
+    },
+    {
+      label: 'Roupas',
+      to: '/home',
+      icons: [<IoHomeOutline  {...iconProps} />, <IoHome {...iconProps} />],
+    },
+    {
+      label: 'Favoritos',
+      to: '/favourites',
+      icons: [
+        <IoIosHeartEmpty {...iconProps} />,
+        <IoIosHeart {...iconProps} />,
+      ],
+    },
+    {
+      label: 'Perfil',
+      to: '/profile',
+      icons: [<GoPerson {...iconProps} />, <GoPersonFill {...iconProps} />],
+    },
+  ];
 
   return (
     <Stack
@@ -48,7 +75,6 @@ export const NavbarLinks = () => {
       }}
     >
       {!isAuthenticated ? (
-        /* IS NOT AUTHENTICATED */
         <>
           {/* DESKTOP */}
           <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 2 }}>
@@ -57,11 +83,7 @@ export const NavbarLinks = () => {
               children="Criar Conta"
               level="title-md"
             />
-            <LinkWithLine
-              to="/login"
-              children="Entrar"
-              level="title-md"
-            />
+            <LinkWithLine to="/login" children="Entrar" level="title-md" />
           </Box>
 
           {/* MOBILE */}
@@ -99,7 +121,6 @@ export const NavbarLinks = () => {
           </Box>
         </>
       ) : (
-        /* IS AUTHENTICATED */
         <>
           {/* DESKTOP */}
           {isLoading ? (
@@ -108,49 +129,17 @@ export const NavbarLinks = () => {
             </Box>
           ) : (
             <Box sx={{ display: { xs: 'none', lg: 'flex' }, gap: 2 }}>
-              {isAdmin && (
-                <Link to="/admin">
-                  <Stack>
-                    {location.pathname.startsWith('/admin') ? (
-                      <MdAdminPanelSettings color="white" size={20} />
-                    ) : (
-                      <MdOutlineAdminPanelSettings color="white" size={20} />
-                    )}
-                  </Stack>
-                </Link>
+              {links.map(
+                ({ to, icons, condition = true }, index) =>
+                  condition && (
+                    <Link key={index} to={to}>
+                      <Stack>
+                        {location.pathname.startsWith(to) ? icons[1] : icons[0]}
+                      </Stack>
+                    </Link>
+                  ),
               )}
-
-              <Link to="/clothes">
-                <Stack>
-                  {location.pathname.startsWith('/clothes') ? (
-                    <PiDressFill color="white" size={20} />
-                  ) : (
-                    <PiDress color="white" size={20} />
-                  )}
-                </Stack>
-              </Link>
-
-              <Link to="/favourites">
-                <Stack onClick={handleHeartClick}>
-                  {location.pathname.startsWith('/favourites') ? (
-                    <IoIosHeart color="white" size={20} />
-                  ) : (
-                    <IoIosHeartEmpty color="white" size={20} />
-                  )}
-                </Stack>
-              </Link>
-
-              <Link to="/profile">
-                <Stack>
-                  {location.pathname.startsWith('/profile') ? (
-                    <GoPersonFill color="white" size={20} />
-                  ) : (
-                    <GoPerson color="white" size={20} />
-                  )}
-                </Stack>
-              </Link>
-
-              <Link to="/" onClick={handleLogout}>
+              <Link to="/home" onClick={handleLogout}>
                 <Stack>
                   <IoIosLogOut color="white" size={20} />
                 </Stack>
@@ -173,68 +162,23 @@ export const NavbarLinks = () => {
                   borderColor: 'neutral.700',
                 }}
               >
+                {links.map(
+                  ({ to, icons, label, condition = true, onClick }, index) =>
+                    condition && (
+                      <MenuItem key={index}>
+                        <Link to={to} onClick={onClick}>
+                          <Stack sx={{ flexDirection: 'row', gap: 1 }}>
+                            {location.pathname.startsWith(to)
+                              ? icons[1]
+                              : icons[0]}
+                            <Typography>{label}</Typography>
+                          </Stack>
+                        </Link>
+                      </MenuItem>
+                    ),
+                )}
                 <MenuItem>
-                  {isAdmin && (
-                    <Link to="/admin">
-                      <Stack sx={{ flexDirection: 'row', gap: 1 }}>
-                        {location.pathname.startsWith('/admin') ? (
-                          <MdAdminPanelSettings color="white" size={20} />
-                        ) : (
-                          <MdOutlineAdminPanelSettings
-                            color="white"
-                            size={20}
-                          />
-                        )}
-                        <Typography>Admin</Typography>
-                      </Stack>
-                    </Link>
-                  )}
-                </MenuItem>
-
-                <MenuItem>
-                  <Link to="/clothes">
-                    <Stack sx={{ flexDirection: 'row', gap: 1 }}>
-                      {location.pathname.startsWith('/clothes') ? (
-                        <PiDressFill color="white" size={20} />
-                      ) : (
-                        <PiDress color="white" size={20} />
-                      )}
-                      <Typography>Roupas</Typography>
-                    </Stack>
-                  </Link>
-                </MenuItem>
-
-                <MenuItem>
-                  <Link to="/favourites">
-                    <Stack
-                      sx={{ flexDirection: 'row', gap: 1 }}
-                      onClick={handleHeartClick}
-                    >
-                      {location.pathname.startsWith('/favourites') ? (
-                        <IoIosHeart color="white" size={20} />
-                      ) : (
-                        <IoIosHeartEmpty color="white" size={20} />
-                      )}
-                      <Typography>Favoritos</Typography>
-                    </Stack>
-                  </Link>
-                </MenuItem>
-
-                <MenuItem>
-                  <Link to="/profile">
-                    <Stack sx={{ flexDirection: 'row', gap: 1 }}>
-                      {location.pathname.startsWith('/profile') ? (
-                        <GoPersonFill color="white" size={20} />
-                      ) : (
-                        <GoPerson color="white" size={20} />
-                      )}
-                      <Typography>Perfil</Typography>
-                    </Stack>
-                  </Link>
-                </MenuItem>
-
-                <MenuItem>
-                  <Link to="/" onClick={handleLogout}>
+                  <Link to="/home" onClick={handleLogout}>
                     <Stack sx={{ flexDirection: 'row', gap: 1 }}>
                       <IoIosLogOut color="white" size={20} />
                       <Typography>Sair</Typography>

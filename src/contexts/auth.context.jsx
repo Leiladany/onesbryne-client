@@ -34,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
         window.localStorage.setItem('authToken', token);
         const decodedToken = jwtDecode(token);
         userData(token, decodedToken);
-        navigate('/clothes');
+        navigate('/');
         signupToast.success();
       }
     } catch (error) {
@@ -53,7 +53,7 @@ export const AuthContextProvider = ({ children }) => {
         window.localStorage.setItem('authToken', token);
         const decodedToken = jwtDecode(token);
         userData(token, decodedToken);
-        navigate('/clothes');
+        navigate('/');
         loginToast.success();
       }
     } catch (error) {
