@@ -1,4 +1,3 @@
-import './admin.page.css';
 import { useState, useEffect } from 'react';
 import { DataService } from '../components/services/data-service';
 import { Link, useNavigate } from 'react-router-dom';

@@ -1,3 +1,4 @@
+import './admin-table.css';
 import { Button, Chip, Table } from '@mui/joy';
 import { MdEdit, MdDelete } from 'react-icons/md';
 
@@ -50,9 +51,7 @@ export const AdminTable = ({ products, onEdit, onDelete }) => {
                 <img
                   src={product.img[0]}
                   alt={product.name}
-                  width="64px"
-                  height="64px"
-                  cover="true"
+                  style={{ width: '64px', height: '64px', objectFit: 'cover' }}
                 />
               ) : null}
             </td>
