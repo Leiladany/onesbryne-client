@@ -35,7 +35,7 @@ export const NavbarLinks = () => {
   const iconProps = { color: 'white', size: 20 };
 
   const links = [
-    {
+    /* {
       label: 'Admin',
       to: '/admin',
       icons: [
@@ -43,7 +43,7 @@ export const NavbarLinks = () => {
         <MdAdminPanelSettings {...iconProps} />,
       ],
       condition: isAdmin,
-    },
+    }, */
     {
       label: 'Roupas',
       to: '/home',

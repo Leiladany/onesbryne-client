@@ -33,21 +33,13 @@ export const App = () => {
             path="/clothes/:type/:productId"
             element={<ClothesDetailsPage />}
           />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/add" element={<NewProductPage />} />
+          <Route path="/admin/edit/:productId" element={<NewProductPage />} />
           {isAuthenticated && (
             <>
               <Route path="/favourites" element={<FavouritesPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-
-              {isAdmin && (
-                <>
-                  <Route path="/admin" element={<AdminPage />} />
-                  <Route path="/admin/add" element={<NewProductPage />} />
-                  <Route
-                    path="/admin/edit/:productId"
-                    element={<NewProductPage />}
-                  />
-                </>
-              )}
             </>
           )}
           <Route path="*" element={<Navigate to={'/home'} />} />
