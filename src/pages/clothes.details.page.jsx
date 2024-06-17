@@ -2,7 +2,16 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../contexts/auth.context';
 import { DataService } from '../components/services/data-service';
-import { Stack, Typography, Button, CircularProgress, Box } from '@mui/joy';
+import {
+  Stack,
+  Typography,
+  Button,
+  CircularProgress,
+  Card,
+  CardCover,
+  Box,
+  Divider,
+} from '@mui/joy';
 import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 import {
   errorToast,
@@ -55,9 +64,7 @@ export const ClothesDetailsPage = () => {
   const getProductById = async () => {
     setIsLoadingProduct(true);
     try {
-      const response = await DataService.getData(
-        `/api/products/${productId}`,
-      );
+      const response = await DataService.getData(`/api/products/${productId}`);
       if (response) {
         setProduct(response);
       }
@@ -119,61 +126,110 @@ export const ClothesDetailsPage = () => {
         <CircularProgress variant="plain" color="neutral" />
       ) : (
         <>
-          <Typography level="h4">{product.name}</Typography>
-
-          <Stack sx={{ flexDirection: { xs: 'column', md: 'row' }, gap: 4 }}>
-            <Stack sx={{ width: '300px', position: 'relative' }}>
-              {isAuthenticated && (
-                <Button
-                  variant="plain"
-                  color="neutral"
-                  onClick={addProductToUserFavourites}
-                  loading={isLoadingFavourite}
-                  sx={{
-                    bgcolor: 'primary.main',
-                    color: 'neutral.100',
-                    m: 0,
-                    p: 1,
-                    position: 'absolute',
-                    right: '4%',
-                    top: '2%',
-                    cursor: 'pointer',
-                    border: 'none',
-                    borderRadius: '50%',
-                    '&:hover': {
+          <Stack
+            sx={{
+              justifyContent: 'center',
+              alignItems: { xs: 'center', lg: 'flex-start' },
+              width: '100%',
+              flexDirection: { xs: 'column', lg: 'row' },
+              gap: 4,
+            }}
+          >
+            <Stack
+              sx={{
+                width: { xs: '100%', lg: '50%' },
+                alignItems: { xs: 'center', lg: 'flex-end' },
+              }}
+            >
+              <Card
+                sx={{
+                  background: 'transparent',
+                  borderColor: 'neutral.700',
+                  height: '600px',
+                  width: { xs: '100%', sm: '450px' },
+                  borderRadius: 0,
+                }}
+              >
+                {isAuthenticated && (
+                  <Button
+                    variant="plain"
+                    color="neutral"
+                    onClick={addProductToUserFavourites}
+                    loading={isLoadingFavourite}
+                    sx={{
                       bgcolor: 'primary.main',
                       color: 'neutral.100',
-                    },
-                  }}
-                >
-                  {isFavourite ? (
-                    <IoIosHeart size={25} />
-                  ) : (
-                    <IoIosHeartEmpty size={25} />
-                  )}
-                </Button>
-              )}
+                      m: 0,
+                      p: 1,
+                      position: 'absolute',
+                      right: '4%',
+                      top: '2%',
+                      cursor: 'pointer',
+                      border: 'none',
+                      borderRadius: '50%',
+                      zIndex: 2,
+                      '&:hover': {
+                        bgcolor: 'primary.main',
+                        color: 'neutral.100',
+                      },
+                    }}
+                  >
+                    {isFavourite ? (
+                      <IoIosHeart size={25} />
+                    ) : (
+                      <IoIosHeartEmpty size={25} />
+                    )}
+                  </Button>
+                )}
 
-              <img src={product.img[0]} alt={product.name} />
+                <CardCover>
+                  <img src={product.img[0]} alt={product.name} />
+                </CardCover>
+              </Card>
             </Stack>
 
-            <Stack sx={{ width: '300px', alignItems: 'center', gap: 4 }}>
-              <Stack sx={{ alignItems: 'center', gap: 2 }}>
-                <Typography
-                  startDecorator={<Typography>#{product.code}</Typography>}
-                  sx={{width: "100%"}}
-                >
-                  {product.name}
-                </Typography>
-                <Typography>{product.price}€</Typography>
-                <Typography>{product.size}</Typography>
-              </Stack>
+            <Stack
+              sx={{
+                width: { xs: '100%', lg: '50%' },
+                alignItems: { xs: 'center', lg: 'flex-start' },
+                gap: 4,
+              }}
+            >
+              <Stack
+                sx={{
+                  width: { xs: '100%', sm: '450px' },
+                  height: '600px',
+                  gap: 4,
+                }}
+              >
+                <Stack sx={{ gap: 1 }}>
+                  <Stack sx={{ flexDirection: 'row', gap: 1 }}>
+                    <Typography level="title-lg">#{product.code}</Typography>
+                    <Divider orientation="vertical" />
+                    <Typography level="title-lg">{product.name}</Typography>
+                    <Divider orientation="vertical" />
+                    <Typography level="body-md">{product.size}</Typography>
+                  </Stack>
+                  <Typography level="title-md">{product.price}€</Typography>
+                </Stack>
 
-              <Typography sx={{ textAlign: 'justify' }}>
-                {product.description}
-              </Typography>
-              <Stack>
-                <Button onClick={handleContact}>Contactar</Button>
+                <Stack>
+                  <Typography level="title-sm">
+                    Descrição do produto:
+                  </Typography>
+                  <Typography level="body-sm" sx={{ textAlign: 'justify' }}>
+                    {product.description}
+                  </Typography>
+                </Stack>
+
+                <Box>
+                  <Button
+                    sx={{ width: { xs: '100%', lg: 'auto' } }}
+                    onClick={handleContact}
+                  >
+                    Contactar o vendedor
+                  </Button>
+                </Box>
               </Stack>
             </Stack>
           </Stack>

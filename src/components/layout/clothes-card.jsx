@@ -14,7 +14,7 @@ export const ClothesCard = ({ product }) => {
         }}
       >
         <CardCover>
-          <img src={product.img[0]} alt={product.name} loading="lazy" />
+          <img src={product.img[0]} alt={product.name}/>
         </CardCover>
 
         <CardOverflow
