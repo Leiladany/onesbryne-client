@@ -28,7 +28,6 @@ export const AuthContextProvider = ({ children }) => {
   const handleSignup = async (payload) => {
     try {
       const response = await DataService.postData('/auth/signup', payload);
-      console.log(response);
       if (response.data) {
         const token = response.data.session.access_token;
         window.localStorage.setItem('authToken', token);

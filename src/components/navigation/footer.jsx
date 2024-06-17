@@ -11,7 +11,7 @@ export const Footer = () => {
           py: 2,
           display: 'grid',
           gridTemplateColumns: { xs: '1fr', lg: 'repeat(3, 1fr);' },
-          zIndex: '1000',
+          zIndex: 10,
           gap: { xs: 2, lg: 0 },
         }}
       >

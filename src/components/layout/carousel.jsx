@@ -118,7 +118,7 @@ const arrow = {
   cursor: 'pointer',
   transform: 'translateY(-50%)',
   transition: 'background-color 0.3s',
-  zIndex: '1000',
+  zIndex: 10,
   '&:hover': {
     bgcolor: 'gray',
   },

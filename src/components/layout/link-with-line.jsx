@@ -7,6 +7,8 @@ export const LinkWithLine = ({
   level,
   onClick,
   disabled,
+  isActive,
+  sx,
 }) => {
   return (
     <Link
@@ -17,7 +19,7 @@ export const LinkWithLine = ({
       level={level}
       disabled={disabled}
       underline="none"
-      sx={style}
+      sx={{ ...style, ...sx, ...(isActive ? activeStyle : notActiveStyle) }}
     >
       {children}
     </Link>
@@ -31,6 +33,15 @@ const style = {
   position: 'relative',
   overflow: 'hidden',
   transition: '0.3s',
+  color: 'inherit',
+};
+
+const activeStyle = {
+  color: 'neutral.100',
+  borderBottom: '1px solid',
+};
+
+const notActiveStyle = {
   '&:before': {
     backgroundColor: 'gray',
     content: '""',

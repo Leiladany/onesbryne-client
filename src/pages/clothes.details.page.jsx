@@ -19,9 +19,10 @@ import {
   contactToast,
 } from '../components/utils/toasts';
 import { PageContainer } from '../components/layout/containers';
+import { NavbarClothes } from '../components/navigation/navbar-clothes';
 
 export const ClothesDetailsPage = () => {
-  const { productId } = useParams();
+  const { type, productId } = useParams();
   const { userId, isAuthenticated } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingProduct, setIsLoadingProduct] = useState(true);
@@ -121,11 +122,12 @@ export const ClothesDetailsPage = () => {
   };
 
   return (
-    <PageContainer sx={{ mx: { xs: 2, md: 10 }, gap: 4 }}>
-      {isLoading ? (
-        <CircularProgress variant="plain" color="neutral" />
-      ) : (
-        <>
+    <>
+      <NavbarClothes typeActive={type} />
+      <PageContainer sx={{ mx: { xs: 2, md: 10 }, gap: 4 }}>
+        {isLoading ? (
+          <CircularProgress variant="plain" color="neutral" />
+        ) : (
           <Stack
             sx={{
               justifyContent: 'center',
@@ -136,6 +138,7 @@ export const ClothesDetailsPage = () => {
             }}
           >
             <Stack
+              component="section"
               sx={{
                 width: { xs: '100%', lg: '50%' },
                 alignItems: { xs: 'center', lg: 'flex-end' },
@@ -189,6 +192,7 @@ export const ClothesDetailsPage = () => {
             </Stack>
 
             <Stack
+              component="section"
               sx={{
                 width: { xs: '100%', lg: '50%' },
                 alignItems: { xs: 'center', lg: 'flex-start' },
@@ -233,8 +237,8 @@ export const ClothesDetailsPage = () => {
               </Stack>
             </Stack>
           </Stack>
-        </>
-      )}
-    </PageContainer>
+        )}
+      </PageContainer>
+    </>
   );
 };

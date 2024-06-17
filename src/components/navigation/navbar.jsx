@@ -12,7 +12,7 @@ export const Navbar = () => {
           flexDirection: 'row',
           display: 'grid',
           gridTemplateColumns: 'repeat(3, 1fr);',
-          zIndex: '1000',
+          zIndex: 10,
         }}
       >
         <Stack component="section" />
