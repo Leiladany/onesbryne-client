@@ -148,8 +148,8 @@ export const ClothesDetailsPage = () => {
                 sx={{
                   background: 'transparent',
                   borderColor: 'neutral.700',
-                  height: '600px',
-                  width: { xs: '100%', sm: '450px' },
+                  height: { xs: '600px', sm: '1200px', lg: '600px' },
+                  width: { xs: '100%', lg: '450px' },
                   borderRadius: 0,
                 }}
               >
@@ -201,7 +201,7 @@ export const ClothesDetailsPage = () => {
             >
               <Stack
                 sx={{
-                  width: { xs: '100%', sm: '450px' },
+                  width: { xs: '100%', lg: '450px' },
                   height: '600px',
                   gap: 4,
                 }}
