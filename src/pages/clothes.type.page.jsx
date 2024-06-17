@@ -45,9 +45,9 @@ export const ClothesTypePage = () => {
             width: '100%',
             display: 'grid',
             gridTemplateColumns: {
-              xs: '1fr 1fr',
-              md: '1fr 1fr 1fr',
-              lg: '1fr 1fr 1fr 1fr',
+              xs: 'repeat(2, 1fr);',
+              md: 'repeat(3, 1fr);',
+              lg: 'repeat(4, 1fr);',
             },
             rowGap: 4,
             columnGap: 1,

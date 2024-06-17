@@ -11,7 +11,7 @@ export const Navbar = () => {
           py: 1,
           flexDirection: 'row',
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr 1fr',
+          gridTemplateColumns: 'repeat(3, 1fr);',
           zIndex: '1000',
         }}
       >
