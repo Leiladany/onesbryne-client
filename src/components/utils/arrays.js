@@ -4,7 +4,7 @@ export const types = [
     img: 'https://i5.walmartimages.com/asr/023d976c-59ee-473a-a1db-937a117009f5.85e5d5151cd71f5d80ad8e0324cdde18.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF',
   },
   {
-    type: 'T-Shirts',
+    type: 'Camisolas',
     img: 'https://columbia.scene7.com/is/image/ColumbiaSportswear2/2033481_349_f_om?$x1_grid$&v=1714468679',
   },
   {
