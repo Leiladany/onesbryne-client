@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Form } from '../components/layout/form';
 import { DataService } from '../components/services/data-service';
 import { types, sizes, statuses } from '../components/utils/arrays';
@@ -11,6 +10,7 @@ import { PageContainer } from '../components/layout/containers';
 export const NewProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const [code, setCode] = useState('');
@@ -26,8 +26,10 @@ export const NewProductPage = () => {
   useEffect(() => {
     if (productId) {
       fetchProduct();
+    } else if (location.state?.lastCode) {
+      setCode(location.state.lastCode + 1);
     }
-  }, [productId]);
+  }, [productId, location.state]);
 
   const fetchProduct = async () => {
     setIsLoading(true);
@@ -117,7 +119,7 @@ export const NewProductPage = () => {
       type: 'number',
       value: code,
       setValue: setCode,
-      placeholder: 'Código do produto',
+      placeholder: location.state?.lastCode ? `Último código: ${location.state.lastCode}` : 'Código do produto',
       required: true,
     },
     {

@@ -10,6 +10,7 @@ export const AdminPage = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [lastCode, setLastCode] = useState(null);
 
   useEffect(() => {
     fetchAllProducts();
@@ -21,6 +22,9 @@ export const AdminPage = () => {
       if (products) {
         products.sort((a, b) => (a.code > b.code ? 1 : -1));
         setProducts(products);
+        if (products.length > 0) {
+          setLastCode(products[products.length - 1].code);
+        }
       }
     } catch (error) {
       console.error('Error fetching products');
@@ -54,13 +58,18 @@ export const AdminPage = () => {
       <Typography level="h4">Admin</Typography>
 
       <Stack component="section" sx={{ alignItems: 'center' }}>
-        <Button component={Link} to="/admin/add" className="box">
+        <Button
+          component={Link}
+          to="/admin/add"
+          state={{ lastCode }}
+          className="box"
+        >
           + Adicionar nova peça
         </Button>
       </Stack>
 
       {isLoading ? (
-        <CircularProgress variant='plain' color='neutral' />
+        <CircularProgress variant="plain" color="neutral" />
       ) : (
         <Stack
           component="section"
