@@ -6,7 +6,7 @@ import { types } from '../utils/arrays';
 import { Box, Button, Card, Typography } from '@mui/joy';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
-export const Carousel = () => {
+export const HomeCarousel = () => {
   const carouselRef = useRef(null);
 
   const responsive = {

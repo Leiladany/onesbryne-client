@@ -1,5 +1,5 @@
 import { Box, Stack } from '@mui/joy';
-import { Carousel } from '../components/layout/carousel';
+import { HomeCarousel } from '../components/layout/home-carousel';
 import gil1 from '../assets/temp-gil-1.png';
 import gil2 from '../assets/temp-gil-2.png';
 
@@ -32,7 +32,7 @@ export const HomePage = () => {
         ))}
       </Stack>
 
-      <Carousel />
+      <HomeCarousel />
     </Stack>
   );
 };
