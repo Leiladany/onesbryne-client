@@ -25,9 +25,9 @@ export const ClothesCard = ({ product }) => {
           }}
         >
           <Stack sx={{flexDirection: "row", gap: 1}}>
-            <Typography level="body-sm">{product.name}</Typography>
+            <Typography level="body-xs">{product.name}</Typography>
             <Divider orientation="vertical" />
-            <Typography level="body-sm">{product.size}</Typography>
+            <Typography level="body-xs">{product.size}</Typography>
           </Stack>
           <Typography level="title-sm">{product.price} €</Typography>
         </CardOverflow>
